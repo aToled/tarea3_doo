@@ -5,8 +5,16 @@ package org.example;
  * desde los depósitos internos de tal expendedor.
  */
 class Comprador {
-    private String sonido = "";
-    private int vuelto = 0;
+    private String sonido;
+    private int vuelto;
+
+    /**
+     * Inicializa el vuelto en 0, y el sonido vació.
+     */
+    public Comprador(){
+        vuelto=0;
+        sonido="";
+    }
 
     /**
      * Utilizando la moneda y expendedor especificado en el constructor intenta comprar
@@ -26,7 +34,7 @@ class Comprador {
      * @see PagoInsuficienteException
      * @see PagoIncorrectoException
      */
-    public Comprador(Moneda m, Expendedor.Productos cualProducto, Expendedor exp) throws NoHayProductoException, PagoIncorrectoException, PagoInsuficienteException{
+    public void Comprar(Moneda m, Productos cualProducto, Expendedor exp) throws NoHayProductoException, PagoIncorrectoException, PagoInsuficienteException{
         Producto p = null;
 
         try {
