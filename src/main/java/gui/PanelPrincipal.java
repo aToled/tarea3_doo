@@ -12,14 +12,7 @@ public class PanelPrincipal extends JPanel {
 
         PanelOpciones panelOpciones = new PanelOpciones();
 
-        BotonCompra botonCompra = new BotonCompra();
-
-        Box boxDerecha = Box.createVerticalBox();
-
-        boxDerecha.add(panelOpciones);
-        boxDerecha.add(botonCompra);
-
         add(panelProductos, BorderLayout.CENTER);
-        add(boxDerecha, BorderLayout.EAST);
+        add(panelOpciones, BorderLayout.EAST);
     }
 }
