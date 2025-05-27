@@ -11,6 +11,7 @@ public class VentanaPrincipal extends JFrame {
         setSize(new Dimension(700, 700));
         // Centraliza la ventana
         setLocationRelativeTo(null);
+        setResizable(false);
 
         // Componentes de la ventana
         PanelPrincipal panelPrincipal = new PanelPrincipal();
