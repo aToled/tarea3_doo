@@ -10,12 +10,12 @@ public class MainInteractivo {
     private static void ImprimirOpciones(){
         System.out.println("Elija el producto que desea comprar");
         System.out.println("-----Bebidas:------");
-        System.out.println("1. Coca Cola: $" + Expendedor.Productos.COCA.precio);
-        System.out.println("2. Sprite: $" + Expendedor.Productos.SPRITE.precio);
-        System.out.println("3. Fanta: $" + Expendedor.Productos.FANTA.precio);
+        System.out.println("1. Coca Cola: $" + Productos.COCA.precio);
+        System.out.println("2. Sprite: $" + Productos.SPRITE.precio);
+        System.out.println("3. Fanta: $" + Productos.FANTA.precio);
         System.out.println("-----Dulces:-----");
-        System.out.println("4. Snickers: $" + Expendedor.Productos.SNICKERS.precio);
-        System.out.println("5. Super8: $" + Expendedor.Productos.SUPER8.precio);
+        System.out.println("4. Snickers: $" + Productos.SNICKERS.precio);
+        System.out.println("5. Super8: $" + Productos.SUPER8.precio);
         System.out.print("---->");
     }
 
@@ -26,19 +26,16 @@ public class MainInteractivo {
      * @param m: Valor de la moneda que se quiere obtener
      */
     private static Moneda ElegirMoneda(int m){
-        switch(m){
-            case 100:
-                return new Moneda100();
-            case 500:
-                return new Moneda500();
-            case 1000:
-                return new Moneda1000();
-            case 1500:
-                return new Moneda1500();
-            default:
+        return switch (m) {
+            case 100 -> new Moneda100();
+            case 500 -> new Moneda500();
+            case 1000 -> new Moneda1000();
+            case 1500 -> new Moneda1500();
+            default -> {
                 System.out.println("Moneda no valida");
-                return null;
-        }
+                yield null;
+            }
+        };
     }
 
     /**
@@ -49,7 +46,7 @@ public class MainInteractivo {
     public static void main(String[] args) {
         Expendedor exp = new Expendedor(2);
         Scanner sc = new Scanner(System.in);
-        Comprador c;
+        Comprador c=new Comprador();
         ImprimirOpciones();
         while(sc.hasNext()) {
             if(sc.hasNextInt()){
@@ -59,14 +56,15 @@ public class MainInteractivo {
                 int moneda=sc.nextInt();
                 try {
                     if (seleccion == 1 || seleccion == 2 || seleccion == 3 || seleccion == 4 || seleccion == 5) {
-                        c = new Comprador(ElegirMoneda(moneda), Expendedor.Productos.values()[seleccion - 1], exp);
+                        c.Comprar(ElegirMoneda(moneda), Productos.values()[seleccion - 1], exp);
                         System.out.println("\n** Producto comprado: " + c.queConsumiste() + ", vuelto: " + c.cuantoVuelto() + " **\n");
                     } else {
-                        c = new Comprador(ElegirMoneda(moneda), Expendedor.Productos.NULO, exp);
+                        c.Comprar(ElegirMoneda(moneda), Productos.NULO, exp);
                         System.out.println("\n** vuelto: " + c.cuantoVuelto() + " **\n");
                     }
                 } catch (NoHayProductoException | PagoIncorrectoException | PagoInsuficienteException e) {
                     System.out.println("Error: " + e.getMessage());
+                    System.out.println("\n** vuelto: " + c.cuantoVuelto() + " **\n");
                 }
             }else{
                 String s= sc.next();

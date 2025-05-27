@@ -15,20 +15,6 @@ class Expendedor {
     private final Deposito<Moneda> monVu;
 
     /**
-     * Se utiliza para especificar el tipo de producto que se va a comprar
-     * y se almacena su precio de manera constante.
-     */
-    public enum Productos {
-        COCA(1500), SPRITE(1000), FANTA(1000), SNICKERS(700), SUPER8(500), NULO(0);
-
-        public final int precio;
-
-        Productos(int precio) {
-            this.precio = precio;
-        }
-    }
-
-    /**
      * El Expendedor almacena los productos que especificados por el enum 'Productos'
      * Cada producto es almacenado en un depósito específico para dicho producto.
      * @param numProductos: La cantidad que se almacenará en cada depósito para cada tipo de producto
@@ -46,7 +32,7 @@ class Expendedor {
         monVu = new Deposito<>();
 
         for (int i = 0; i < numProductos; i++) {
-            coca.add(     new CocaCola((i*5)+0  ));
+            coca.add(     new CocaCola((i*5)  ));
             sprite.add(   new Sprite( (i*5)+1   ));
             fanta.add(    new Fanta( (i*5)+2    ));
             snickers.add( new Snickers( (i*5)+3 ));
@@ -67,9 +53,9 @@ class Expendedor {
      * @param m: Moneda utilizada para la compra
      * @param cual: El producto que se desea comprar
      * @return Producto si es que la compra es exitosa en caso contrario retorna null
-     * @throws NoHayProductoException
-     * @throws PagoInsuficienteException
-     * @throws PagoIncorrectoException
+     * @throws NoHayProductoException:
+     * @throws PagoInsuficienteException:
+     * @throws PagoIncorrectoException:
      * @see Moneda
      * @see Producto
      */
@@ -84,28 +70,17 @@ class Expendedor {
             throw new PagoInsuficienteException("Pago insuficiente");
         }
 
-        Producto temp;
-
-        switch (cual) {
-            case COCA:
-                temp = coca.get();
-                break;
-            case SPRITE:
-                temp = sprite.get();
-                break;
-            case FANTA:
-                temp = fanta.get();
-                break;
-            case SNICKERS:
-                temp = snickers.get();
-                break;
-            case SUPER8:
-                temp = super8.get();
-                break;
-            default:
+        Producto temp = switch (cual) {
+            case COCA -> coca.get();
+            case SPRITE -> sprite.get();
+            case FANTA -> fanta.get();
+            case SNICKERS -> snickers.get();
+            case SUPER8 -> super8.get();
+            default -> {
                 monVu.add(m);
                 throw new NoHayProductoException("No existe producto solicitado");
-        }
+            }
+        };
 
         // No hay producto solicitado
         if (temp == null) {
