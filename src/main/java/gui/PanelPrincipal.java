@@ -19,7 +19,7 @@ public class PanelPrincipal extends JPanel {
         boxDerecha.add(panelOpciones);
         boxDerecha.add(botonCompra);
 
-        add(panelProductos, BorderLayout.WEST);
-        add(boxDerecha, BorderLayout.WEST);
+        add(panelProductos, BorderLayout.CENTER);
+        add(boxDerecha, BorderLayout.EAST);
     }
 }
