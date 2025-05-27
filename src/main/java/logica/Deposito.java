@@ -1,4 +1,4 @@
-package org.example;
+package logica;
 
 import java.util.ArrayList;
 /**

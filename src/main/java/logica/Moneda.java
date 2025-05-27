@@ -1,4 +1,4 @@
-package org.example;
+package logica;
 /**
  * Un Molde de moneda genérica la cual se utiliza en distintas transacciones entre el comprador y el expendedor
  * también implementa la interfaz Comparable para organizar un depósito de monedas de mayor a menor.

@@ -1,4 +1,4 @@
-package org.example;
+package logica;
 /**
  * Es una representation virtual del mecanismo expendedor dentro de una máquina expendedora de golosinas
  * que se encarga de dispensar el producto seleccionado por el comprador, asignarle precios a los productos y

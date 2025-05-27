@@ -1,4 +1,4 @@
-package org.example;
+package logica;
 /**
  * Excepción que surge cuando el producto solicitado se acabó o no existe.
  */

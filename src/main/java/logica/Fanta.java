@@ -1,13 +1,13 @@
-package org.example;
+package logica;
 /**
- * Instancia de Bebida que representa una Sprite, puede ser comprada, almacenada y consumida.
+ * Instancia de Bebida que representa una Fanta, puede ser comprada, almacenada y consumida.
  */
-class Sprite extends Bebida {
+class Fanta extends Bebida {
     /**
      * @param numSerie: Valor único para identificar cada producto
      * @see Bebida
      */
-    public Sprite(int numSerie) {
+    public Fanta(int numSerie) {
         super(numSerie);
     }
 
@@ -16,6 +16,6 @@ class Sprite extends Bebida {
      * @return String único que retorna este producto al consumirlo
      */
     public String consumir() {
-        return "sprite";
+        return "fanta";
     }
 }

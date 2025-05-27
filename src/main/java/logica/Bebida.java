@@ -1,4 +1,4 @@
-package org.example;
+package logica;
 /**
  * Un Molde de bebida genérica que se almacena en un depósito y es comprada por un comprador.
  */

@@ -1,4 +1,4 @@
-package org.example;
+package logica;
 /**
  * Representa virtualmente a una persona que compra un producto desde una máquina expendedora ingresando monedas,
  * seleccionando algún producto y posteriormente recibiéndolo en conjunto a su respectivo vuelto

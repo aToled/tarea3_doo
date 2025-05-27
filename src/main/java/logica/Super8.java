@@ -1,4 +1,4 @@
-package org.example;
+package logica;
 /**
  * Instancia de Dulce que representa un Super8, puede ser comprado, almacenado y consumido.
  */

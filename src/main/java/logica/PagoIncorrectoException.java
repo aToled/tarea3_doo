@@ -1,4 +1,4 @@
-package org.example;
+package logica;
 /**
  * Excepción que surge cuando se utiliza una moneda null para intentar comprar un producto.
  */

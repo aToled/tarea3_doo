@@ -1,4 +1,4 @@
-package org.example;
+package logica;
 /**
  * Instancia de Bebida que representa una Coca Cola, puede ser comprada, almacenada y consumida.
  */

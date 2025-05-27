@@ -1,4 +1,4 @@
-package org.example;
+package logica;
 import java.util.Scanner;
 /**
  * Una simulación simple de interfaz interactiva para una máquina expendedora de dulces y bebidas.

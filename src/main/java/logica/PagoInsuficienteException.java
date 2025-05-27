@@ -1,4 +1,4 @@
-package org.example;
+package logica;
 /**
  * Excepción qe surge cuando se intenta comprar un producto con una moneda de valor inferior
  * al precio del producto.
