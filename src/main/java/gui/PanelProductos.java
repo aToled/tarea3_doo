@@ -23,7 +23,7 @@ public class PanelProductos extends JPanel {
             setSize(new Dimension(ANCHO, ALTO));
             setBackground(new Color(0, 155, 150));
 
-            setBounds(x, y, ANCHO, ALTO);
+            setBounds(this.x, this.y, ANCHO, ALTO);
         }
     }
 

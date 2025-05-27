@@ -7,6 +7,17 @@ import javax.swing.*;
 import java.awt.*;
 
 public class PanelOpciones extends JPanel {
+    Productos productoSeleccionado = null;
+
+    private class ProductoSeleccionado extends JPanel {
+        public ProductoSeleccionado() {
+            setBackground(new Color(175, 175, 175));
+            JLabel label = new JLabel("No producto seleccionado");
+
+            add(label);
+        }
+    }
+
     private class BotonProducto extends JButton {
         private final Productos producto;
 
@@ -23,6 +34,10 @@ public class PanelOpciones extends JPanel {
         setMinimumSize(new Dimension(200, 0));
 
         Box box = Box.createVerticalBox();
+        box.setAlignmentX(CENTER_ALIGNMENT);
+
+        box.add(new ProductoSeleccionado());
+        box.add(Box.createRigidArea(new Dimension(0, 25)));
 
         box.add(new BotonProducto(Productos.COCA));
         box.add(Box.createRigidArea(new Dimension(0, 10)));
