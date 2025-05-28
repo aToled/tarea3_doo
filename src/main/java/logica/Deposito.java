@@ -27,8 +27,8 @@ class Deposito<T> {
             return null;
         }
 
-        T temp = arrayList.get(0);
-        arrayList.remove(0);
+        T temp = arrayList.getFirst();
+        arrayList.removeFirst();
         return temp;
     }
 

@@ -38,7 +38,8 @@ class Comprador {
         Producto p = null;
 
         try {
-            p = exp.comprarProducto(m, cualProducto);
+            exp.comprarProducto(m, cualProducto);
+            p=exp.getProducto();
         } catch (NoHayProductoException | PagoInsuficienteException e) {
             Moneda monedaTemporal = exp.getVuelto();
             if (monedaTemporal != null) {

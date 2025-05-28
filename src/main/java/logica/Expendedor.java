@@ -1,8 +1,9 @@
 package logica;
 /**
  * Es una representation virtual del mecanismo expendedor dentro de una máquina expendedora de golosinas
- * que se encarga de dispensar el producto seleccionado por el comprador, asignarle precios a los productos y
- * calcular el vuelto correspondiente para devolverlo.
+ * que se encarga de dispensar el producto seleccionado por el comprador, asignarle precios a los productos,
+ * calcular el vuelto correspondiente para devolverlo (intentando devolver la moneda mas grande posible primero) y
+ * almacena todas las monedas que se ingresaron tras una compra exitosa en un deposito separado.
  * También es el que maneja principalmente los casos donde el comprador no selecciono bien el producto (o está agotado),
  * no le alcanza para comprar o no ingreso bien su moneda.
  */
@@ -13,6 +14,8 @@ class Expendedor {
     private final Deposito<Dulce> snickers;
     private final Deposito<Dulce> super8;
     private final Deposito<Moneda> monVu;
+    private final Deposito<Moneda> monedas_compras_exitosas;
+    private final Producto[] producto = new Producto[1];
 
     /**
      * El Expendedor almacena los productos que especificados por el enum 'Productos'
@@ -30,6 +33,7 @@ class Expendedor {
         super8 = new Deposito<>();
 
         monVu = new Deposito<>();
+        monedas_compras_exitosas = new Deposito<>();
 
         for (int i = 0; i < numProductos; i++) {
             coca.add(     new CocaCola((i*5)  ));
@@ -41,7 +45,8 @@ class Expendedor {
     }
 
     /**
-     * Retorna el producto solicitado y almacena el vuelto en monedas de 100 en el depósito monVu
+     * Ingresa el producto solicitado en el desposito donde "caen" al comprarlos
+     * y almacena el vuelto con las monedas mas grandes primero en el depósito monVu
      * siempre y cuando no ocurra algunos de los siguientes casos:
      * 1. Si la moneda es null arroja PagoIncorrectoException.
      * 2. Si el saldo no es suficiente para comprar el producto devuelve la misma
@@ -50,16 +55,15 @@ class Expendedor {
      *    y arroja NoHayProductoException.
      * 4. Si no hay producto solicitado (el depósito está vacío) devuelve la
      *    misma moneda entregada y arroja NoHayProductoException.
-     * @param m: Moneda utilizada para la compra
-     * @param cual: El producto que se desea comprar
-     * @return Producto si es que la compra es exitosa en caso contrario retorna null
+     * @param m: Moneda utilizada para la compra.
+     * @param cual: El producto que se desea comprar.
      * @throws NoHayProductoException:
      * @throws PagoInsuficienteException:
      * @throws PagoIncorrectoException:
      * @see Moneda
      * @see Producto
      */
-    public Producto comprarProducto(Moneda m, Productos cual) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
+    public void comprarProducto(Moneda m, Productos cual) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
         if (m == null) {
             throw new PagoIncorrectoException("Debe ingresar una moneda");
         }
@@ -89,15 +93,28 @@ class Expendedor {
         }
 
         if (m.getValor() == cual.precio) {
-            return temp;
+            producto[0]=temp;
+            monedas_compras_exitosas.add(m);
         }
 
-        int howManyCoins = (m.getValor() - cual.precio) / 100;
-        for (int i = 0; i < howManyCoins; i++) {
-            monVu.add(new Moneda100());
+        int howManyCoins = (m.getValor() - cual.precio);
+        while(howManyCoins!=0){
+            if((howManyCoins)>=1500){
+                monVu.add(new Moneda1500());
+                howManyCoins=howManyCoins-1500;
+            }else if((howManyCoins)>=1000){
+                monVu.add(new Moneda1000());
+                howManyCoins=howManyCoins-1000;
+            }else if((howManyCoins)>=500){
+                monVu.add(new Moneda500());
+                howManyCoins=howManyCoins-500;
+            }else if((howManyCoins)>=100){
+                monVu.add(new Moneda100());
+                howManyCoins=howManyCoins-100;
+            }
         }
 
-        return temp;
+        producto[0]=temp;
     }
 
     /**
@@ -105,5 +122,13 @@ class Expendedor {
      */
     public Moneda getVuelto() {
         return monVu.get();
+    }
+
+    /**
+     * Devuelve el producto que el comprador compró. (es como meter la mano al depósito donde cae el producto comprado, para sacarlo)
+     * @return aquel producto.
+     */
+    public Producto getProducto(){
+        return producto[0];
     }
 }
