@@ -6,10 +6,10 @@ public abstract class Producto {
     private final int serie;
 
     /**
-     * @param numSerie: Valor único para identificar cada producto
+     * Crea el Producto con un numero de serie al azar.
      */
-    public Producto(int numSerie) {
-        this.serie = numSerie;
+    public Producto() {
+        this.serie= (int) (Math.random()*1000000);;
     }
 
     /**

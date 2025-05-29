@@ -4,11 +4,10 @@ package logica;
  */
 class Sprite extends Bebida {
     /**
-     * @param numSerie: Valor único para identificar cada producto
      * @see Bebida
      */
-    public Sprite(int numSerie) {
-        super(numSerie);
+    public Sprite() {
+        super();
     }
 
     /**

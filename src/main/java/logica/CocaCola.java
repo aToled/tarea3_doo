@@ -3,12 +3,12 @@ package logica;
  * Instancia de Bebida que representa una Coca Cola, puede ser comprada, almacenada y consumida.
  */
 class CocaCola extends Bebida {
+
     /**
-     * @param numSerie: Valor único para identificar cada producto.
      * @see Bebida
      */
-    public CocaCola(int numSerie) {
-        super(numSerie);
+    public CocaCola() {
+        super();
     }
 
     /**

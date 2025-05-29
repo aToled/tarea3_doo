@@ -3,11 +3,13 @@ package logica;
  * Instancia de Dulce que representa un Snickers, puede ser comprado, almacenado y consumido.
  */
 public class Snickers extends Dulce {
+
     /**
-     * @param numSerie: Valor único para identificar cada producto
      * @see Dulce
      */
-    public Snickers(int numSerie) { super(numSerie); }
+    public Snickers() {
+        super();
+    }
 
     /**
      * El comprador almacena este valor cuando consume el producto

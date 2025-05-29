@@ -28,7 +28,6 @@ class Expendedor {
         coca = new Deposito<>();
         sprite = new Deposito<>();
         fanta = new Deposito<>();
-
         snickers = new Deposito<>();
         super8 = new Deposito<>();
 
@@ -36,11 +35,11 @@ class Expendedor {
         monedas_compras_exitosas = new Deposito<>();
 
         for (int i = 0; i < numProductos; i++) {
-            coca.add(     new CocaCola((i*5)  ));
-            sprite.add(   new Sprite( (i*5)+1   ));
-            fanta.add(    new Fanta( (i*5)+2    ));
-            snickers.add( new Snickers( (i*5)+3 ));
-            super8.add(   new Super8( (i*5)+4   ));
+            coca.add(     new CocaCola());
+            sprite.add(   new Sprite());
+            fanta.add(    new Fanta());
+            snickers.add( new Snickers());
+            super8.add(   new Super8());
         }
     }
 
@@ -109,6 +108,22 @@ class Expendedor {
         utils.ingresar_total_monedas_en_orden(monVu,howManyCoins);
 
         producto[0]=temp;
+    }
+
+    /**
+     * Rellena el depósito correspondiente con un elemento del producto seleccionado.
+     * @param cual:tal producto.
+     */
+    public void rellenarProducto(Productos cual){
+        switch (cual) {
+            case COCA -> coca.add(new CocaCola());
+            case SPRITE -> sprite.add(new Sprite());
+            case FANTA -> fanta.add(new Fanta());
+            case SNICKERS -> snickers.add(new Snickers());
+            case SUPER8 -> super8.add(new Super8());
+            default -> {
+            }
+        }
     }
 
     /**

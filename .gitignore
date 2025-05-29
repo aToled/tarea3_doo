@@ -28,6 +28,9 @@ replay_pid*
 .idea/jarRepositories.xml
 .idea/compiler.xml
 .idea/libraries/
+.idea/misc.xml
+.idea/vcs.xml
+.idea/
 *.iws
 *.iml
 *.ipr

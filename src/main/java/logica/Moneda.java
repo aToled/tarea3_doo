@@ -4,13 +4,20 @@ package logica;
  * también implementa la interfaz Comparable para organizar un depósito de monedas de mayor a menor.
  */
 abstract public class Moneda implements Comparable<Moneda> {
-    public Moneda() {}
+    private final int serie;
+
+    /**
+     * Crea la moneda y le asigna un numero al azar de serie.
+     */
+    public Moneda() {
+        this.serie= (int) (Math.random()*1000000);
+    }
 
     /**
      * @return La referencia a al objeto moneda
      */
-    public String getSerie() {
-        return Integer.toHexString(System.identityHashCode(this));
+    public int getSerie() {
+        return serie;
     }
 
     /**
