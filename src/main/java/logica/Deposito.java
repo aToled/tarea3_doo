@@ -3,10 +3,10 @@ package logica;
 import java.util.ArrayList;
 /**
  * Representa un depósito que dentro del código lo usamos para representar los distintos lugares dentro
- * una máquina expendedora donde se almacenan sus productos y monedas.
+ * una máquina expendedora donde se almacenan sus productos y monedas. Y para representar el monedero del Comprador.
  * @param <T>: Deposito de tipo "genérico"
  */
-class Deposito<T> {
+public class Deposito<T> {
     private final ArrayList<T> arrayList;
 
     /**
@@ -40,5 +40,20 @@ class Deposito<T> {
         if (elemento == null) return;
 
         arrayList.add(elemento);
+    }
+
+    /**
+     * Verifica si el depósito esa vacío o no.
+     * @return un boolean true si está vacío, de lo contrario false
+     */
+    public boolean isEmpty(){
+        return arrayList.isEmpty();
+    }
+
+    /**
+     * Ordena el depósito en su orden natural. (solo lo usan depósitos de monedas que implementan la interfaz comparable)
+     */
+    public void sort(){
+        arrayList.sort(null);
     }
 }

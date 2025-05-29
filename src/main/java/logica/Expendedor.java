@@ -2,8 +2,8 @@ package logica;
 /**
  * Es una representation virtual del mecanismo expendedor dentro de una máquina expendedora de golosinas
  * que se encarga de dispensar el producto seleccionado por el comprador, asignarle precios a los productos,
- * calcular el vuelto correspondiente para devolverlo (intentando devolver la moneda mas grande posible primero) y
- * almacena todas las monedas que se ingresaron tras una compra exitosa en un deposito separado.
+ * calcular el vuelto correspondiente para devolverlo (intentando devolver la moneda más grande posible primero) y
+ * almacena todas las monedas que se ingresaron tras una compra exitosa en un depósito separado.
  * También es el que maneja principalmente los casos donde el comprador no selecciono bien el producto (o está agotado),
  * no le alcanza para comprar o no ingreso bien su moneda.
  */
@@ -45,8 +45,8 @@ class Expendedor {
     }
 
     /**
-     * Ingresa el producto solicitado en el desposito donde "caen" al comprarlos
-     * y almacena el vuelto con las monedas mas grandes primero en el depósito monVu
+     * Ingresa el producto solicitado en el depósito donde "caen" al comprarlos
+     * y almacena el vuelto con las monedas más grandes primero en el depósito monVu
      * siempre y cuando no ocurra algunos de los siguientes casos:
      * 1. Si la moneda es null arroja PagoIncorrectoException.
      * 2. Si el saldo no es suficiente para comprar el producto devuelve la misma
@@ -55,7 +55,7 @@ class Expendedor {
      *    y arroja NoHayProductoException.
      * 4. Si no hay producto solicitado (el depósito está vacío) devuelve la
      *    misma moneda entregada y arroja NoHayProductoException.
-     * @param m: Moneda utilizada para la compra.
+     * @param monedero: Depósito de monedas utilizado para la compra.
      * @param cual: El producto que se desea comprar.
      * @throws NoHayProductoException:
      * @throws PagoInsuficienteException:
@@ -63,14 +63,26 @@ class Expendedor {
      * @see Moneda
      * @see Producto
      */
-    public void comprarProducto(Moneda m, Productos cual) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
+    public void comprarProducto(Deposito<Moneda> monedero, Productos cual) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
+        Moneda m = monedero.get();
+        int Dinero_total_ingresado = 0;
+
         if (m == null) {
             throw new PagoIncorrectoException("Debe ingresar una moneda");
         }
 
+        Deposito<Moneda> monedas_ingresadas = new Deposito<>();
+        monedas_ingresadas.add(m);
+        while(m!=null){
+            Dinero_total_ingresado+=m.getValor();
+            m=monedero.get();
+            monedas_ingresadas.add(m);
+        }
+
+
         // No alcanza saldo
-        if (m.getValor() < cual.precio) {
-            monVu.add(m);
+        if (Dinero_total_ingresado < cual.precio) {
+            utils.cambiar_monedas_de_deposito(monedas_ingresadas,monVu);
             throw new PagoInsuficienteException("Pago insuficiente");
         }
 
@@ -81,44 +93,26 @@ class Expendedor {
             case SNICKERS -> snickers.get();
             case SUPER8 -> super8.get();
             default -> {
-                monVu.add(m);
+                utils.cambiar_monedas_de_deposito(monedas_ingresadas,monVu);
                 throw new NoHayProductoException("No existe producto solicitado");
             }
         };
 
         // No hay producto solicitado
         if (temp == null) {
-            monVu.add(m);
+            utils.cambiar_monedas_de_deposito(monedas_ingresadas,monVu);
             throw new NoHayProductoException("No hay producto solicitado");
         }
 
-        if (m.getValor() == cual.precio) {
-            producto[0]=temp;
-            monedas_compras_exitosas.add(m);
-        }
-
-        int howManyCoins = (m.getValor() - cual.precio);
-        while(howManyCoins!=0){
-            if((howManyCoins)>=1500){
-                monVu.add(new Moneda1500());
-                howManyCoins=howManyCoins-1500;
-            }else if((howManyCoins)>=1000){
-                monVu.add(new Moneda1000());
-                howManyCoins=howManyCoins-1000;
-            }else if((howManyCoins)>=500){
-                monVu.add(new Moneda500());
-                howManyCoins=howManyCoins-500;
-            }else if((howManyCoins)>=100){
-                monVu.add(new Moneda100());
-                howManyCoins=howManyCoins-100;
-            }
-        }
+        utils.cambiar_monedas_de_deposito(monedas_ingresadas,monedas_compras_exitosas);
+        int howManyCoins = (Dinero_total_ingresado - cual.precio);
+        utils.ingresar_total_monedas_en_orden(monVu,howManyCoins);
 
         producto[0]=temp;
     }
 
     /**
-     * @return la última moneda dentro del depósito monVu (puede ser null si no hay monedas).
+     * @return la última moneda dentro del depósito monVu. (puede ser null si no hay monedas)
      */
     public Moneda getVuelto() {
         return monVu.get();

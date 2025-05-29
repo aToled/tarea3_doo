@@ -20,25 +20,6 @@ public class MainInteractivo {
     }
 
     /**
-     * Devuelve la moneda con el valor especificado en el argumento.
-     * Los valores válidos son 100, 500, 1000 y 1500
-     * @return una instancia de la moneda ingresada
-     * @param m: Valor de la moneda que se quiere obtener
-     */
-    private static Moneda ElegirMoneda(int m){
-        return switch (m) {
-            case 100 -> new Moneda100();
-            case 500 -> new Moneda500();
-            case 1000 -> new Moneda1000();
-            case 1500 -> new Moneda1500();
-            default -> {
-                System.out.println("Moneda no valida");
-                yield null;
-            }
-        };
-    }
-
-    /**
      * Main interactivo el cual permite al usuario interactuar con un expendedor,
      * mediante un bucle que verifica que el usuario haya ingresado un valor para seguir comprando o la palabra clave "salir" para dejar de comprar.
      * @param args: Argumentos que recibe el programa al ejecutarse. El programa no requiere argumentos
@@ -46,20 +27,21 @@ public class MainInteractivo {
     public static void main(String[] args) {
         Expendedor exp = new Expendedor(2);
         Scanner sc = new Scanner(System.in);
-        Comprador c=new Comprador();
+        Comprador c=new Comprador(0);
         ImprimirOpciones();
         while(sc.hasNext()) {
             if(sc.hasNextInt()){
                 int seleccion=sc.nextInt();
-                System.out.println("Ingrese su Moneda:   //(100, 500, 1000, 1500)");
+                System.out.println("Ingrese una cantidad de dinero en incrementos de 100$ :   //(ej: 100, 200 , 500, 1000, 1500)");
                 System.out.print("---->");
-                int moneda=sc.nextInt();
+                int dinero=sc.nextInt();
+                c.IngresarDinero(dinero);
                 try {
                     if (seleccion == 1 || seleccion == 2 || seleccion == 3 || seleccion == 4 || seleccion == 5) {
-                        c.Comprar(ElegirMoneda(moneda), Productos.values()[seleccion - 1], exp);
+                        c.Comprar(Productos.values()[seleccion - 1], exp);
                         System.out.println("\n** Producto comprado: " + c.queConsumiste() + ", vuelto: " + c.cuantoVuelto() + " **\n");
                     } else {
-                        c.Comprar(ElegirMoneda(moneda), Productos.NULO, exp);
+                        c.Comprar(Productos.NULO, exp);
                         System.out.println("\n** vuelto: " + c.cuantoVuelto() + " **\n");
                     }
                 } catch (NoHayProductoException | PagoIncorrectoException | PagoInsuficienteException e) {
@@ -74,8 +56,9 @@ public class MainInteractivo {
                     System.out.println("Entrada invalida!\n");
                 }
             }
-            System.out.println("///Para salir de la maquina escriba 'salir'\\\\\\\n");
+            System.out.println("///Para salir de la maquina escriba 'salir' \\\\\\\n");
             ImprimirOpciones();
         }
+        System.out.println("Dinero retirado de la maquina: $"+c.cuantoVuelto());
     }
 }
