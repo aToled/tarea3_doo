@@ -7,37 +7,64 @@ import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 
 public class VitrinaProductos extends JPanel {
-    private static class BordeRedondo implements Border {
+    private static class Animacion {
+        private ImagenProducto p;
+        private Timer timerAnimacion;
+        private boolean condicionDeParadaAlcanzada = false;
 
-        private final int radio;
-
-        BordeRedondo(int radio) {
-            this.radio = radio;
+        public Animacion(ImagenProducto p) {
+            this.p = p;
         }
 
-        @Override
-        public Insets getBorderInsets(Component c) {
-            return new Insets(this.radio+1, this.radio+1, this.radio+2, this.radio);
+        public void iniciarOContinuarMovimiento() {
+            if (condicionDeParadaAlcanzada) {
+                System.out.println("La condición de parada ya fue alcanzada. Reinicia para mover de nuevo.");
+                return;
+            }
+
+            if (timerAnimacion == null) {
+                timerAnimacion = new Timer(10, new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent ae) {
+                        // Lógica de movimiento y condición de parada
+                        p.y += 1;
+                        p.setBounds(p.x, p.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
+                        if (p.y >= 600) {
+                            detenerAnimacion();
+                        }
+                    }
+                });
+                timerAnimacion.start();
+                System.out.println("Animación iniciada.");
+            } else if (!timerAnimacion.isRunning()) {
+                timerAnimacion.start();
+                System.out.println("Animación continuada.");
+            } else {
+                System.out.println("La animación ya está en curso.");
+            }
         }
 
-        @Override
-        public boolean isBorderOpaque() {
-            return true;
-        }
-
-        @Override
-        public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
-            g.drawRoundRect(x, y, width-1, height-1, radio, radio);
+        private void detenerAnimacion() {
+            if (timerAnimacion != null && timerAnimacion.isRunning()) {
+                timerAnimacion.stop();
+                condicionDeParadaAlcanzada = true; // Marcar que la condición se cumplió
+                System.out.println("Animación detenida.");
+            }
         }
     }
 
     private static class ImagenProducto extends JPanel {
+        public int x = 0;
+        public int y = 0;
         private static final int SIZE = 125;
         private BufferedImage img;
 
@@ -56,6 +83,12 @@ public class VitrinaProductos extends JPanel {
             }
         }
 
+        public void establecerPosicion(int fila, int col, int profundidad) {
+            this.x = 0 + col * ImagenProducto.SIZE + col * 10 + profundidad * 5;
+            this.y = 50 + fila * ImagenProducto.SIZE + fila * 25 - profundidad * 5;
+            setBounds(this.x, this.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
+        }
+
         @Override
         protected void paintComponent(Graphics g) {
             if (img != null) {
@@ -66,12 +99,6 @@ public class VitrinaProductos extends JPanel {
         }
     }
 
-    public void establecerPosicion(ImagenProducto p, int fila, int col, int profundidad) {
-        int x = 0 + col * ImagenProducto.SIZE + col * 10 + profundidad * 5;
-        int y = 50 + fila * ImagenProducto.SIZE + fila * 25 - profundidad * 5;
-        p.setBounds(x, y, ImagenProducto.SIZE, ImagenProducto.SIZE);
-    }
-
     public VitrinaProductos() {
         //setBackground(new Color(150, 150, 150));
         //setBorder(new BordeRedondo(100));
@@ -80,37 +107,42 @@ public class VitrinaProductos extends JPanel {
 
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.COCA);
-            establecerPosicion(p, 0, 0, i);
+            p.establecerPosicion(0, 0, i);
             add(p);
+
+            if (i == 0) {
+                Animacion a = new Animacion(p);
+                a.iniciarOContinuarMovimiento();
+            }
         }
 
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.SPRITE);
-            establecerPosicion(p, 0, 1, i);
+            p.establecerPosicion(0, 1, i);
             add(p);
         }
 
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.FANTA);
-            establecerPosicion(p, 0, 2, i);
+            p.establecerPosicion(0, 2, i);
             add(p);
         }
 
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.SNICKERS);
-            establecerPosicion(p, 1, 0, i);
+            p.establecerPosicion(1, 0, i);
             add(p);
         }
 
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.SUPER8);
-            establecerPosicion(p, 1, 1, i);
+            p.establecerPosicion(1, 1, i);
             add(p);
         }
 
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.CHOCMAN);
-            establecerPosicion(p, 1, 2, i);
+            p.establecerPosicion(1, 2, i);
             add(p);
         }
     }
