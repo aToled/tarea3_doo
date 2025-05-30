@@ -84,9 +84,42 @@ public class VitrinaProductos extends JPanel {
         }
 
         public void establecerPosicion(int fila, int col, int profundidad) {
-            this.x = 0 + col * ImagenProducto.SIZE + col * 10 + profundidad * 5;
-            this.y = 50 + fila * ImagenProducto.SIZE + fila * 25 - profundidad * 5;
+            this.x = 50 + col * ImagenProducto.SIZE + col * 50 + profundidad * 5;
+            this.y = 25 + fila * ImagenProducto.SIZE + fila * 70 - profundidad * 5;
             setBounds(this.x, this.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
+        }
+
+        @Override
+        protected void paintComponent(Graphics g) {
+            if (img != null) {
+                g.drawImage(img, 0, 0, null);
+            } else {
+                g.drawString("Imagen no disponible", 10, 20);
+            }
+        }
+    }
+
+    private static class ImagenNumero extends JPanel {
+        public int x = 0;
+        public int y = 0;
+        private static final int SIZE = 40;
+        private BufferedImage img;
+
+        public ImagenNumero(int x, int y, int n) {
+            setSize(new Dimension(SIZE, SIZE));
+            setPreferredSize(new Dimension(SIZE, SIZE));
+            setMaximumSize(new Dimension(SIZE, SIZE));
+
+            setBounds(x, y, SIZE, SIZE);
+
+            String userDirectory = new File("").getAbsolutePath();
+            try {
+                File file = new File(userDirectory + "/resources/" + n + ".png");
+
+                img = ImageIO.read(file);
+            } catch (IOException e) {
+                System.out.println("Error al cargar la imagen: " + e.getMessage());
+            }
         }
 
         @Override
@@ -104,6 +137,17 @@ public class VitrinaProductos extends JPanel {
         //setBorder(new BordeRedondo(100));
         setOpaque(false);
         setLayout(null);
+
+        for (int fila = 0; fila < 3; fila++) {
+            for (int col = 0; col < 2; col++) {
+                int x = 50 + col * ImagenProducto.SIZE + col * 50;
+                int y = 25 + fila * ImagenProducto.SIZE + fila * 70;
+                x += ImagenProducto.SIZE/2 - ImagenNumero.SIZE/2;
+                y += ImagenProducto.SIZE + 7;
+                ImagenNumero num = new ImagenNumero(x, y, fila*2+col+1);
+                add(num);
+            }
+        }
 
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.COCA);
@@ -124,25 +168,25 @@ public class VitrinaProductos extends JPanel {
 
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.FANTA);
-            p.establecerPosicion(0, 2, i);
-            add(p);
-        }
-
-        for (int i = 0; i < 5; i++) {
-            ImagenProducto p = new ImagenProducto(Productos.SNICKERS);
             p.establecerPosicion(1, 0, i);
             add(p);
         }
 
         for (int i = 0; i < 5; i++) {
-            ImagenProducto p = new ImagenProducto(Productos.SUPER8);
+            ImagenProducto p = new ImagenProducto(Productos.SNICKERS);
             p.establecerPosicion(1, 1, i);
             add(p);
         }
 
         for (int i = 0; i < 5; i++) {
+            ImagenProducto p = new ImagenProducto(Productos.SUPER8);
+            p.establecerPosicion(2, 0, i);
+            add(p);
+        }
+
+        for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.CHOCMAN);
-            p.establecerPosicion(1, 2, i);
+            p.establecerPosicion(2, 1, i);
             add(p);
         }
     }
