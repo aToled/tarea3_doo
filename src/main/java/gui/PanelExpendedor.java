@@ -1,26 +1,31 @@
 package gui;
 
+import logica.Expendedor;
 import logica.Productos;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseListener;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.EventListener;
 
 public class PanelExpendedor extends JLayeredPane {
+    private Expendedor expendedor;
     private PanelPrincipal panelPrincipal;
     private ArrayList<ImagenProducto> imagenProductos = new ArrayList<>();
     private ArrayList<ImagenNumero> imagenNumeros = new ArrayList<>();
 
     private static class Animacion {
-        private PanelPrincipal panelPrincipal;
-        private ImagenProducto p;
+        private final PanelPrincipal panelPrincipal;
+        private final ImagenProducto p;
         private Timer timerAnimacion;
         private boolean condicionDeParadaAlcanzada = false;
 
@@ -143,7 +148,8 @@ public class PanelExpendedor extends JLayeredPane {
         }
     }
 
-    public PanelExpendedor(PanelPrincipal panelPrincipal) {
+    public PanelExpendedor(PanelPrincipal panelPrincipal, Expendedor expendedor) {
+        this.expendedor = expendedor;
         this.panelPrincipal = panelPrincipal;
 
         setOpaque(false);
@@ -160,48 +166,24 @@ public class PanelExpendedor extends JLayeredPane {
             }
         }
 
-        for (int i = 0; i < 5; i++) {
-            ImagenProducto p = new ImagenProducto(Productos.COCA);
-            p.establecerPosicion(0, 0, i);
-            imagenProductos.add(p);
-            add(p);
+        agregarProductos(0, 0, expendedor.coca.size(), Productos.COCA);
+        agregarProductos(0, 1, expendedor.sprite.size(), Productos.SPRITE);
+        agregarProductos(1, 0, expendedor.fanta.size(), Productos.FANTA);
+        agregarProductos(1, 1, expendedor.snickers.size(), Productos.SNICKERS);
+        agregarProductos(2, 0, expendedor.super8.size(), Productos.SUPER8);
+        agregarProductos(2, 1, expendedor.chocman.size(), Productos.CHOCMAN);
+    }
 
-            if (i == 0) {
+    void agregarProductos(int fila, int col, int cantidad, Productos producto) {
+        for (int i = 0; i < cantidad; i++) {
+            ImagenProducto p = new ImagenProducto(producto);
+            p.establecerPosicion(fila, col, i);
+            imagenProductos.add(p);
+
+            if (fila == 0 && col == 0 && i == 0) {
+                System.out.println("x");
                 Animacion a = new Animacion(panelPrincipal, p);
-                a.iniciarOContinuarMovimiento();
             }
-        }
-
-        for (int i = 0; i < 5; i++) {
-            ImagenProducto p = new ImagenProducto(Productos.SPRITE);
-            p.establecerPosicion(0, 1, i);
-            imagenProductos.add(p);
-            add(p);
-        }
-
-        for (int i = 0; i < 5; i++) {
-            ImagenProducto p = new ImagenProducto(Productos.FANTA);
-            p.establecerPosicion(1, 0, i);
-            imagenProductos.add(p);
-            add(p);
-        }
-
-        for (int i = 0; i < 5; i++) {
-            ImagenProducto p = new ImagenProducto(Productos.SNICKERS);
-            p.establecerPosicion(1, 1, i);
-            imagenProductos.add(p);
-        }
-
-        for (int i = 0; i < 5; i++) {
-            ImagenProducto p = new ImagenProducto(Productos.SUPER8);
-            p.establecerPosicion(2, 0, i);
-            imagenProductos.add(p);
-        }
-
-        for (int i = 0; i < 5; i++) {
-            ImagenProducto p = new ImagenProducto(Productos.CHOCMAN);
-            p.establecerPosicion(2, 1, i);
-            imagenProductos.add(p);
         }
     }
 

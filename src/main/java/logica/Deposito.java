@@ -56,4 +56,6 @@ public class Deposito<T> {
     public void sort(){
         arrayList.sort(null);
     }
+
+    public int size() { return arrayList.size(); }
 }

@@ -7,16 +7,16 @@ package logica;
  * También es el que maneja principalmente los casos donde el comprador no selecciono bien el producto (o está agotado),
  * no le alcanza para comprar o no ingreso bien su moneda.
  */
-class Expendedor {
-    private final Deposito<Bebida> coca;
-    private final Deposito<Bebida> sprite;
-    private final Deposito<Bebida> fanta;
-    private final Deposito<Dulce> snickers;
-    private final Deposito<Dulce> super8;
-    private final Deposito<Dulce> chocman;
-    private final Deposito<Moneda> monVu;
-    private final Deposito<Moneda> monedas_compras_exitosas;
-    private final Producto[] producto = new Producto[1];
+public class Expendedor {
+    public final Deposito<Bebida> coca;
+    public final Deposito<Bebida> sprite;
+    public final Deposito<Bebida> fanta;
+    public final Deposito<Dulce> snickers;
+    public final Deposito<Dulce> super8;
+    public final Deposito<Dulce> chocman;
+    public final Deposito<Moneda> monVu;
+    public final Deposito<Moneda> monedas_compras_exitosas;
+    public final Producto[] producto = new Producto[1];
 
     /**
      * El Expendedor almacena los productos que especificados por el enum 'Productos'

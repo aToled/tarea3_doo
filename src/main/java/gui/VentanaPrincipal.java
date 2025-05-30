@@ -1,11 +1,17 @@
 package gui;
 
+import logica.Expendedor;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class VentanaPrincipal extends JFrame {
-    public VentanaPrincipal() {
+    private Expendedor expendedor;
+
+    public VentanaPrincipal(Expendedor expendedor) {
+        this.expendedor = expendedor;
+
         // Configuración de la ventana
         setTitle("Expendedor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -14,7 +20,7 @@ public class VentanaPrincipal extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        PanelPrincipal panelPrincipal = new PanelPrincipal();
+        PanelPrincipal panelPrincipal = new PanelPrincipal(expendedor);
 
         add(panelPrincipal);
     }
