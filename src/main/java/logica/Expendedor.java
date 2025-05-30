@@ -13,6 +13,7 @@ class Expendedor {
     private final Deposito<Bebida> fanta;
     private final Deposito<Dulce> snickers;
     private final Deposito<Dulce> super8;
+    private final Deposito<Dulce> chocman;
     private final Deposito<Moneda> monVu;
     private final Deposito<Moneda> monedas_compras_exitosas;
     private final Producto[] producto = new Producto[1];
@@ -30,6 +31,7 @@ class Expendedor {
         fanta = new Deposito<>();
         snickers = new Deposito<>();
         super8 = new Deposito<>();
+        chocman = new Deposito<>();
 
         monVu = new Deposito<>();
         monedas_compras_exitosas = new Deposito<>();
@@ -40,6 +42,7 @@ class Expendedor {
             fanta.add(    new Fanta());
             snickers.add( new Snickers());
             super8.add(   new Super8());
+            chocman.add(   new Chocman());
         }
     }
 
@@ -91,6 +94,7 @@ class Expendedor {
             case FANTA -> fanta.get();
             case SNICKERS -> snickers.get();
             case SUPER8 -> super8.get();
+            case CHOCMAN -> chocman.get();
             default -> {
                 utils.cambiar_monedas_de_deposito(monedas_ingresadas,monVu);
                 throw new NoHayProductoException("No existe producto solicitado");
@@ -121,6 +125,7 @@ class Expendedor {
             case FANTA -> fanta.add(new Fanta());
             case SNICKERS -> snickers.add(new Snickers());
             case SUPER8 -> super8.add(new Super8());
+            case CHOCMAN -> chocman.add(new Chocman());
             default -> {
             }
         }
