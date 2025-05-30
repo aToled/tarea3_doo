@@ -1,0 +1,29 @@
+package gui;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import java.awt.*;
+
+public class PanelPrincipal extends JPanel {
+    private PanelComprador com;
+    private PanelExpendedor exp;
+    private PanelProductos pro;
+
+    public PanelPrincipal() {
+        setBackground(new Color(100, 100, 100));
+        setBorder(new EmptyBorder(10, 10, 10, 10));
+        setLayout(new BorderLayout());
+
+        com = new PanelComprador();
+        exp = new PanelExpendedor(this);
+        pro = new PanelProductos();
+    }
+
+    public void paintComponent (Graphics g) {
+        super.paintComponent(g);
+
+        com.paintComponent(g);
+
+        exp.paintComponent(g);
+    }
+}

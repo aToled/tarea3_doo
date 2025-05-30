@@ -4,8 +4,6 @@ import logica.Productos;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.border.Border;
-import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,15 +11,21 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.lang.reflect.Array;
+import java.util.ArrayList;
 
-public class VitrinaProductos extends JPanel {
+public class PanelExpendedor extends JLayeredPane {
+    private PanelPrincipal panelPrincipal;
+    private ArrayList<ImagenProducto> imagenProductos = new ArrayList<>();
+    private ArrayList<ImagenNumero> imagenNumeros = new ArrayList<>();
+
     private static class Animacion {
+        private PanelPrincipal panelPrincipal;
         private ImagenProducto p;
         private Timer timerAnimacion;
         private boolean condicionDeParadaAlcanzada = false;
 
-        public Animacion(ImagenProducto p) {
+        public Animacion(PanelPrincipal panelPrincipal, ImagenProducto p) {
+            this.panelPrincipal = panelPrincipal;
             this.p = p;
         }
 
@@ -38,6 +42,10 @@ public class VitrinaProductos extends JPanel {
                         // Lógica de movimiento y condición de parada
                         p.y += 1;
                         p.setBounds(p.x, p.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
+                        p.invalidate();
+
+                        panelPrincipal.repaint();
+                        System.out.println(p.x + " / " + p.y);
                         if (p.y >= 600) {
                             detenerAnimacion();
                         }
@@ -85,16 +93,16 @@ public class VitrinaProductos extends JPanel {
 
         public void establecerPosicion(int fila, int col, int profundidad) {
             this.x = 50 + col * ImagenProducto.SIZE + col * 50 + profundidad * 5;
-            this.y = 25 + fila * ImagenProducto.SIZE + fila * 70 - profundidad * 5;
+            this.y = 45 + fila * ImagenProducto.SIZE + fila * 70 - profundidad * 5;
             setBounds(this.x, this.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
         }
 
         @Override
         protected void paintComponent(Graphics g) {
             if (img != null) {
-                g.drawImage(img, 0, 0, null);
+                g.drawImage(img, this.x, this.y, null);
             } else {
-                g.drawString("Imagen no disponible", 10, 20);
+                g.drawString("Imagen no disponible", this.x, this.y);
             }
         }
     }
@@ -106,11 +114,14 @@ public class VitrinaProductos extends JPanel {
         private BufferedImage img;
 
         public ImagenNumero(int x, int y, int n) {
+            this.x = x;
+            this.y = y;
+
             setSize(new Dimension(SIZE, SIZE));
             setPreferredSize(new Dimension(SIZE, SIZE));
             setMaximumSize(new Dimension(SIZE, SIZE));
 
-            setBounds(x, y, SIZE, SIZE);
+            setBounds(this.x, this.y, SIZE, SIZE);
 
             String userDirectory = new File("").getAbsolutePath();
             try {
@@ -125,37 +136,38 @@ public class VitrinaProductos extends JPanel {
         @Override
         protected void paintComponent(Graphics g) {
             if (img != null) {
-                g.drawImage(img, 0, 0, null);
+                g.drawImage(img, this.x, this.y, null);
             } else {
-                g.drawString("Imagen no disponible", 10, 20);
+                g.drawString("Imagen no disponible", this.x, this.y);
             }
         }
     }
 
-    public VitrinaProductos() {
-        //setBackground(new Color(150, 150, 150));
-        //setBorder(new BordeRedondo(100));
+    public PanelExpendedor(PanelPrincipal panelPrincipal) {
+        this.panelPrincipal = panelPrincipal;
+
         setOpaque(false);
         setLayout(null);
 
         for (int fila = 0; fila < 3; fila++) {
             for (int col = 0; col < 2; col++) {
                 int x = 50 + col * ImagenProducto.SIZE + col * 50;
-                int y = 25 + fila * ImagenProducto.SIZE + fila * 70;
+                int y = 45 + fila * ImagenProducto.SIZE + fila * 70;
                 x += ImagenProducto.SIZE/2 - ImagenNumero.SIZE/2;
                 y += ImagenProducto.SIZE + 7;
                 ImagenNumero num = new ImagenNumero(x, y, fila*2+col+1);
-                add(num);
+                imagenNumeros.add(num);
             }
         }
 
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.COCA);
             p.establecerPosicion(0, 0, i);
+            imagenProductos.add(p);
             add(p);
 
             if (i == 0) {
-                Animacion a = new Animacion(p);
+                Animacion a = new Animacion(panelPrincipal, p);
                 a.iniciarOContinuarMovimiento();
             }
         }
@@ -163,31 +175,33 @@ public class VitrinaProductos extends JPanel {
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.SPRITE);
             p.establecerPosicion(0, 1, i);
+            imagenProductos.add(p);
             add(p);
         }
 
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.FANTA);
             p.establecerPosicion(1, 0, i);
+            imagenProductos.add(p);
             add(p);
         }
 
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.SNICKERS);
             p.establecerPosicion(1, 1, i);
-            add(p);
+            imagenProductos.add(p);
         }
 
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.SUPER8);
             p.establecerPosicion(2, 0, i);
-            add(p);
+            imagenProductos.add(p);
         }
 
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(Productos.CHOCMAN);
             p.establecerPosicion(2, 1, i);
-            add(p);
+            imagenProductos.add(p);
         }
     }
 
@@ -201,16 +215,35 @@ public class VitrinaProductos extends JPanel {
         // Antialiasing hace los bordes más suaves
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        int ancho = getWidth();
-        int alto = getHeight();
+        int ancho = 420;
+        int alto = 620;
+
+        // Segundo (de fondo)
+        Shape formaRedondeada0 = new RoundRectangle2D.Double(15, 5, ancho, alto, 50, 50);
+
+        // Color de fondo (dentro de los bordes)
+        g2d.setColor(new Color(160, 160, 160));
+
+        g2d.fill(formaRedondeada0);
+
 
         // Se crea el borde
-        Shape formaRedondeada = new RoundRectangle2D.Double(0, 0, ancho, alto, 50, 50);
+        Shape formaRedondeada = new RoundRectangle2D.Double(5, 15, ancho, alto, 50, 50);
 
         // Color de fondo (dentro de los bordes)
         g2d.setColor(new Color(150, 150, 150));
 
         g2d.fill(formaRedondeada);
+
+        for (ImagenProducto p : imagenProductos) {
+            p.paintComponent(g);
+        }
+
+        for (ImagenNumero n : imagenNumeros) {
+            n.paintComponent(g);
+        }
+
+
 
         g2d.dispose(); // Liberar los recursos del objeto Graphics2D
     }

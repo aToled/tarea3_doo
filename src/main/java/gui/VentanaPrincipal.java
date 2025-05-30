@@ -14,14 +14,7 @@ public class VentanaPrincipal extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
 
-        JPanel panelPrincipal = new JPanel();
-        panelPrincipal.setBackground(new Color(100, 100, 100));
-        panelPrincipal.setBorder(new EmptyBorder(10, 10, 10, 10));
-        panelPrincipal.setLayout(new BorderLayout());
-
-        panelPrincipal.add(new VitrinaProductos(), BorderLayout.CENTER);
-        panelPrincipal.add(new PanelProductos(), BorderLayout.SOUTH);
-        panelPrincipal.add(new PanelLateral(), BorderLayout.EAST);
+        PanelPrincipal panelPrincipal = new PanelPrincipal();
 
         add(panelPrincipal);
     }
