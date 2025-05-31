@@ -19,7 +19,7 @@ public class PanelPrincipal extends JPanel {
         setBorder(new EmptyBorder(10, 10, 10, 10));
         setLayout(new BorderLayout());
 
-        com = new PanelComprador();
+        com = new PanelComprador(this, expendedor);
         exp = new PanelExpendedor(this, expendedor);
         pro = new Panel_Recoleccion_Productos();
 

@@ -42,7 +42,7 @@ public class ImagenProducto extends JPanel {
      */
     public void establecerPosicion(int fila, int col, int profundidad) {
         this.x = 30 + col * SIZE + col * 100 + profundidad * 5;
-        this.y = 100 + fila * SIZE + fila * 100 - profundidad * 5;
+        this.y = 50 + fila * SIZE + fila * 100 - profundidad * 5;
         setBounds(this.x, this.y, SIZE, SIZE);
     }
 
