@@ -63,6 +63,7 @@ public class PanelExpendedor extends JPanel {
         //Mueve el producto que va a caer a la capa frontal.
         if(producto_que_caera!=null){
             setComponentZOrder(producto_que_caera,0);
+            System.out.println("Animacion");
             Animacion a = new Animacion(producto_que_caera);
             a.iniciarOContinuarMovimiento();
         }

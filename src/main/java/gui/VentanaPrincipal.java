@@ -22,10 +22,6 @@ public class VentanaPrincipal extends JFrame {
 
         PanelPrincipal panelPrincipal = new PanelPrincipal(expendedor);
 
-        panelPrincipal.add(new PanelExpendedor(panelPrincipal, expendedor), BorderLayout.CENTER);
-        panelPrincipal.add(new Panel_Recoleccion_Productos(), BorderLayout.SOUTH);
-        panelPrincipal.add(new PanelLateral(), BorderLayout.EAST);
-
         add(panelPrincipal);
     }
 

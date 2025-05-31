@@ -10,7 +10,7 @@ public class PanelPrincipal extends JPanel {
     private Expendedor expendedor;
     private PanelComprador com;
     private PanelExpendedor exp;
-    private PanelProductos pro;
+    private Panel_Recoleccion_Productos pro;
 
     public PanelPrincipal(Expendedor expendedor) {
         this.expendedor = expendedor;
@@ -21,7 +21,11 @@ public class PanelPrincipal extends JPanel {
 
         com = new PanelComprador();
         exp = new PanelExpendedor(this, expendedor);
-        pro = new PanelProductos();
+        pro = new Panel_Recoleccion_Productos();
+
+        add(exp, BorderLayout.CENTER);
+        add(pro, BorderLayout.SOUTH);
+        add(com, BorderLayout.EAST);
     }
 
     public void paintComponent (Graphics g) {
