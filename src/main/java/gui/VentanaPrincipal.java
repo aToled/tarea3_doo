@@ -20,7 +20,7 @@ public class VentanaPrincipal extends JFrame {
         panelPrincipal.setLayout(new BorderLayout());
 
         panelPrincipal.add(new VitrinaProductos(), BorderLayout.CENTER);
-        panelPrincipal.add(new PanelProductos(), BorderLayout.SOUTH);
+        panelPrincipal.add(new Panel_Recoleccion_Productos(), BorderLayout.SOUTH);
         panelPrincipal.add(new PanelLateral(), BorderLayout.EAST);
 
         add(panelPrincipal);

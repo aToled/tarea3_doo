@@ -46,15 +46,21 @@ public class VitrinaProductos extends JPanel {
      * @param animar: Indica si deberia o no iniciar la animacion de caida del primer elemento.
      */
     private void agregarProductosFila(Productos producto, int fila, int columna, boolean animar){
+        ImagenProducto producto_que_caera=null;
         for (int i = 0; i < 5; i++) {
             ImagenProducto p = new ImagenProducto(producto);
             p.establecerPosicion(fila, columna, i);
             add(p);
 
             if (animar&&i == 0) {
-                Animacion a = new Animacion(p);
-                a.iniciarOContinuarMovimiento();
+                producto_que_caera = p;
             }
+        }
+        //Mueve el producto que va a caer a la capa frontal.
+        if(producto_que_caera!=null){
+            setComponentZOrder(producto_que_caera,0);
+            Animacion a = new Animacion(producto_que_caera);
+            a.iniciarOContinuarMovimiento();
         }
     }
 
@@ -68,15 +74,24 @@ public class VitrinaProductos extends JPanel {
         // Antialiasing hace los bordes más suaves
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        int ancho = getWidth();
-        int alto = getHeight();
+        int borde_derecho = getWidth()-20;
+        int borde_izquierdo = 10;
+        int borde_inferior = getHeight()-55;
+        int borde_superior = 25;
 
         // Se crea el borde
-        Shape formaRedondeada = new RoundRectangle2D.Double(0, 0, ancho, alto, 50, 50);
+        Shape formaRedondeada = new RoundRectangle2D.Double(borde_izquierdo, borde_superior, borde_derecho, borde_inferior, 50, 50);
 
         // Color de fondo (dentro de los bordes)
         g2d.setColor(new Color(178, 178, 178));
         g2d.fill(formaRedondeada);
+
+        // Franja cuyo proposito es hacer 'Desaparecer' el producto cuando cae.
+        JPanel franja_invisible = new JPanel();
+        franja_invisible.setBackground(new Color(66,66,66));
+        franja_invisible.setBounds(borde_izquierdo, 760, borde_derecho, 900);
+        add(franja_invisible);
+        setComponentZOrder(franja_invisible, 0);
 
         g2d.dispose(); // Liberar los recursos del objeto Graphics2D
     }
