@@ -1,10 +1,12 @@
 package gui;
 
 import logica.Expendedor;
+import logica.Producto;
 import logica.Productos;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.Timer;
 import javax.swing.event.MouseInputAdapter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,14 +16,87 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.EventListener;
+import java.util.*;
+import java.util.List;
 
 public class PanelExpendedor extends JLayeredPane {
     private Expendedor expendedor;
     private PanelPrincipal panelPrincipal;
+    private MapProductos productosArrayListMap = new MapProductos();
     private ArrayList<ImagenProducto> imagenProductos = new ArrayList<>();
     private ArrayList<ImagenNumero> imagenNumeros = new ArrayList<>();
+
+    private static class MapProductos implements Map<Productos, ArrayList<ImagenProducto>> {
+        @Override
+        public int size() {
+            return 0;
+        }
+
+        @Override
+        public boolean isEmpty() {
+            return false;
+        }
+
+        @Override
+        public boolean containsKey(Object key) {
+            return false;
+        }
+
+        @Override
+        public boolean containsValue(Object value) {
+            return false;
+        }
+
+        @Override
+        public ArrayList<ImagenProducto> get(Object key) {
+            return null;
+        }
+
+        @Override
+        public ArrayList<ImagenProducto> put(Productos key, ArrayList<ImagenProducto> value) {
+            return null;
+        }
+
+        @Override
+        public ArrayList<ImagenProducto> remove(Object key) {
+            return null;
+        }
+
+        @Override
+        public void putAll(Map<? extends Productos, ? extends ArrayList<ImagenProducto>> m) {
+
+        }
+
+        @Override
+        public void clear() {
+
+        }
+
+        @Override
+        public Set<Productos> keySet() {
+            return Set.of();
+        }
+
+        @Override
+        public Collection<ArrayList<ImagenProducto>> values() {
+            return List.of();
+        }
+
+        @Override
+        public Set<Entry<Productos, ArrayList<ImagenProducto>>> entrySet() {
+            return Set.of();
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            return false;
+        }
+
+        @Override
+        public int hashCode() {
+            return 0;
+        }
+    }
 
     private static class Animacion {
         private final PanelPrincipal panelPrincipal;
@@ -45,7 +120,7 @@ public class PanelExpendedor extends JLayeredPane {
                     @Override
                     public void actionPerformed(ActionEvent ae) {
                         // Lógica de movimiento y condición de parada
-                        p.y += 1;
+                        p.y += 3;
                         p.setBounds(p.x, p.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
                         p.invalidate();
 
@@ -175,16 +250,22 @@ public class PanelExpendedor extends JLayeredPane {
     }
 
     void agregarProductos(int fila, int col, int cantidad, Productos producto) {
+        ArrayList<ImagenProducto> arrayList = new ArrayList<>();
+
         for (int i = 0; i < cantidad; i++) {
             ImagenProducto p = new ImagenProducto(producto);
             p.establecerPosicion(fila, col, i);
             imagenProductos.add(p);
 
+            arrayList.add(p);
+
             if (fila == 0 && col == 0 && i == 0) {
-                System.out.println("x");
                 Animacion a = new Animacion(panelPrincipal, p);
+                a.iniciarOContinuarMovimiento();
             }
         }
+
+        productosArrayListMap.put(producto, arrayList);
     }
 
     // Se crea un borde redondo y se pinta de color gris claro el interior
