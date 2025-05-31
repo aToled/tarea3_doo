@@ -5,7 +5,7 @@ import java.awt.*;
 
 public class PanelProductos extends JPanel {
     public PanelProductos() {
-        setBackground(new Color(0, 100, 0));
+        setBackground(new Color(10, 10, 10));
         setPreferredSize(new Dimension(0, 100));
     }
 }

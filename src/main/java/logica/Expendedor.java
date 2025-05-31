@@ -115,19 +115,21 @@ class Expendedor {
     }
 
     /**
-     * Rellena el depósito correspondiente con un elemento del producto seleccionado.
-     * @param cual:tal producto.
+     * Agrega un nuevo elemento al depósito que se encuentre vacío.
      */
-    public void rellenarProducto(Productos cual){
-        switch (cual) {
-            case COCA -> coca.add(new CocaCola());
-            case SPRITE -> sprite.add(new Sprite());
-            case FANTA -> fanta.add(new Fanta());
-            case SNICKERS -> snickers.add(new Snickers());
-            case SUPER8 -> super8.add(new Super8());
-            case CHOCMAN -> chocman.add(new Chocman());
-            default -> {
-            }
+    public void rellenarProducto(){
+        if(coca.isEmpty()){
+            coca.add(new CocaCola());
+        }else if(sprite.isEmpty()){
+            sprite.add(new Sprite());
+        }else if(fanta.isEmpty()){
+            fanta.add(new Fanta());
+        }else if(snickers.isEmpty()){
+            snickers.add(new Snickers());
+        }else if(super8.isEmpty()){
+            super8.add(new Super8());
+        }else if(chocman.isEmpty()){
+            chocman.add(new Chocman());
         }
     }
 
