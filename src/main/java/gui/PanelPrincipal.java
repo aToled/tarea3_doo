@@ -15,7 +15,7 @@ public class PanelPrincipal extends JPanel {
     public PanelPrincipal(Expendedor expendedor) {
         this.expendedor = expendedor;
 
-        setBackground(new Color(100, 100, 100));
+        setBackground(new Color(66, 66, 66));
         setBorder(new EmptyBorder(10, 10, 10, 10));
         setLayout(new BorderLayout());
 

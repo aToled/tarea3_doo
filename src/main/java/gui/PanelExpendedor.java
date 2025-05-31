@@ -1,5 +1,6 @@
 package gui;
 
+import logica.Expendedor;
 import logica.Productos;
 
 import javax.swing.*;
@@ -9,9 +10,14 @@ import java.awt.geom.RoundRectangle2D;
  * Clase principal que representa la vitrina de productos del expendedor,
  * la cual organiza visualmente los productos y controla la animación de salida de uno de ellos.
  */
-public class VitrinaProductos extends JPanel {
+public class PanelExpendedor extends JPanel {
+    private PanelPrincipal panelPrincipal;
+    private Expendedor expendedor;
 
-    public VitrinaProductos() {
+    public PanelExpendedor(PanelPrincipal panelPrincipal, Expendedor expendedor) {
+        this.panelPrincipal = panelPrincipal;
+        this.expendedor = expendedor;
+
         //setBackground(new Color(150, 150, 150));
         //setBorder(new BordeRedondo(100));
         setOpaque(false);
