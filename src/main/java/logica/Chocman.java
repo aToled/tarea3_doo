@@ -8,7 +8,7 @@ public class Chocman extends Dulce {
      * @see Dulce
      */
     public Chocman() {
-        super();
+        super(Productos.CHOCMAN);
     }
 
     /**

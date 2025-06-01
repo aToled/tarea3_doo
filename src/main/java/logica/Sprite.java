@@ -2,12 +2,12 @@ package logica;
 /**
  * Instancia de Bebida que representa una Sprite, puede ser comprada, almacenada y consumida.
  */
-class Sprite extends Bebida {
+public class Sprite extends Bebida {
     /**
      * @see Bebida
      */
     public Sprite() {
-        super();
+        super(Productos.SPRITE);
     }
 
     /**

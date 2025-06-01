@@ -9,7 +9,7 @@ import java.awt.*;
 public class PanelPrincipal extends JPanel {
     private Expendedor expendedor;
     private PanelComprador com;
-    private PanelExpendedor exp;
+    public PanelExpendedor exp;
     private Panel_Recoleccion_Productos pro;
 
     public PanelPrincipal(Expendedor expendedor) {

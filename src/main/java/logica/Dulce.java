@@ -8,7 +8,7 @@ public abstract class Dulce extends Producto {
      * Método utilizado para crear distintos Dulces.
      * @see Producto
      */
-    public Dulce() {
-        super();
+    public Dulce(Productos producto) {
+        super(producto);
     }
 }

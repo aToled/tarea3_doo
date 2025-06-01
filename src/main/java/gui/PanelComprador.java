@@ -17,8 +17,11 @@ public class PanelComprador extends JPanel {
         setPreferredSize(new Dimension(175, 0));
         setLayout(null);
 
+        PanelBotones panelBotones = new PanelBotones(panelPrincipal, expendedor);
+
         DispensadorMonedas dispensadorMonedas = new DispensadorMonedas(panelPrincipal, expendedor);
 
+        add(panelBotones);
         add(dispensadorMonedas);
     }
 

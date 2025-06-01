@@ -2,13 +2,13 @@ package logica;
 /**
  * Instancia de Bebida que representa una Fanta, puede ser comprada, almacenada y consumida.
  */
-class Fanta extends Bebida {
+public class Fanta extends Bebida {
 
     /**
      * @see Bebida
      */
     public Fanta() {
-        super();
+        super(Productos.FANTA);
     }
 
     /**

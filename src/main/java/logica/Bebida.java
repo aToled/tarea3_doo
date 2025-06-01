@@ -8,7 +8,7 @@ abstract class Bebida extends Producto {
      * Método utilizado para crear distintas Bebidas.
      * @see Producto
      */
-    public Bebida() {
-        super();
+    public Bebida(Productos producto) {
+        super(producto);
     }
 }
