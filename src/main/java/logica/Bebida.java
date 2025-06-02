@@ -2,7 +2,7 @@ package logica;
 /**
  * Un Molde de bebida genérica que se almacena en un depósito y es comprada por un comprador.
  */
-abstract class Bebida extends Producto {
+abstract public class Bebida extends Producto {
 
     /**
      * Método utilizado para crear distintas Bebidas.

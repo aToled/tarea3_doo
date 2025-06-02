@@ -4,10 +4,11 @@ package logica;
  * seleccionando algún producto y posteriormente recibiéndolo en conjunto a su respectivo vuelto
  * desde los depósitos internos de tal expendedor.
  */
-class Comprador {
+public class Comprador {
     private String sonido;
     private int vuelto;
     private final Deposito<Moneda> monedero = new Deposito<>();
+    private final Deposito<Producto> productos_comprados = new Deposito<>();
 
     /**
      * Inicializa el vuelto en 0, el sonido vació e ingresa el dinero como monedas en su monedero.
@@ -40,7 +41,7 @@ class Comprador {
         Producto p = null;
 
         try {
-            exp.comprarProducto(monedero, cualProducto);
+            exp.comprarProducto(cualProducto);
             p=exp.getProducto();
         } catch (NoHayProductoException | PagoInsuficienteException e) {
             Moneda monedaTemporal = exp.getVuelto();
@@ -58,6 +59,7 @@ class Comprador {
             return;
         }
         sonido = p.consumir();
+        productos_comprados.add(p);
 
         Moneda mVuelto = exp.getVuelto();
 
@@ -84,6 +86,15 @@ class Comprador {
     public void IngresarDinero(int monto){
         utils.ingresar_total_monedas_en_orden(monedero, monto);
         monedero.sort();
+    }
+
+    public int CuantoDinero(){
+        int total=0;
+        Moneda[] monederoArray = monedero.toArray(Moneda[]::new);
+        for (Moneda moneda : monederoArray) {
+            total = total + moneda.getValor();
+        }
+        return total;
     }
 
     /**

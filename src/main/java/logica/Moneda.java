@@ -30,7 +30,7 @@ abstract public class Moneda implements Comparable<Moneda> {
      */
     @Override
     public String toString() {
-        return "-> Moneda:\n-Serie: " + getSerie() + "\n-Valor: " + getValor();
+        return "-> Moneda ingresada:\n-Serie: " + getSerie() + "\n-Valor: " + getValor();
     }
 
     /**

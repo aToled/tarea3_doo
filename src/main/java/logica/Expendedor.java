@@ -14,9 +14,11 @@ public class Expendedor {
     public final Deposito<Dulce> snickers;
     public final Deposito<Dulce> super8;
     public final Deposito<Dulce> chocman;
+    public final Deposito<Moneda> monedas_ingresadas;
     public final Deposito<Moneda> monVu;
     public final Deposito<Moneda> monedas_compras_exitosas;
     public final Producto[] producto = new Producto[1];
+    private int Dinero_total_ingresado=0;
 
     /**
      * El Expendedor almacena los productos que especificados por el enum 'Productos'
@@ -35,6 +37,7 @@ public class Expendedor {
 
         monVu = new Deposito<>();
         monedas_compras_exitosas = new Deposito<>();
+        monedas_ingresadas = new Deposito<>();
 
         for (int i = 0; i < numProductos; i++) {
             coca.add(     new CocaCola());
@@ -46,7 +49,7 @@ public class Expendedor {
         }
     }
 
-    /**
+    /**TODO actualizar javadoc
      * Ingresa el producto solicitado en el depósito donde "caen" al comprarlos
      * y almacena el vuelto con las monedas más grandes primero en el depósito monVu
      * siempre y cuando no ocurra algunos de los siguientes casos:
@@ -57,7 +60,6 @@ public class Expendedor {
      *    y arroja NoHayProductoException.
      * 4. Si no hay producto solicitado (el depósito está vacío) devuelve la
      *    misma moneda entregada y arroja NoHayProductoException.
-     * @param monedero: Depósito de monedas utilizado para la compra.
      * @param cual: El producto que se desea comprar.
      * @throws NoHayProductoException:
      * @throws PagoInsuficienteException:
@@ -65,21 +67,20 @@ public class Expendedor {
      * @see Moneda
      * @see Producto
      */
-    public void comprarProducto(Deposito<Moneda> monedero, Productos cual) throws NoHayProductoException, PagoInsuficienteException, PagoIncorrectoException {
-        Moneda m = monedero.get();
-        int Dinero_total_ingresado = 0;
+    public void comprarProducto(Productos cual) throws NoHayProductoException, PagoInsuficienteException{
+    ///   Moneda m = monedero.get();
+    ///   int Dinero_total_ingresado = 0;
 
-        if (m == null) {
-            throw new PagoIncorrectoException("Debe ingresar una moneda");
-        }
+    ///   if (m == null) {
+    ///       throw new PagoIncorrectoException("Debe ingresar una moneda");
+    ///   }
 
-        Deposito<Moneda> monedas_ingresadas = new Deposito<>();
-        monedas_ingresadas.add(m);
-        while(m!=null){
-            Dinero_total_ingresado+=m.getValor();
-            m=monedero.get();
-            monedas_ingresadas.add(m);
-        }
+    ///    monedas_ingresadas.add(m);
+    ///    while(m!=null){
+    ///        Dinero_total_ingresado+=m.getValor();
+    ///        m=monedero.get();
+    ///        monedas_ingresadas.add(m);
+    ///    }
 
 
         // No alcanza saldo
@@ -131,6 +132,13 @@ public class Expendedor {
         }else if(chocman.isEmpty()){
             chocman.add(new Chocman());
         }
+    }
+    public void Ingresar_Monedas(Moneda m) throws PagoIncorrectoException {
+        if (m == null) {
+            throw new PagoIncorrectoException("Debe ingresar una moneda");
+        }
+        monedas_ingresadas.add(m);
+        Dinero_total_ingresado+=m.getValor();
     }
 
     /**

@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 public class SeleccionarMoneda extends JPanel{
     Moneda moneda;
@@ -20,7 +19,12 @@ public class SeleccionarMoneda extends JPanel{
         valueLabel.setText(String.valueOf(moneda.getValor()));
         valueLabel.setBounds(15, 0, 50, 50);
 
-        addMouseListener(new MyMouseListener(moneda));
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                System.out.println(moneda);
+            }
+        });
 
         add(valueLabel);
     }
@@ -31,20 +35,5 @@ public class SeleccionarMoneda extends JPanel{
 
         g.setColor(Color.YELLOW);
         g.fillOval(0, 0, 50, 50);
-    }
-
-    private static class MyMouseListener extends MouseAdapter {
-        Moneda moneda;
-
-        public MyMouseListener(Moneda moneda) {
-            this.moneda = moneda;
-        }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            super.mouseClicked(e);
-
-            System.out.println("Moneda seleccionada: " + moneda.getValor());
-        }
     }
 }

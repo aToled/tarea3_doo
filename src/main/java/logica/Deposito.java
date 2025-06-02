@@ -1,6 +1,8 @@
 package logica;
 
 import java.util.ArrayList;
+import java.util.function.IntFunction;
+
 /**
  * Representa un depósito que dentro del código lo usamos para representar los distintos lugares dentro
  * una máquina expendedora donde se almacenan sus productos y monedas. Y para representar el monedero del Comprador.
@@ -58,4 +60,8 @@ public class Deposito<T> {
     }
 
     public int size() { return arrayList.size(); }
+
+    public T[] toArray(IntFunction<T[]> generator){
+        return arrayList.toArray(generator);
+    }
 }

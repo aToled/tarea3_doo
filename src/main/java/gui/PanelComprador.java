@@ -1,35 +1,47 @@
 package gui;
-
-import logica.Expendedor;
+import logica.*;
 
 import javax.swing.*;
 import java.awt.*;
 
-public class PanelComprador extends JPanel {
-    PanelPrincipal panelPrincipal;
-    Expendedor expendedor;
-
-    public PanelComprador(PanelPrincipal panelPrincipal, Expendedor expendedor) {
+public class PanelComprador extends JFrame{
+    private PanelPrincipal panelPrincipal;
+    private Comprador comprador;
+    private JLabel dinero;
+    private JPanel productos;
+    public PanelComprador(PanelPrincipal panelPrincipal, Comprador comprador){
         this.panelPrincipal = panelPrincipal;
-        this.expendedor = expendedor;
+        this.comprador = comprador;
 
-        setBackground(new Color(66, 66, 66));
-        setPreferredSize(new Dimension(175, 0));
-        setLayout(null);
+        // Configuración de la ventana:
+        setTitle("Comprador");
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+        setSize(300,550);
+        setLocation(200,200);
+        setResizable(false);
 
-        InsertaMonedas insertaMonedas = new InsertaMonedas(panelPrincipal, expendedor);
-        JLabel textoMonedas = new JLabel("Inserte monedas aquí");
-        textoMonedas.setForeground(new Color(255, 255, 255));
-        textoMonedas.setBounds(50, 300, 125, 15);
-        DispensadorMonedas dispensadorMonedas = new DispensadorMonedas(panelPrincipal, expendedor);
+        // Ventana principal:
+        JPanel ventana = new JPanel();
+        ventana.setBackground(new Color(255, 255, 255));
+        ventana.setLayout(null);
+        setContentPane(ventana);
 
-        add(insertaMonedas);
-        add(textoMonedas);
-        add(dispensadorMonedas);
-    }
+        // dinero total:
+        dinero = new JLabel("$" + comprador.CuantoDinero());
+        dinero.setBackground(Color.WHITE);
+        dinero.setBounds(20,20,200,30);
+        ventana.add(dinero);
 
-    @Override
-    protected void paintComponent(Graphics g) {
-        super.paintComponent(g);
+        // productos en el inventario del comprador:
+        productos = new JPanel();
+        productos.setLayout(null);
+        productos.setOpaque(false);
+        productos.setBounds(20,60,260,300);
+        ventana.add(productos);
+
+        JButton Consumir_Producto = new JButton("Consumir Producto");
+
+        setVisible(true);
+
     }
 }

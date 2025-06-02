@@ -6,9 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
-public class InsertaMonedas extends JPanel {
+public class InsertaMonedas extends JPanel{
     PanelPrincipal panelPrincipal;
     Expendedor expendedor;
 
@@ -20,20 +19,12 @@ public class InsertaMonedas extends JPanel {
         setBounds(20, 250, 25, 125);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
 
-        addMouseListener(new MyMouseListener(expendedor));
-    }
-
-    private static class MyMouseListener extends MouseAdapter {
-        Expendedor expendedor;
-
-        public MyMouseListener(Expendedor expendedor) {
-            this.expendedor = expendedor;
-        }
-
-        @Override
-        public void mousePressed(MouseEvent e) {
-            VentanaIngresarMoneda ventanaIngresarMoneda = new VentanaIngresarMoneda(expendedor);
-            ventanaIngresarMoneda.mostrar();
-        }
+        addMouseListener(new MouseAdapter(){
+            @Override
+            public void mousePressed(MouseEvent e){
+                VentanaIngresarMoneda ventanaIngresarMoneda = new VentanaIngresarMoneda(expendedor);
+                ventanaIngresarMoneda.mostrar();
+            }
+        });
     }
 }
