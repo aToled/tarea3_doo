@@ -4,21 +4,23 @@ import logica.Moneda;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
-public class SeleccionarMoneda extends JPanel implements MouseListener {
+public class SeleccionarMoneda extends JPanel{
     Moneda moneda;
     JLabel valueLabel = new JLabel();
 
     public SeleccionarMoneda(Moneda moneda) {
         this.moneda = moneda;
-        setBackground(new Color(50, 50, 50));
         setPreferredSize(new Dimension(50, 50));
         setLayout(null);
 
         valueLabel.setText(String.valueOf(moneda.getValor()));
         valueLabel.setBounds(15, 0, 50, 50);
+
+        addMouseListener(new MyMouseListener(moneda));
 
         add(valueLabel);
     }
@@ -31,18 +33,18 @@ public class SeleccionarMoneda extends JPanel implements MouseListener {
         g.fillOval(0, 0, 50, 50);
     }
 
-    @Override
-    public void mouseClicked(MouseEvent e) {}
+    private static class MyMouseListener extends MouseAdapter {
+        Moneda moneda;
 
-    @Override
-    public void mousePressed(MouseEvent e) {}
+        public MyMouseListener(Moneda moneda) {
+            this.moneda = moneda;
+        }
 
-    @Override
-    public void mouseReleased(MouseEvent e) {}
+        @Override
+        public void mouseClicked(MouseEvent e) {
+            super.mouseClicked(e);
 
-    @Override
-    public void mouseEntered(MouseEvent e) {}
-
-    @Override
-    public void mouseExited(MouseEvent e) {}
+            System.out.println("Moneda seleccionada: " + moneda.getValor());
+        }
+    }
 }

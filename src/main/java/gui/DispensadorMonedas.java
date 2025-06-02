@@ -9,6 +9,11 @@ public class DispensadorMonedas extends JPanel {
     PanelPrincipal panelPrincipal;
     Expendedor expendedor;
 
+    /**
+     * Se encarga de mostrar las monedas dadas de vuelto al comprador
+     * @param panelPrincipal: Referencia a panel principal para poder re-pintar en caso de ser necesario
+     * @param expendedor: Referenia a expendedor para poder interactuar con la lógica del programa
+     */
     public DispensadorMonedas(PanelPrincipal panelPrincipal, Expendedor expendedor) {
         this.panelPrincipal = panelPrincipal;
         this.expendedor = expendedor;
