@@ -155,4 +155,16 @@ public class Expendedor {
     public Producto getProducto(){
         return producto[0];
     }
+
+    public int getDinero_total_ingresado(){
+        return Dinero_total_ingresado;
+    }
+
+    public Deposito<Moneda> getMonedas_ingresadas() {
+        return monedas_ingresadas;
+    }
+
+    public Deposito<Moneda> getMonedas_compras_exitosas() {
+        return monedas_compras_exitosas;
+    }
 }

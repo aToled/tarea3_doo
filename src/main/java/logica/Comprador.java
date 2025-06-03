@@ -103,4 +103,12 @@ public class Comprador {
     public String queConsumiste() {
         return sonido;
     }
+
+    public Deposito<Producto> getProductos_comprados() {
+        return productos_comprados;
+    }
+
+    public Deposito<Moneda> getMonedero() {
+        return monedero;
+    }
 }

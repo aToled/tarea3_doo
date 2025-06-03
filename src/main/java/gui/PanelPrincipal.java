@@ -1,30 +1,21 @@
 package gui;
 
-import logica.Comprador;
-import logica.Expendedor;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class PanelPrincipal extends JPanel {
-    private Expendedor expendedor;
-    private Comprador comprador=new Comprador(1000);
-    private Panel_de_Compras com;
-    private PanelComprador pCom;
-    private PanelExpendedor pExp;
-    private Panel_Recoleccion_Productos pro;
+    private final Panel_de_Compras com;
+    private final PanelExpendedor pExp;
+    private final Panel_Recoleccion_Productos pro;
 
-    public PanelPrincipal(Expendedor expendedor) {
-        this.expendedor = expendedor;
-
+    public PanelPrincipal() {
         setBackground(new Color(66, 66, 66));
         setBorder(new EmptyBorder(10, 10, 10, 10));
         setLayout(new BorderLayout());
 
-        com = new Panel_de_Compras(this, expendedor);
-        pCom = new PanelComprador(this, comprador);
-        pExp = new PanelExpendedor(this, expendedor);
+        com = new Panel_de_Compras(this);
+        pExp = new PanelExpendedor(this);
         pro = new Panel_Recoleccion_Productos();
 
         add(pExp, BorderLayout.CENTER);

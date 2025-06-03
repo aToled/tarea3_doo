@@ -7,11 +7,9 @@ import java.awt.*;
 import java.awt.event.MouseListener;
 
 public class VentanaIngresarMoneda extends JFrame {
-    private Expendedor expendedor;
+    private Expendedor expendedor = Init.expendedor;
 
-    public VentanaIngresarMoneda(Expendedor expendedor) {
-        this.expendedor = expendedor;
-
+    public VentanaIngresarMoneda() {
         // Configuración de la ventana
         setTitle("Ingresar moneda");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -39,9 +37,8 @@ public class VentanaIngresarMoneda extends JFrame {
         add(sm4);
     }
 
-    public void monedaSeleccionada(Moneda moneda) {
-        // TODO: Ver donde guardar estas monedas
-
+    public void monedaSeleccionada(Moneda moneda) throws PagoIncorrectoException {
+        Init.expendedor.Ingresar_Monedas(moneda);
         dispose();
     }
 

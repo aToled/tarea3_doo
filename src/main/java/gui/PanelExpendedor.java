@@ -12,11 +12,9 @@ import java.awt.geom.RoundRectangle2D;
  */
 public class PanelExpendedor extends JPanel {
     private PanelPrincipal panelPrincipal;
-    private Expendedor expendedor;
 
-    public PanelExpendedor(PanelPrincipal panelPrincipal, Expendedor expendedor) {
+    public PanelExpendedor(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
-        this.expendedor = expendedor;
 
         setOpaque(false);
         setLayout(null);

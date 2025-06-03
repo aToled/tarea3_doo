@@ -1,47 +1,38 @@
 package gui;
-import logica.*;
-
 import javax.swing.*;
 import java.awt.*;
 
-public class PanelComprador extends JFrame{
-    private PanelPrincipal panelPrincipal;
-    private Comprador comprador;
-    private JLabel dinero;
-    private JPanel productos;
-    public PanelComprador(PanelPrincipal panelPrincipal, Comprador comprador){
-        this.panelPrincipal = panelPrincipal;
-        this.comprador = comprador;
-
-        // Configuración de la ventana:
-        setTitle("Comprador");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+public class PanelComprador extends JPanel{
+    public PanelComprador(){
+        setLayout(null);
         setSize(300,550);
+        setPreferredSize(new Dimension(200,0));
         setLocation(200,200);
-        setResizable(false);
-
-        // Ventana principal:
-        JPanel ventana = new JPanel();
-        ventana.setBackground(new Color(255, 255, 255));
-        ventana.setLayout(null);
-        setContentPane(ventana);
-
-        // dinero total:
-        dinero = new JLabel("$" + comprador.CuantoDinero());
-        dinero.setBackground(Color.WHITE);
-        dinero.setBounds(20,20,200,30);
-        ventana.add(dinero);
-
-        // productos en el inventario del comprador:
-        productos = new JPanel();
-        productos.setLayout(null);
-        productos.setOpaque(false);
-        productos.setBounds(20,60,260,300);
-        ventana.add(productos);
-
-        JButton Consumir_Producto = new JButton("Consumir Producto");
+        setBackground(Color.GRAY);
 
         setVisible(true);
+    }
+
+    @Override
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+
+        // Fondo y Bordes
+        g.setColor(Color.GRAY);
+        g.fillRect(0,0,getWidth(),getWidth());
+        g.setColor(Color.BLACK);
+        g.drawRect(0,0,getWidth()-1,getHeight()-1);
+
+        // Dinero total comprador
+        int dinero_total = Init.comprador.CuantoDinero();
+        g.setColor(Color.BLACK);
+        g.drawString("Dinero total: $" + dinero_total,10,20);
+
+        // Monedas en orden del comprador
+        Init.Mostrar_monedas_en_orden(Init.comprador.getMonedero(), g, 0);
+
+        // Monedas en orden del expendedor //TODO TEMPORAL; BORRAR!!!
+        Init.Mostrar_monedas_en_orden(Init.expendedor.getMonedas_ingresadas(), g, 20);
 
     }
 }

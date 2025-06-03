@@ -11,9 +11,9 @@ public class InsertaMonedas extends JPanel{
     PanelPrincipal panelPrincipal;
     Expendedor expendedor;
 
-    public InsertaMonedas(PanelPrincipal panelPrincipal, Expendedor expendedor) {
+    public InsertaMonedas(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
-        this.expendedor = expendedor;
+        this.expendedor = Init.expendedor;
 
         setBackground(new Color(0, 0, 0));
         setBounds(20, 250, 25, 125);
@@ -22,7 +22,7 @@ public class InsertaMonedas extends JPanel{
         addMouseListener(new MouseAdapter(){
             @Override
             public void mousePressed(MouseEvent e){
-                VentanaIngresarMoneda ventanaIngresarMoneda = new VentanaIngresarMoneda(expendedor);
+                VentanaIngresarMoneda ventanaIngresarMoneda = new VentanaIngresarMoneda();
                 ventanaIngresarMoneda.mostrar();
             }
         });

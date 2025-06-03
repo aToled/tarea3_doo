@@ -7,17 +7,16 @@ import java.awt.*;
 
 public class Panel_de_Compras extends JPanel {
     PanelPrincipal panelPrincipal;
-    Expendedor expendedor;
 
-    public Panel_de_Compras(PanelPrincipal panelPrincipal, Expendedor expendedor) {
+    public Panel_de_Compras(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
-        this.expendedor = expendedor;
+        Expendedor expendedor = Init.expendedor;
 
         setBackground(new Color(66, 66, 66));
         setPreferredSize(new Dimension(175, 0));
         setLayout(null);
 
-        InsertaMonedas insertaMonedas = new InsertaMonedas(panelPrincipal, expendedor);
+        InsertaMonedas insertaMonedas = new InsertaMonedas(panelPrincipal);
         JLabel textoMonedas = new JLabel("Ingrese moneda");
         textoMonedas.setForeground(new Color(255, 255, 255));
         textoMonedas.setBounds(50, 300, 125, 15);
