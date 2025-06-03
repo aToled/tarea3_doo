@@ -1,15 +1,19 @@
 package gui;
 
+import logica.Producto;
+
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Animacion {
-    private ImagenProducto p;
+    private PanelPrincipal panelPrincipal;
+    private Producto p;
     private Timer timerAnimacion;
     private boolean condicionDeParadaAlcanzada = false;
 
-    public Animacion(ImagenProducto p) {
+    public Animacion(PanelPrincipal panelPrincipal, Producto p) {
+        this.panelPrincipal = panelPrincipal;
         this.p = p;
     }
 
@@ -26,6 +30,8 @@ public class Animacion {
                     // Lógica de movimiento y condición de parada
                     p.y += 1;
                     p.setBounds(p.x, p.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
+                    panelPrincipal.invalidate();
+                    panelPrincipal.repaint();
                     if (p.y >= 950) {
                         detenerAnimacion();
                     }

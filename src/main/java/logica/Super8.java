@@ -8,7 +8,7 @@ public class Super8 extends Dulce {
      * @see Dulce
      */
     public Super8() {
-        super();
+        super(Productos.SUPER8);
     }
 
     /**

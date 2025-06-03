@@ -8,7 +8,7 @@ public class Snickers extends Dulce {
      * @see Dulce
      */
     public Snickers() {
-        super();
+        super(Productos.SNICKERS);
     }
 
     /**

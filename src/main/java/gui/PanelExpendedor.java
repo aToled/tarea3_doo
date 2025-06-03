@@ -1,20 +1,25 @@
 package gui;
 
-import logica.Expendedor;
-import logica.Productos;
+import logica.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
+import java.util.ArrayList;
+import java.util.Map;
+
 /**
  * Clase principal que representa la vitrina de productos del expendedor,
  * la cual organiza visualmente los productos y controla la animación de salida de uno de ellos.
  */
 public class PanelExpendedor extends JPanel {
     private PanelPrincipal panelPrincipal;
+    private Expendedor expendedor;
+    private MapProductos mapProductos = new MapProductos();
 
     public PanelExpendedor(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
+        this.expendedor = expendedor;
 
         setOpaque(false);
         setLayout(null);
@@ -47,23 +52,108 @@ public class PanelExpendedor extends JPanel {
      * @param columna:
      * @param animar: Indica si deberia o no iniciar la animacion de caida del primer elemento.
      */
-    private void agregarProductosFila(Productos producto, int fila, int columna, boolean animar){
-        ImagenProducto producto_que_caera=null;
-        for (int i = 0; i < 5; i++) {
-            ImagenProducto p = new ImagenProducto(producto);
-            p.establecerPosicion(fila, columna, i);
-            add(p);
 
-            if (animar&&i == 0) {
-                producto_que_caera = p;
+    public void botarProducto(Productos producto) {
+        //setComponentZOrder(producto,0);
+        System.out.println("Animacion");
+        switch (producto) {
+            case COCA -> {
+                Producto p = mapProductos.get(Productos.COCA).remove(0);
+                setComponentZOrder(p,0);
+                Animacion a = new Animacion(panelPrincipal, p);
+                a.iniciarOContinuarMovimiento();
+            }
+            case SPRITE -> {
+            }
+            case FANTA -> {
+            }
+            case SNICKERS -> {
+            }
+            case SUPER8 -> {
+            }
+            case CHOCMAN -> {
+            }
+            case NULO -> {
             }
         }
-        //Mueve el producto que va a caer a la capa frontal.
-        if(producto_que_caera!=null){
-            setComponentZOrder(producto_que_caera,0);
-            System.out.println("Animacion");
-            Animacion a = new Animacion(producto_que_caera);
-            a.iniciarOContinuarMovimiento();
+    }
+
+    private Producto crearProducto(Productos producto) {
+        switch (producto) {
+            case COCA -> { return new CocaCola(); }
+            case SPRITE -> { return new Sprite(); }
+            case FANTA -> { return new Fanta(); }
+            case SNICKERS -> { return new Snickers(); }
+            case SUPER8 -> { return new Super8(); }
+            case CHOCMAN -> { return new Chocman(); }
+            case NULO -> { return null; }
+        }
+        return null;
+    }
+
+    private void agregarProductosFila(Productos producto, int fila, int columna, boolean animar){
+        Producto producto_que_caera=null;
+        switch (producto) {
+            case COCA -> {
+                Producto p = expendedor.coca.get();
+                while (p != null) {
+                    p.establecerPosicion(fila, columna, 4 - expendedor.coca.size());
+                    add(p);
+                    mapProductos.get(Productos.COCA).add(p);
+
+                    p = expendedor.coca.get();
+                }
+            }
+            case SPRITE -> {
+                Producto p = expendedor.sprite.get();
+                while (p != null) {
+                    p.establecerPosicion(fila, columna, 4 - expendedor.sprite.size());
+                    add(p);
+                    mapProductos.get(Productos.SPRITE).add(p);
+
+                    p = expendedor.sprite.get();
+                }
+            }
+            case FANTA -> {
+                Producto p = expendedor.fanta.get();
+                while (p != null) {
+                    p.establecerPosicion(fila, columna, 4 - expendedor.fanta.size());
+                    add(p);
+                    mapProductos.get(Productos.FANTA).add(p);
+
+                    p = expendedor.fanta.get();
+                }
+            }
+            case SNICKERS -> {
+                Producto p = expendedor.snickers.get();
+                while (p != null) {
+                    p.establecerPosicion(fila, columna, 4 - expendedor.snickers.size());
+                    add(p);
+                    mapProductos.get(Productos.SNICKERS).add(p);
+
+                    p = expendedor.snickers.get();
+                }
+            }
+            case SUPER8 -> {
+                Producto p = expendedor.super8.get();
+                while (p != null) {
+                    p.establecerPosicion(fila, columna, 4 - expendedor.super8.size());
+                    add(p);
+                    mapProductos.get(Productos.SUPER8).add(p);
+
+                    p = expendedor.super8.get();
+                }
+            }
+            case CHOCMAN -> {
+                Producto p = expendedor.chocman.get();
+                while (p != null) {
+                    p.establecerPosicion(fila, columna, 4 - expendedor.chocman.size());
+                    add(p);
+                    mapProductos.get(Productos.CHOCMAN).add(p);
+
+                    p = expendedor.chocman.get();
+                }
+            }
         }
     }
 

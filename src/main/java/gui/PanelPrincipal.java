@@ -1,15 +1,20 @@
 package gui;
 
+import logica.Expendedor;
+
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class PanelPrincipal extends JPanel {
+    private Expendedor expendedor;
     private Panel_de_Compras pCom;
     private PanelExpendedor pExp;
     private Panel_Recoleccion_Productos pro;
 
-    public PanelPrincipal() {
+    public PanelPrincipal(Expendedor expendedor) {
+        this.expendedor = expendedor;
+
         setBackground(new Color(66, 66, 66));
         setBorder(new EmptyBorder(10, 10, 10, 10));
         setLayout(new BorderLayout());

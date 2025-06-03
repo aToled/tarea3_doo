@@ -1,4 +1,7 @@
 package gui;
+
+import logica.Expendedor;
+
 import javax.swing.*;
 import java.awt.*;
 

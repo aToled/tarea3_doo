@@ -2,13 +2,13 @@ package logica;
 /**
  * Instancia de Bebida que representa una Coca Cola, puede ser comprada, almacenada y consumida.
  */
-class CocaCola extends Bebida {
+public class CocaCola extends Bebida {
 
     /**
      * @see Bebida
      */
     public CocaCola() {
-        super();
+        super(Productos.COCA);
     }
 
     /**
