@@ -8,12 +8,12 @@ package logica;
  * no le alcanza para comprar o no ingreso bien su moneda.
  */
 public class Expendedor {
-    public final Deposito<Bebida> coca;
-    public final Deposito<Bebida> sprite;
-    public final Deposito<Bebida> fanta;
-    public final Deposito<Dulce> snickers;
-    public final Deposito<Dulce> super8;
-    public final Deposito<Dulce> chocman;
+    public final Deposito<Producto> coca;
+    public final Deposito<Producto> sprite;
+    public final Deposito<Producto> fanta;
+    public final Deposito<Producto> snickers;
+    public final Deposito<Producto> super8;
+    public final Deposito<Producto> chocman;
     public final Deposito<Moneda> monedas_ingresadas;
     public final Deposito<Moneda> monVu;
     public final Deposito<Moneda> monedas_compras_exitosas;

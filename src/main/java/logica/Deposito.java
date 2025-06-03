@@ -34,6 +34,10 @@ public class Deposito<T> {
         return temp;
     }
 
+    public ArrayList<T> getRef() {
+        return arrayList;
+    }
+
     /**
      * Guarda el elemento al final del ArrayList.
      * @param elemento: El elemento que se desea almacenar dentro del ArrayList.

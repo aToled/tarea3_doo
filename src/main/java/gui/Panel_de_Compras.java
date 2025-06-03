@@ -47,7 +47,7 @@ public class Panel_de_Compras extends JPanel {
         add(pantalla);
 
         // Numeros
-        PanelBotones panelBotones = new PanelBotones();
+        PanelBotones panelBotones = new PanelBotones(panelPrincipal);
         add(panelBotones);
     }
 

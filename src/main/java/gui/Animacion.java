@@ -29,6 +29,7 @@ public class Animacion {
                 public void actionPerformed(ActionEvent ae) {
                     // Lógica de movimiento y condición de parada
                     p.y += 1;
+                    System.out.println("p");
                     p.setBounds(p.x, p.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
                     panelPrincipal.invalidate();
                     panelPrincipal.repaint();

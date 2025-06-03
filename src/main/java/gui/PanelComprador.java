@@ -23,7 +23,7 @@ public class PanelComprador extends JPanel{
 
         // Dinero total comprador
         int dinero_total = Init.comprador.CuantoDinero();
-        g.setColor(Color.BLACK);
+        g.setColor(Color.WHITE);
         g.drawString("Dinero total: $" + dinero_total,10,20);
 
         // Monedas en orden del comprador

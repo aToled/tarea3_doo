@@ -5,6 +5,7 @@ import logica.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -34,46 +35,38 @@ public class PanelExpendedor extends JPanel {
             }
         }
 
-        agregarProductosFila(Productos.COCA,0,0,true);
-        agregarProductosFila(Productos.SPRITE,0,1,false);
-        agregarProductosFila(Productos.FANTA,1,0,false);
-        agregarProductosFila(Productos.SNICKERS,1,1,false);
-        agregarProductosFila(Productos.SUPER8,2,0,false);
-        agregarProductosFila(Productos.CHOCMAN,2,1,false);
+        agregarProductos(Productos.COCA    , 0, 0);
+        agregarProductos(Productos.SPRITE  , 0, 1);
+        agregarProductos(Productos.FANTA   , 1, 0);
+        agregarProductos(Productos.SNICKERS, 1, 1);
+        agregarProductos(Productos.SUPER8  , 2, 0);
+        agregarProductos(Productos.CHOCMAN , 2, 1);
 
     }
 
     /**TODO poner mas info
      * Agrega una fila de productos diagonalmente a la vitrina y inicia o continua el movi
      * @param producto: Tipo de producto a agregar.
-     * @param fila:
-     * @param columna:
-     * @param animar: Indica si deberia o no iniciar la animacion de caida del primer elemento.
      */
-
     public void botarProducto(Productos producto) {
         //setComponentZOrder(producto,0);
         System.out.println("Animacion");
+        Producto p = null;
+
         switch (producto) {
-            case COCA -> {
-                Producto p = mapProductos.get(Productos.COCA).remove(0);
-                setComponentZOrder(p,0);
-                Animacion a = new Animacion(panelPrincipal, p);
-                a.iniciarOContinuarMovimiento();
-            }
-            case SPRITE -> {
-            }
-            case FANTA -> {
-            }
-            case SNICKERS -> {
-            }
-            case SUPER8 -> {
-            }
-            case CHOCMAN -> {
-            }
-            case NULO -> {
-            }
+            case COCA -> p = (Producto)mapProductos.get(Productos.COCA).get();
+            case SPRITE -> p = (Producto)mapProductos.get(Productos.SPRITE).get();
+            case FANTA -> p = (Producto)mapProductos.get(Productos.FANTA).get();
+            case SNICKERS -> p = (Producto)mapProductos.get(Productos.SNICKERS).get();
+            case SUPER8 -> p = (Producto)mapProductos.get(Productos.SUPER8).get();
+            case CHOCMAN -> p = (Producto)mapProductos.get(Productos.CHOCMAN).get();
+            case NULO -> {}
         }
+
+        if (p == null) return;
+        setComponentZOrder(p,0);
+        Animacion a = new Animacion(panelPrincipal, p);
+        a.iniciarOContinuarMovimiento();
     }
 
     private Producto crearProducto(Productos producto) {
@@ -89,69 +82,24 @@ public class PanelExpendedor extends JPanel {
         return null;
     }
 
-    private void agregarProductosFila(Productos producto, int fila, int columna, boolean animar){
-        Producto producto_que_caera=null;
+    private void agregarProductos(Productos producto, int fila, int columna){
+        ArrayList<Producto> productos = null;
+
         switch (producto) {
-            case COCA -> {
-                Producto p = Init.expendedor.coca.get();
-                while (p != null) {
-                    p.establecerPosicion(fila, columna, 4 - Init.expendedor.coca.size());
-                    add(p);
-                    mapProductos.get(Productos.COCA).add(p);
+            case COCA -> productos = Init.expendedor.coca.getRef();
+            case SPRITE -> productos = Init.expendedor.sprite.getRef();
+            case FANTA -> productos = Init.expendedor.fanta.getRef();
+            case SNICKERS -> productos = Init.expendedor.snickers.getRef();
+            case SUPER8 -> productos = Init.expendedor.super8.getRef();
+            case CHOCMAN -> productos = Init.expendedor.chocman.getRef();
+        }
 
-                    p = Init.expendedor.coca.get();
-                }
-            }
-            case SPRITE -> {
-                Producto p = Init.expendedor.sprite.get();
-                while (p != null) {
-                    p.establecerPosicion(fila, columna, 4 - Init.expendedor.sprite.size());
-                    add(p);
-                    mapProductos.get(Productos.SPRITE).add(p);
+        if (productos == null) return;
 
-                    p = Init.expendedor.sprite.get();
-                }
-            }
-            case FANTA -> {
-                Producto p = Init.expendedor.fanta.get();
-                while (p != null) {
-                    p.establecerPosicion(fila, columna, 4 - Init.expendedor.fanta.size());
-                    add(p);
-                    mapProductos.get(Productos.FANTA).add(p);
-
-                    p = Init.expendedor.fanta.get();
-                }
-            }
-            case SNICKERS -> {
-                Producto p = Init.expendedor.snickers.get();
-                while (p != null) {
-                    p.establecerPosicion(fila, columna, 4 - Init.expendedor.snickers.size());
-                    add(p);
-                    mapProductos.get(Productos.SNICKERS).add(p);
-
-                    p = Init.expendedor.snickers.get();
-                }
-            }
-            case SUPER8 -> {
-                Producto p = Init.expendedor.super8.get();
-                while (p != null) {
-                    p.establecerPosicion(fila, columna, 4 - Init.expendedor.super8.size());
-                    add(p);
-                    mapProductos.get(Productos.SUPER8).add(p);
-
-                    p = Init.expendedor.super8.get();
-                }
-            }
-            case CHOCMAN -> {
-                Producto p = Init.expendedor.chocman.get();
-                while (p != null) {
-                    p.establecerPosicion(fila, columna, 4 - Init.expendedor.chocman.size());
-                    add(p);
-                    mapProductos.get(Productos.CHOCMAN).add(p);
-
-                    p = Init.expendedor.chocman.get();
-                }
-            }
+        int size = productos.size();
+        for (Producto p : productos) {
+            p.establecerPosicion(fila, columna, 4 - size);
+            add(p);
         }
     }
 
