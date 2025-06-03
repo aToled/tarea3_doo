@@ -18,7 +18,7 @@ public class SeleccionarMoneda extends JPanel{
         setLayout(null);
 
         valueLabel.setText(String.valueOf(moneda.getValor()));
-        valueLabel.setBounds(15, 0, 50, 50);
+        valueLabel.setBounds(13, 1, 50, 50);
 
         addMouseListener(new MouseAdapter() {
             @Override

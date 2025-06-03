@@ -7,8 +7,6 @@ import java.awt.*;
 import java.awt.event.MouseListener;
 
 public class VentanaIngresarMoneda extends JFrame {
-    private Expendedor expendedor = Init.expendedor;
-
     public VentanaIngresarMoneda() {
         // Configuración de la ventana
         setTitle("Ingresar moneda");

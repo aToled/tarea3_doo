@@ -26,7 +26,7 @@ public class PanelExpendedor extends JPanel {
                 int y = 50 + fila * ImagenProducto.SIZE + fila * 100;
                 x += ImagenProducto.SIZE/2 - ImagenNumero.SIZE/2;
                 y += ImagenProducto.SIZE + 7;
-                ImagenNumero num = new ImagenNumero(x, y, fila*2+col+1);
+                ImagenNumero num = new ImagenNumero(x, y, fila*2+col+1, new Color(178, 178, 178), Color.BLACK, Color.WHITE);
                 add(num);
             }
         }
@@ -89,7 +89,7 @@ public class PanelExpendedor extends JPanel {
         g2d.setColor(new Color(178, 178, 178));
         g2d.fill(formaRedondeada);
 
-        // Franja cuyo proposito es hacer 'Desaparecer' el producto cuando cae.
+        // Franja cuyo propósito es hacer 'Desaparecer' el producto cuando cae.
         JPanel franja_invisible = new JPanel();
         franja_invisible.setBackground(new Color(66,66,66));
         franja_invisible.setBounds(borde_izquierdo, 760, borde_derecho, 900);

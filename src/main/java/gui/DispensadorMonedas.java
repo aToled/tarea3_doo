@@ -20,11 +20,12 @@ public class DispensadorMonedas extends JPanel {
 
         setBackground(new Color(66, 66, 66));
         setLayout(null);
-        setBounds(40, 400, 100, 300);
+        setBounds(40, 450, 100, 300);
 
         JPanel panelMonedas = new JPanel();
         panelMonedas.setBackground(new Color(50,50,50));
         panelMonedas.setBounds(12,0,75,200);
+        panelMonedas.setBorder(BorderFactory.createLineBorder(Color.GRAY,3));
 
         JPanel panelVacio = new JPanel();
         panelVacio.setBackground(new Color(0,0,0));

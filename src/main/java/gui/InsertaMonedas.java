@@ -1,7 +1,5 @@
 package gui;
 
-import logica.Expendedor;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -9,14 +7,12 @@ import java.awt.event.MouseEvent;
 
 public class InsertaMonedas extends JPanel{
     PanelPrincipal panelPrincipal;
-    Expendedor expendedor;
 
     public InsertaMonedas(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
-        this.expendedor = Init.expendedor;
 
-        setBackground(new Color(0, 0, 0));
-        setBounds(20, 250, 25, 125);
+        setBackground(Color.BLACK);
+        setBounds(20, 280, 25, 125);
         setCursor(new Cursor(Cursor.HAND_CURSOR));
 
         addMouseListener(new MouseAdapter(){

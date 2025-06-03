@@ -1,41 +1,34 @@
 package gui;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 
 public class ImagenNumero extends JPanel {
-    public int x = 0;
-    public int y = 0;
-    public static final int SIZE = 40;
-    private BufferedImage img;
+    public static final int SIZE = 45;
+    JLabel numero = new JLabel();
+    private final Color ColorCirculo;
 
-    public ImagenNumero(int x, int y, int n) {
+    public ImagenNumero(int x, int y, int num, Color ColorFondo, Color ColorCirculo, Color ColorNumero) {
+        this.ColorCirculo = ColorCirculo;
         setSize(new Dimension(SIZE, SIZE));
         setPreferredSize(new Dimension(SIZE, SIZE));
         setMaximumSize(new Dimension(SIZE, SIZE));
-
+        setBackground(ColorFondo);
         setBounds(x, y, SIZE, SIZE);
 
-        String userDirectory = new File("").getAbsolutePath();
-        try {
-            File file = new File(userDirectory + "/resources/" + n + ".png");
+        numero.setText(String.valueOf(num));
+        numero.setForeground(ColorNumero);
+        numero.setFont(new Font("Arial", Font.BOLD, 23));
+        numero.setBounds(x,y,SIZE,SIZE);
+        add(numero);
 
-            img = ImageIO.read(file);
-        } catch (IOException e) {
-            System.out.println("Error al cargar la imagen: " + e.getMessage());
-        }
     }
 
     @Override
     protected void paintComponent(Graphics g) {
-        if (img != null) {
-            g.drawImage(img, 0, 0, null);
-        } else {
-            g.drawString("Imagen no disponible", 10, 20);
-        }
+        super.paintComponent(g);
+
+        g.setColor(ColorCirculo);
+        g.fillOval(0, 0, 45, 45);
     }
 }

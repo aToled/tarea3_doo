@@ -17,10 +17,11 @@ public class Panel_de_Compras extends JPanel {
         setPreferredSize(new Dimension(175, 0));
         setLayout(null);
 
+        //Monedas
         InsertaMonedas insertaMonedas = new InsertaMonedas(panelPrincipal);
         JLabel textoMonedas = new JLabel("Ingrese moneda");
         textoMonedas.setForeground(new Color(255, 255, 255));
-        textoMonedas.setBounds(50, 300, 125, 15);
+        textoMonedas.setBounds(50, 330, 125, 15);
         DispensadorMonedas dispensadorMonedas = new DispensadorMonedas(panelPrincipal, expendedor);
 
         add(insertaMonedas);
@@ -44,6 +45,10 @@ public class Panel_de_Compras extends JPanel {
         pantalla.add(texto1);
         pantalla.add(texto2);
         add(pantalla);
+
+        // Numeros
+        PanelBotones panelBotones = new PanelBotones();
+        add(panelBotones);
     }
 
     @Override
