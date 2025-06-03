@@ -14,12 +14,10 @@ import java.util.Map;
  */
 public class PanelExpendedor extends JPanel {
     private PanelPrincipal panelPrincipal;
-    private Expendedor expendedor;
     private MapProductos mapProductos = new MapProductos();
 
     public PanelExpendedor(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
-        this.expendedor = expendedor;
 
         setOpaque(false);
         setLayout(null);
@@ -95,63 +93,63 @@ public class PanelExpendedor extends JPanel {
         Producto producto_que_caera=null;
         switch (producto) {
             case COCA -> {
-                Producto p = expendedor.coca.get();
+                Producto p = Init.expendedor.coca.get();
                 while (p != null) {
-                    p.establecerPosicion(fila, columna, 4 - expendedor.coca.size());
+                    p.establecerPosicion(fila, columna, 4 - Init.expendedor.coca.size());
                     add(p);
                     mapProductos.get(Productos.COCA).add(p);
 
-                    p = expendedor.coca.get();
+                    p = Init.expendedor.coca.get();
                 }
             }
             case SPRITE -> {
-                Producto p = expendedor.sprite.get();
+                Producto p = Init.expendedor.sprite.get();
                 while (p != null) {
-                    p.establecerPosicion(fila, columna, 4 - expendedor.sprite.size());
+                    p.establecerPosicion(fila, columna, 4 - Init.expendedor.sprite.size());
                     add(p);
                     mapProductos.get(Productos.SPRITE).add(p);
 
-                    p = expendedor.sprite.get();
+                    p = Init.expendedor.sprite.get();
                 }
             }
             case FANTA -> {
-                Producto p = expendedor.fanta.get();
+                Producto p = Init.expendedor.fanta.get();
                 while (p != null) {
-                    p.establecerPosicion(fila, columna, 4 - expendedor.fanta.size());
+                    p.establecerPosicion(fila, columna, 4 - Init.expendedor.fanta.size());
                     add(p);
                     mapProductos.get(Productos.FANTA).add(p);
 
-                    p = expendedor.fanta.get();
+                    p = Init.expendedor.fanta.get();
                 }
             }
             case SNICKERS -> {
-                Producto p = expendedor.snickers.get();
+                Producto p = Init.expendedor.snickers.get();
                 while (p != null) {
-                    p.establecerPosicion(fila, columna, 4 - expendedor.snickers.size());
+                    p.establecerPosicion(fila, columna, 4 - Init.expendedor.snickers.size());
                     add(p);
                     mapProductos.get(Productos.SNICKERS).add(p);
 
-                    p = expendedor.snickers.get();
+                    p = Init.expendedor.snickers.get();
                 }
             }
             case SUPER8 -> {
-                Producto p = expendedor.super8.get();
+                Producto p = Init.expendedor.super8.get();
                 while (p != null) {
-                    p.establecerPosicion(fila, columna, 4 - expendedor.super8.size());
+                    p.establecerPosicion(fila, columna, 4 - Init.expendedor.super8.size());
                     add(p);
                     mapProductos.get(Productos.SUPER8).add(p);
 
-                    p = expendedor.super8.get();
+                    p = Init.expendedor.super8.get();
                 }
             }
             case CHOCMAN -> {
-                Producto p = expendedor.chocman.get();
+                Producto p = Init.expendedor.chocman.get();
                 while (p != null) {
-                    p.establecerPosicion(fila, columna, 4 - expendedor.chocman.size());
+                    p.establecerPosicion(fila, columna, 4 - Init.expendedor.chocman.size());
                     add(p);
                     mapProductos.get(Productos.CHOCMAN).add(p);
 
-                    p = expendedor.chocman.get();
+                    p = Init.expendedor.chocman.get();
                 }
             }
         }
