@@ -24,6 +24,7 @@ public class InsertaMonedas extends JPanel{
             public void mousePressed(MouseEvent e){
                 VentanaIngresarMoneda ventanaIngresarMoneda = new VentanaIngresarMoneda();
                 ventanaIngresarMoneda.mostrar();
+                Init.panelDeCompras.actualizarTexto();
             }
         });
     }

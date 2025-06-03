@@ -5,12 +5,7 @@ import java.awt.*;
 public class PanelComprador extends JPanel{
     public PanelComprador(){
         setLayout(null);
-        setSize(300,550);
-        setPreferredSize(new Dimension(200,0));
-        setLocation(200,200);
         setBackground(Color.GRAY);
-
-        setVisible(true);
     }
 
     @Override

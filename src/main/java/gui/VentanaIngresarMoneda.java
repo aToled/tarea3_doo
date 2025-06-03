@@ -19,16 +19,16 @@ public class VentanaIngresarMoneda extends JFrame {
         setResizable(false);
         setLayout(null);
 
-        SeleccionarMoneda sm1 = new SeleccionarMoneda(new Moneda100());
+        SeleccionarMoneda sm1 = new SeleccionarMoneda(new Moneda100(), this);
         sm1.setBounds(0,0, 50, 50);
 
-        SeleccionarMoneda sm2 = new SeleccionarMoneda(new Moneda500());
+        SeleccionarMoneda sm2 = new SeleccionarMoneda(new Moneda500(), this);
         sm2.setBounds(50+10,0, 50, 50);
 
-        SeleccionarMoneda sm3 = new SeleccionarMoneda(new Moneda1000());
+        SeleccionarMoneda sm3 = new SeleccionarMoneda(new Moneda1000(), this);
         sm3.setBounds(0,50+10, 50, 50);
 
-        SeleccionarMoneda sm4 = new SeleccionarMoneda(new Moneda1500());
+        SeleccionarMoneda sm4 = new SeleccionarMoneda(new Moneda1500(), this);
         sm4.setBounds(50+10,50+10, 50, 50);
 
         add(sm1);
@@ -39,6 +39,14 @@ public class VentanaIngresarMoneda extends JFrame {
 
     public void monedaSeleccionada(Moneda moneda) throws PagoIncorrectoException {
         Init.expendedor.Ingresar_Monedas(moneda);
+
+        if(Init.panelComprador!=null){
+            Init.panelComprador.repaint();
+        }
+        if (Init.panelDeCompras != null) {
+            Init.panelDeCompras.actualizarTexto();
+        }
+
         dispose();
     }
 

@@ -1,6 +1,7 @@
 package gui;
 
 import logica.Moneda;
+import logica.PagoIncorrectoException;
 
 import javax.swing.*;
 import java.awt.*;
@@ -11,7 +12,7 @@ public class SeleccionarMoneda extends JPanel{
     Moneda moneda;
     JLabel valueLabel = new JLabel();
 
-    public SeleccionarMoneda(Moneda moneda) {
+    public SeleccionarMoneda(Moneda moneda, VentanaIngresarMoneda ventana) {
         this.moneda = moneda;
         setPreferredSize(new Dimension(50, 50));
         setLayout(null);
@@ -22,6 +23,11 @@ public class SeleccionarMoneda extends JPanel{
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
+                try{
+                    ventana.monedaSeleccionada(moneda);
+                } catch (PagoIncorrectoException exception){
+                    exception.printStackTrace();
+                }
                 System.out.println(moneda);
             }
         });

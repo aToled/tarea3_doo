@@ -12,11 +12,11 @@ public class Init {
     public static Comprador comprador;
     public static PanelComprador panelComprador;
     public static PanelExpendedor panelExpendedor;
+    public static Panel_de_Compras panelDeCompras;
 
     public static void inicializar(){
         expendedor = new Expendedor(5);
         comprador = new Comprador(2000);
-        panelComprador = new PanelComprador();
         ///panelExpendedor = new PanelExpendedor();
 
     }
