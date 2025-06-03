@@ -15,10 +15,8 @@ public class Init {
     public static Panel_de_Compras panelDeCompras;
 
     public static void inicializar(){
-        expendedor = new Expendedor(5);
+        expendedor = new Expendedor(10);
         comprador = new Comprador(2000);
-        ///panelExpendedor = new PanelExpendedor();
-
     }
 
     public static void Mostrar_monedas_en_orden(Deposito<Moneda> depMon, Graphics g, int Desfase){

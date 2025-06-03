@@ -24,6 +24,7 @@ public class PanelPrincipal extends JPanel {
         add(pro, BorderLayout.SOUTH);
         add(pCom, BorderLayout.EAST);
         Init.panelDeCompras=pCom;
+        Init.panelExpendedor=pExp;
 
     }
 
