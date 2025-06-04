@@ -8,9 +8,11 @@ import logica.Productos;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class PanelBotones extends JPanel {
     private PanelPrincipal panelPrincipal;
+    private ArrayList<ImagenNumero> Botones = new ArrayList<>();
 
     private class ImagenNumeroMouseListener extends MouseAdapter {
         private Productos productoABotar;
@@ -24,15 +26,20 @@ public class PanelBotones extends JPanel {
             try {
                 Init.comprador.Comprar(productoABotar, Init.expendedor);
                 panelPrincipal.pExp.botarProducto(productoABotar);
-                panelPrincipal.pCom.setTextoPantalla("Vuelto", String.valueOf(Init.comprador.cuantoVuelto()));
+                panelPrincipal.pdeCom.setTextoPantalla("Vuelto", String.valueOf(Init.comprador.cuantoVuelto()));
                 panelPrincipal.invalidate();
                 panelPrincipal.repaint();
+
+                if(Init.expendedor.Hay_producto_en_Bandeja()){
+                    Init.panelDeCompras.panelBotones.activar_desactivarBotones(false);
+                }
+
             } catch (NoHayProductoException ex) {
-                panelPrincipal.pCom.setTextoPantalla("No hay producto", "");
+                panelPrincipal.pdeCom.setTextoPantalla("No hay producto", "");
             } catch (PagoIncorrectoException ex) {
-                panelPrincipal.pCom.setTextoPantalla("Pago Incorrecto", "");
+                panelPrincipal.pdeCom.setTextoPantalla("Pago Incorrecto", "");
             } catch (PagoInsuficienteException ex) {
-                panelPrincipal.pCom.setTextoPantalla("Pago Insuficiente", "");
+                panelPrincipal.pdeCom.setTextoPantalla("Pago Insuficiente", "");
             }
         }
     }
@@ -54,8 +61,16 @@ public class PanelBotones extends JPanel {
                 ImagenNumero num = new ImagenNumero(x, y,fila*2+col+1, new Color(66, 66, 66) ,Color.WHITE, Color.BLACK);
                 ImagenNumeroMouseListener numMouseListener = new ImagenNumeroMouseListener(productos[fila*2+col]);
                 num.addMouseListener(numMouseListener);
+                Botones.add(num);
                 add(num);
             }
+        }
+    }
+
+    public void activar_desactivarBotones(boolean estado){
+        for(ImagenNumero i : Botones){
+            i.setEnabled(estado);
+            i.repaint();
         }
     }
 }

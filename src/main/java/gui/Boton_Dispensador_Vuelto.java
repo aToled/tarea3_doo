@@ -21,7 +21,7 @@ public class Boton_Dispensador_Vuelto extends JButton {
             public void mouseClicked(MouseEvent e) {
                 System.out.println("Dinero Dispensado.");
                 vuelto_a_recoger = Init.expendedor.vaciarVuelto();
-                panelPrincipal.pCom.actualizarTexto();
+                panelPrincipal.pdeCom.actualizarTexto();
             }
             @Override
             public void mouseEntered(MouseEvent e) {

@@ -38,37 +38,7 @@ public class Comprador {
      * @see PagoIncorrectoException
      */
     public void Comprar(Productos cualProducto, Expendedor exp) throws NoHayProductoException, PagoIncorrectoException, PagoInsuficienteException{
-        Producto p = null;
-
-        try {
-            exp.comprarProducto(cualProducto);
-            p=exp.getProducto();
-        } catch (NoHayProductoException | PagoInsuficienteException e) {
-            Moneda monedaTemporal = exp.getVuelto();
-            if (monedaTemporal != null) {
-                vuelto = monedaTemporal.getValor();
-                // throw e;
-            }
-            throw e;
-        }
-
-        if (p == null) {
-            Moneda monedaTemporal = exp.getVuelto();
-            if (monedaTemporal != null) {
-                vuelto = monedaTemporal.getValor();
-            }
-            return;
-        }
-        sonido = p.consumir();
-        productos_comprados.add(p);
-
-        Moneda mVuelto = exp.getVuelto();
-
-        vuelto = 0;
-        while (mVuelto != null) {
-            vuelto = vuelto + mVuelto.getValor();
-            mVuelto = exp.getVuelto();
-        }
+        exp.comprarProducto(cualProducto);
     }
 
     /**
@@ -83,6 +53,10 @@ public class Comprador {
     public void RecogerVuelto(Deposito<Moneda> depM){
           utils.cambiar_monedas_de_deposito(depM, monedero);
           monedero.sort();
+    }
+
+    public void Recoger_Producto(Producto producto_a_sacar){
+        productos_comprados.add(producto_a_sacar);
     }
 
     /**

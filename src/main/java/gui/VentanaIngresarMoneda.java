@@ -17,16 +17,16 @@ public class VentanaIngresarMoneda extends JFrame {
         setResizable(false);
         setLayout(null);
 
-        SeleccionarMoneda sm1 = new SeleccionarMoneda(new Moneda100(), this);
+        SeleccionarMoneda sm1 = new SeleccionarMoneda(100, this);
         sm1.setBounds(0,0, 50, 50);
 
-        SeleccionarMoneda sm2 = new SeleccionarMoneda(new Moneda500(), this);
+        SeleccionarMoneda sm2 = new SeleccionarMoneda(500, this);
         sm2.setBounds(50+10,0, 50, 50);
 
-        SeleccionarMoneda sm3 = new SeleccionarMoneda(new Moneda1000(), this);
+        SeleccionarMoneda sm3 = new SeleccionarMoneda(1000, this);
         sm3.setBounds(0,50+10, 50, 50);
 
-        SeleccionarMoneda sm4 = new SeleccionarMoneda(new Moneda1500(), this);
+        SeleccionarMoneda sm4 = new SeleccionarMoneda(1500, this);
         sm4.setBounds(50+10,50+10, 50, 50);
 
         add(sm1);
@@ -40,19 +40,19 @@ public class VentanaIngresarMoneda extends JFrame {
 
         if (moneda == null){
             JOptionPane.showMessageDialog(this, "No tienes monedas de $"+valor,"Error", JOptionPane.ERROR_MESSAGE);
+        }else {
+            try {
+                Init.expendedor.Ingresar_Monedas(moneda);
+                System.out.println(moneda);
+            } catch (PagoIncorrectoException e) {
+                JOptionPane.showMessageDialog(this, "Error al ingresar la moneda", "Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
         }
-
-        try {
-            Init.expendedor.Ingresar_Monedas(moneda);
-        } catch (PagoIncorrectoException e) {
-            JOptionPane.showMessageDialog(this, "Error al ingresar la moneda", "Error", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-
         if(Init.panelComprador!=null){
             Init.panelComprador.repaint();
         }
-        if (Init.panelDeCompras != null) {
+        if (Init.panelDeCompras!=null) {
             Init.panelDeCompras.actualizarTexto();
         }
 

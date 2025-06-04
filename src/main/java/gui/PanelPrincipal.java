@@ -5,33 +5,33 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 public class PanelPrincipal extends JPanel {
-    public Panel_de_Compras pCom;
+    public Panel_de_Compras pdeCom;
     public PanelExpendedor pExp;
-    public Panel_Recoleccion_Productos pro;
+    public Panel_Recoleccion_Productos PRP;
 
     public PanelPrincipal() {
         setBackground(new Color(66, 66, 66));
         setBorder(new EmptyBorder(10, 10, 10, 10));
         setLayout(new BorderLayout());
 
-        pCom = new Panel_de_Compras(this);
+        pdeCom = new Panel_de_Compras(this);
         pExp = new PanelExpendedor(this);
-        pro = new Panel_Recoleccion_Productos();
+        PRP = new Panel_Recoleccion_Productos();
 
         add(pExp, BorderLayout.CENTER);
-        add(pro, BorderLayout.SOUTH);
-        add(pCom, BorderLayout.EAST);
-        Init.panelDeCompras=pCom;
+        add(PRP, BorderLayout.SOUTH);
+        add(pdeCom, BorderLayout.EAST);
+        Init.panelDeCompras=pdeCom;
         Init.panelExpendedor=pExp;
     }
 
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
 
-        pCom.paintComponent(g);
+        pdeCom.paintComponent(g);
         pExp.paintComponent(g);
-        pro.paintComponents(g);
+        PRP.paintComponents(g);
 
-        setComponentZOrder(pro,0);
+        setComponentZOrder(PRP,0);
     }
 }

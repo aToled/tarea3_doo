@@ -1,7 +1,5 @@
 package gui;
 
-import logica.Expendedor;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,6 +7,7 @@ public class Panel_de_Compras extends JPanel {
     PanelPrincipal panelPrincipal;
     private JLabel texto1Label;
     private JLabel texto2Label;
+    public PanelBotones panelBotones;
 
     public void setTextoPantalla(String texto1, String texto2) {
         texto1Label.setText(texto1);
@@ -53,7 +52,7 @@ public class Panel_de_Compras extends JPanel {
         add(pantalla);
 
         // Numeros
-        PanelBotones panelBotones = new PanelBotones(panelPrincipal);
+        panelBotones = new PanelBotones(panelPrincipal);
         add(panelBotones);
     }
 

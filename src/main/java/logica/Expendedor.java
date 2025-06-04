@@ -43,6 +43,7 @@ public class Expendedor {
         monedas_compras_exitosas = new Deposito<>();
         monedas_ingresadas = new Deposito<>();
         monedasDentro = new Deposito<>();
+        producto[0]=null;
 
         for (int i = 0; i < numProductos; i++) {
             coca.add(     new CocaCola());
@@ -161,8 +162,17 @@ public class Expendedor {
      * Devuelve el producto que el comprador compró. (es como meter la mano al depósito donde cae el producto comprado, para sacarlo)
      * @return aquel producto.
      */
-    public Producto getProducto(){
-        return producto[0];
+    public Producto getProducto() {
+        Producto producto_a_sacar = null;
+        if (producto[0] != null){
+            producto_a_sacar = producto[0];
+            producto[0] = null;
+        }
+        return producto_a_sacar;
+    }
+
+    public boolean Hay_producto_en_Bandeja(){
+        return producto[0]!=null;
     }
 
     public int getDinero_total_ingresado(){
