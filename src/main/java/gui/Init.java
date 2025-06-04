@@ -16,7 +16,7 @@ public class Init {
 
     public static void inicializar(){
         expendedor = new Expendedor(10);
-        comprador = new Comprador(2000);
+        comprador = new Comprador(4400);
     }
 
     public static void Mostrar_monedas_en_orden(Deposito<Moneda> depMon, Graphics g, int Desfase){

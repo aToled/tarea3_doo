@@ -8,6 +8,7 @@ public class Panel_de_Compras extends JPanel {
     private JLabel texto1Label;
     private JLabel texto2Label;
     public PanelBotones panelBotones;
+    public DispensadorMonedas dispensadorMonedas;
 
     public void setTextoPantalla(String texto1, String texto2) {
         texto1Label.setText(texto1);
@@ -26,7 +27,7 @@ public class Panel_de_Compras extends JPanel {
         JLabel textoMonedas = new JLabel("Ingrese moneda");
         textoMonedas.setForeground(new Color(255, 255, 255));
         textoMonedas.setBounds(50, 330, 125, 15);
-        DispensadorMonedas dispensadorMonedas = new DispensadorMonedas(panelPrincipal);
+        dispensadorMonedas = new DispensadorMonedas(panelPrincipal);
 
         add(insertaMonedas);
         add(textoMonedas);

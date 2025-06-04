@@ -4,8 +4,6 @@ import logica.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.MouseListener;
-
 public class VentanaIngresarMoneda extends JFrame {
     public VentanaIngresarMoneda() {
         // Configuración de la ventana

@@ -29,17 +29,6 @@ public class DispensadorMonedas extends JPanel {
         // Área donde se recoge el vuelto dispensado.
         JButton botonRecogerVuelto = getBotonRecogerVuelto(panelPrincipal);
 
-
-        ///int size = expendedor.monedas_compras_exitosas.size();
-        ///for (int i = 0; i < size; i++) {
-        ///    Moneda m = expendedor.monedas_compras_exitosas.get();
-        ///    ImagenMoneda imagenMoneda = new ImagenMoneda(m);
-        ///    panelMonedas.add(imagenMoneda);
-        ///    if (50*i <= 300) {
-        ///        imagenMoneda.setBounds(12, 50 * i, 50, 50);
-        ///    }
-        ///}
-
         add(panelMonedas);
         add(botonRecogerVuelto);
     }
@@ -60,6 +49,7 @@ public class DispensadorMonedas extends JPanel {
                 System.out.println("Vuelto Recogido");
                 Init.comprador.RecogerVuelto(vuelto_a_recoger);
                 Init.panelComprador.repaint();
+                Init.panelDeCompras.dispensadorMonedas.repaint();
             }
         });
         return botonRecogerVuelto;
@@ -70,15 +60,15 @@ public class DispensadorMonedas extends JPanel {
         super.paintComponent(g);
 
         this.panelMonedas.removeAll();
-        ArrayList<Moneda> monedas = Init.expendedor.monedasDentro.getRef();
-        int i = 0;
-        for (Moneda m : monedas) {
+        ArrayList<Moneda> monedas = Init.expendedor.monedas_ingresadas.getRef();
+        int maxMonedas = Math.min(12, monedas.size());
+        for (int i=0; i<maxMonedas; i++) {
+            Moneda m = monedas.get(i);
             ImagenMoneda imagenMoneda = new ImagenMoneda(m);
-            this.panelMonedas.add(imagenMoneda);
-            if (50*i <= 300) {
-                imagenMoneda.setBounds(12, 50 * i+10, 50, 50);
-            }
-            i++;
+            panelMonedas.add(imagenMoneda);
+            imagenMoneda.setBounds(6, 25*i, 50, 50);
         }
+        this.panelMonedas.repaint();
+        this.panelMonedas.revalidate();
     }
 }

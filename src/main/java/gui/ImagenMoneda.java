@@ -7,23 +7,11 @@ import java.awt.*;
 
 public class ImagenMoneda extends JPanel {
     Moneda moneda;
-    JLabel valorLabel;
-    JLabel serieLabel;
 
     public ImagenMoneda(Moneda moneda) {
         this.moneda = moneda;
-
-        valorLabel = new JLabel("$" + String.valueOf(moneda.getValor()));
-        valorLabel.setBounds(13, -10, 50, 50);
-
-        serieLabel = new JLabel(String.valueOf(moneda.getSerie()));
-        serieLabel.setBounds(5, 10, 50, 50);
-
-        add(valorLabel);
-        add(serieLabel);
-
         setBackground(new Color(50, 50, 50));
-        setPreferredSize(new Dimension(50, 50));
+        setPreferredSize(new Dimension(25, 25));
         setLayout(null);
     }
 
@@ -31,7 +19,17 @@ public class ImagenMoneda extends JPanel {
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
 
-        g.setColor(Color.YELLOW);
-        g.fillOval(0, 0, 50, 50);
+        Graphics2D g2 = (Graphics2D) g;
+        g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+        g2.setColor(Color.YELLOW);
+        g2.fillOval(0, 0, 25, 25);
+
+        g2.setColor(Color.BLACK);
+        g2.setFont(new Font("Bold", Font.BOLD, 9));
+        String valor = "$" + moneda.getValor();
+
+        FontMetrics fm = g2.getFontMetrics();
+        int valWidth = fm.stringWidth(valor);
+        g2.drawString(valor, (25 - valWidth) / 2, 15);
     }
 }

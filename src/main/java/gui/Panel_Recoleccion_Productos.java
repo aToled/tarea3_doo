@@ -22,6 +22,7 @@ public class Panel_Recoleccion_Productos extends JPanel {
                         Init.comprador.Recoger_Producto(p);
                         Init.panelComprador.repaint();
                         Init.panelDeCompras.panelBotones.activar_desactivarBotones(true);
+                        Init.panelDeCompras.dispensadorMonedas.repaint();
                         repaint();
                     }
                 }

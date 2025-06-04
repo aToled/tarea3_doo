@@ -21,6 +21,7 @@ public class InsertaMonedas extends JPanel{
                 VentanaIngresarMoneda ventanaIngresarMoneda = new VentanaIngresarMoneda();
                 ventanaIngresarMoneda.mostrar();
                 Init.panelDeCompras.actualizarTexto();
+                Init.panelDeCompras.dispensadorMonedas.repaint();
             }
         });
     }

@@ -1,7 +1,5 @@
 package logica;
 
-import gui.Init;
-
 /**
  * Es una representation virtual del mecanismo expendedor dentro de una máquina expendedora de golosinas
  * que se encarga de dispensar el producto seleccionado por el comprador, asignarle precios a los productos,
@@ -20,7 +18,6 @@ public class Expendedor {
     public final Deposito<Moneda> monedas_ingresadas;
     public final Deposito<Moneda> monVu;
     public final Deposito<Moneda> monedas_compras_exitosas;
-    public final Deposito<Moneda> monedasDentro;
     public final Producto[] producto = new Producto[1];
     private int Dinero_total_ingresado=0;
 
@@ -42,7 +39,6 @@ public class Expendedor {
         monVu = new Deposito<>();
         monedas_compras_exitosas = new Deposito<>();
         monedas_ingresadas = new Deposito<>();
-        monedasDentro = new Deposito<>();
         producto[0]=null;
 
         for (int i = 0; i < numProductos; i++) {
@@ -103,8 +99,6 @@ public class Expendedor {
         int howManyCoins = (Dinero_total_ingresado);
         utils.ingresar_total_monedas_en_orden(monVu,howManyCoins);
 
-        while (monedasDentro.get() != null) {}
-
         producto[0]=temp;
     }
 
@@ -132,7 +126,6 @@ public class Expendedor {
         }
         monedas_ingresadas.add(m);
         Dinero_total_ingresado+=m.getValor();
-        monedasDentro.add(m);
     }
 
     public Deposito<Moneda> vaciarVuelto() {
