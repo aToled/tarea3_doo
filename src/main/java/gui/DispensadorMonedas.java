@@ -4,6 +4,7 @@ import logica.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class DispensadorMonedas extends JPanel {
     PanelPrincipal panelPrincipal;
@@ -38,15 +39,15 @@ public class DispensadorMonedas extends JPanel {
         super.paintComponent(g);
 
         this.panelMonedas.removeAll();
-        System.out.println("Monedas ingresadas: " + (Init.expendedor.monedas_ingresadas.size() + Init.expendedor.monedas_compras_exitosas.size()));
-        int size = Init.expendedor.monedas_ingresadas.size();
-        for (int i = 0; i < size; i++) {
-            Moneda m = Init.expendedor.monedas_ingresadas.get();
+        ArrayList<Moneda> monedas = Init.expendedor.monedasDentro.getRef();
+        int i = 0;
+        for (Moneda m : monedas) {
             ImagenMoneda imagenMoneda = new ImagenMoneda(m);
             this.panelMonedas.add(imagenMoneda);
             if (50*i <= 300) {
-                imagenMoneda.setBounds(12, 50 * i, 50, 50);
+                imagenMoneda.setBounds(12, 50 * i+10, 50, 50);
             }
+            i++;
         }
     }
 }
