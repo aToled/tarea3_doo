@@ -33,6 +33,10 @@ abstract public class Moneda implements Comparable<Moneda> {
         return "-> Moneda ingresada:\n-Serie: " + getSerie() + "\n-Valor: " + getValor();
     }
 
+    public String toString2(){
+        return  "-> Moneda retirada:\n-Serie: "+getSerie()+"\n-Valor: "+getValor();
+    }
+
     /**
      * Compara el valor monetario entre la moneda actual y otra pasada como parámetro.
      * Esto permite ordenar de menor a mayor o mayor a menor una lista de monedas.

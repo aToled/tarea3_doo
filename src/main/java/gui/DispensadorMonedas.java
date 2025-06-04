@@ -46,7 +46,7 @@ public class DispensadorMonedas extends JPanel {
         botonRecogerVuelto.addActionListener(e -> {
             Deposito<Moneda> vuelto_a_recoger = Boton_Dispensador_Vuelto.vuelto_a_recoger;
             if (vuelto_a_recoger!=null && !vuelto_a_recoger.isEmpty()) {
-                System.out.println("Vuelto Recogido");
+                System.out.println("\n--> Vuelto Recogido <--\n");
                 Init.comprador.RecogerVuelto(vuelto_a_recoger);
                 Init.panelComprador.repaint();
                 Init.panelDeCompras.dispensadorMonedas.repaint();
@@ -60,7 +60,7 @@ public class DispensadorMonedas extends JPanel {
         super.paintComponent(g);
 
         this.panelMonedas.removeAll();
-        ArrayList<Moneda> monedas = Init.expendedor.monedas_ingresadas.getRef();
+        ArrayList<Moneda> monedas = Init.expendedor.getMonedas_ingresadas().getRef();
         int maxMonedas = Math.min(12, monedas.size());
         for (int i=0; i<maxMonedas; i++) {
             Moneda m = monedas.get(i);

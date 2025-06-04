@@ -126,12 +126,12 @@ public class PanelExpendedor extends JPanel {
         ArrayList<Producto> productos = null;
 
         switch (producto) {
-            case COCA -> productos = Init.expendedor.coca.getRef();
-            case SPRITE -> productos = Init.expendedor.sprite.getRef();
-            case FANTA -> productos = Init.expendedor.fanta.getRef();
-            case SNICKERS -> productos = Init.expendedor.snickers.getRef();
-            case SUPER8 -> productos = Init.expendedor.super8.getRef();
-            case CHOCMAN -> productos = Init.expendedor.chocman.getRef();
+            case COCA -> productos = Init.expendedor.getCoca().getRef();
+            case SPRITE -> productos = Init.expendedor.getSprite().getRef();
+            case FANTA -> productos = Init.expendedor.getFanta().getRef();
+            case SNICKERS -> productos = Init.expendedor.getSnickers().getRef();
+            case SUPER8 -> productos = Init.expendedor.getSuper8().getRef();
+            case CHOCMAN -> productos = Init.expendedor.getChocman().getRef();
         }
         return productos;
     }

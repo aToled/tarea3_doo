@@ -14,36 +14,6 @@ public class PanelBotones extends JPanel {
     private PanelPrincipal panelPrincipal;
     private ArrayList<ImagenNumero> Botones = new ArrayList<>();
 
-    private class ImagenNumeroMouseListener extends MouseAdapter {
-        private Productos productoABotar;
-
-        public ImagenNumeroMouseListener(Productos productoABotar) {
-            this.productoABotar = productoABotar;
-        }
-
-        @Override
-        public void mouseClicked(MouseEvent e) {
-            try {
-                Init.comprador.Comprar(productoABotar, Init.expendedor);
-                panelPrincipal.pExp.botarProducto(productoABotar);
-                panelPrincipal.pdeCom.setTextoPantalla("Vuelto", String.valueOf(Init.comprador.cuantoVuelto()));
-                panelPrincipal.invalidate();
-                panelPrincipal.repaint();
-
-                if(Init.expendedor.Hay_producto_en_Bandeja()){
-                    Init.panelDeCompras.panelBotones.activar_desactivarBotones(false);
-                }
-
-            } catch (NoHayProductoException ex) {
-                panelPrincipal.pdeCom.setTextoPantalla("No hay producto", "");
-            } catch (PagoIncorrectoException ex) {
-                panelPrincipal.pdeCom.setTextoPantalla("Pago Incorrecto", "");
-            } catch (PagoInsuficienteException ex) {
-                panelPrincipal.pdeCom.setTextoPantalla("Pago Insuficiente", "");
-            }
-        }
-    }
-
     public PanelBotones(PanelPrincipal panelPrincipal){
         this.panelPrincipal = panelPrincipal;
 
@@ -59,8 +29,38 @@ public class PanelBotones extends JPanel {
                 x += ImagenProducto.SIZE/2 - ImagenNumero.SIZE/2;
                 y += ImagenProducto.SIZE + 7;
                 ImagenNumero num = new ImagenNumero(x, y,fila*2+col+1, new Color(66, 66, 66) ,Color.WHITE, Color.BLACK);
-                ImagenNumeroMouseListener numMouseListener = new ImagenNumeroMouseListener(productos[fila*2+col]);
-                num.addMouseListener(numMouseListener);
+
+                int finalFila = fila;
+                int finalCol = col;
+                num.addMouseListener(new MouseAdapter() {
+                    private final Productos productoABotar = productos[finalFila *2+ finalCol];
+                    @Override
+                    public void mouseClicked(MouseEvent e) {
+                        try {
+                            Init.comprador.Comprar(productoABotar, Init.expendedor);
+                            panelPrincipal.pExp.botarProducto(productoABotar);
+                            panelPrincipal.invalidate();
+                            panelPrincipal.repaint();
+                            panelPrincipal.pdeCom.actualizarTexto();
+
+                            if(Init.expendedor.Hay_producto_en_Bandeja()){
+                                Init.panelDeCompras.panelBotones.activar_desactivarBotones(false);
+                            }
+
+                        } catch (NoHayProductoException ex) {
+                            panelPrincipal.pdeCom.setTextoPantalla("No hay producto", "");
+                        } catch (PagoIncorrectoException ex) {
+                            panelPrincipal.pdeCom.setTextoPantalla("Pago Incorrecto", "");
+                        } catch (PagoInsuficienteException ex) {
+                            panelPrincipal.pdeCom.setTextoPantalla("Pago Insuficiente", "");
+                        }
+                    }
+                    @Override
+                    public void mouseEntered(MouseEvent e) {
+                        setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+                    }
+                });
+
                 Botones.add(num);
                 add(num);
             }

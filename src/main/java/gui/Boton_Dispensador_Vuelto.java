@@ -20,7 +20,7 @@ public class Boton_Dispensador_Vuelto extends JButton {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (Init.expendedor.getDinero_total_ingresado() != 0){
-                    System.out.println("Dinero Dispensado.");
+                    System.out.println("\n--> Dinero Dispensado <--\n");
                     vuelto_a_recoger = Init.expendedor.vaciarVuelto();
                     panelPrincipal.pdeCom.actualizarTexto();
                     Init.panelDeCompras.dispensadorMonedas.repaint();

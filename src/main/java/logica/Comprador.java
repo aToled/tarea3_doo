@@ -5,8 +5,8 @@ package logica;
  * desde los depósitos internos de tal expendedor.
  */
 public class Comprador {
-    private String sonido;
-    private int vuelto;
+    private final String sonido;
+    private final int vuelto;
     private final Deposito<Moneda> monedero = new Deposito<>();
     private final Deposito<Producto> productos_comprados = new Deposito<>();
 
@@ -51,8 +51,12 @@ public class Comprador {
     }
 
     public void RecogerVuelto(Deposito<Moneda> depM){
-          utils.cambiar_monedas_de_deposito(depM, monedero);
-          monedero.sort();
+        for(int i = 0; i < depM.size(); i++){
+            Moneda aux = depM.get(i);
+            System.out.println(aux.toString2());
+        }
+        utils.cambiar_monedas_de_deposito(depM, monedero);
+        monedero.sort();
     }
 
     public void Recoger_Producto(Producto producto_a_sacar){

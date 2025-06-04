@@ -9,16 +9,16 @@ package logica;
  * no le alcanza para comprar o no ingreso bien su moneda.
  */
 public class Expendedor {
-    public final Deposito<Producto> coca;
-    public final Deposito<Producto> sprite;
-    public final Deposito<Producto> fanta;
-    public final Deposito<Producto> snickers;
-    public final Deposito<Producto> super8;
-    public final Deposito<Producto> chocman;
-    public final Deposito<Moneda> monedas_ingresadas;
-    public final Deposito<Moneda> monVu;
-    public final Deposito<Moneda> monedas_compras_exitosas;
-    public final Producto[] producto = new Producto[1];
+    private final Deposito<Producto> coca;
+    private final Deposito<Producto> sprite;
+    private final Deposito<Producto> fanta;
+    private final Deposito<Producto> snickers;
+    private final Deposito<Producto> super8;
+    private final Deposito<Producto> chocman;
+
+    private final Deposito<Moneda> monedas_ingresadas;
+    private final Deposito<Moneda> monedas_compras_exitosas;
+    private final Producto[] producto = new Producto[1];
     private int Dinero_total_ingresado=0;
 
     /**
@@ -36,7 +36,6 @@ public class Expendedor {
         super8 = new Deposito<>();
         chocman = new Deposito<>();
 
-        monVu = new Deposito<>();
         monedas_compras_exitosas = new Deposito<>();
         monedas_ingresadas = new Deposito<>();
         producto[0]=null;
@@ -71,7 +70,6 @@ public class Expendedor {
     public void comprarProducto(Productos cual) throws NoHayProductoException, PagoInsuficienteException{
         // No alcanza saldo
         if (Dinero_total_ingresado < cual.precio) {
-            utils.cambiar_monedas_de_deposito(monedas_ingresadas,monVu);
             throw new PagoInsuficienteException("Pago insuficiente");
         }
 
@@ -83,21 +81,19 @@ public class Expendedor {
             case SUPER8 -> super8.get();
             case CHOCMAN -> chocman.get();
             default -> {
-                utils.cambiar_monedas_de_deposito(monedas_ingresadas,monVu);
                 throw new NoHayProductoException("No existe producto solicitado");
             }
         };
 
         // No hay producto solicitado
         if (temp == null) {
-            utils.cambiar_monedas_de_deposito(monedas_ingresadas,monVu);
             throw new NoHayProductoException("No hay producto solicitado");
         }
 
         utils.cambiar_monedas_de_deposito(monedas_ingresadas,monedas_compras_exitosas);
         Dinero_total_ingresado -= cual.precio;
         int howManyCoins = (Dinero_total_ingresado);
-        utils.ingresar_total_monedas_en_orden(monVu,howManyCoins);
+        utils.ingresar_total_monedas_en_orden(monedas_ingresadas,howManyCoins);
 
         producto[0]=temp;
     }
@@ -120,6 +116,7 @@ public class Expendedor {
             chocman.add(new Chocman());
         }
     }
+
     public void Ingresar_Monedas(Moneda m) throws PagoIncorrectoException {
         if (m == null) {
             throw new PagoIncorrectoException("Debe ingresar una moneda");
@@ -130,25 +127,13 @@ public class Expendedor {
 
     public Deposito<Moneda> vaciarVuelto() {
         Deposito<Moneda> monedas = new Deposito<>();
-        Moneda m1 = monVu.get();
         Moneda m2 = monedas_ingresadas.get();
-        while (m1!=null) {
-            monedas.add(m1);
-            m1=monVu.get();
-        }
         while(m2!=null){
             monedas.add(m2);
             m2=monedas_ingresadas.get();
         }
         Dinero_total_ingresado=0;
         return monedas;
-    }
-
-    /**
-     * @return la última moneda dentro del depósito monVu. (puede ser null si no hay monedas)
-     */
-    public Moneda getVuelto() {
-        return monVu.get();
     }
 
     /**
@@ -178,5 +163,29 @@ public class Expendedor {
 
     public Deposito<Moneda> getMonedas_compras_exitosas() {
         return monedas_compras_exitosas;
+    }
+
+    public Deposito<Producto> getCoca() {
+        return coca;
+    }
+
+    public Deposito<Producto> getSprite() {
+        return sprite;
+    }
+
+    public Deposito<Producto> getFanta() {
+        return fanta;
+    }
+
+    public Deposito<Producto> getSnickers() {
+        return snickers;
+    }
+
+    public Deposito<Producto> getSuper8() {
+        return super8;
+    }
+
+    public Deposito<Producto> getChocman() {
+        return chocman;
     }
 }

@@ -41,9 +41,9 @@ public class Panel_de_Compras extends JPanel {
         pantalla.setBorder(BorderFactory.createLineBorder(Color.GRAY,5));
         pantalla.setLayout(null);
 
-        texto1Label = new JLabel("Dinero Ingresado");
+        texto1Label = new JLabel("Dinero Disponible");
         texto1Label.setForeground(Color.WHITE);
-        texto1Label.setBounds(25, 10, 180, 20);
+        texto1Label.setBounds(23, 10, 180, 20);
 
         texto2Label = new JLabel(String.valueOf(Init.expendedor.getDinero_total_ingresado()));
         texto2Label.setForeground(Color.WHITE);
