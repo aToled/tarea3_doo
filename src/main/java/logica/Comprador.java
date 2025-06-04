@@ -79,6 +79,11 @@ public class Comprador {
         return vuelto;
     }
 
+    public void RecogerVuelto(Deposito<Moneda> depM){
+          utils.cambiar_monedas_de_deposito(depM, monedero);
+          monedero.sort();
+    }
+
     /**
      * Ingresa monedas al monedero del comprador.
      * @param monto: monto ingresado.

@@ -1,7 +1,5 @@
 package gui;
 
-import logica.Expendedor;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,6 +7,7 @@ public class PanelComprador extends JPanel{
     public PanelComprador(){
         setLayout(null);
         setBackground(Color.GRAY);
+        Init.panelComprador=this;
     }
 
     @Override
@@ -30,7 +29,7 @@ public class PanelComprador extends JPanel{
         Init.Mostrar_monedas_en_orden(Init.comprador.getMonedero(), g, 0);
 
         // Monedas en orden del expendedor //TODO TEMPORAL; BORRAR!!!
-        Init.Mostrar_monedas_en_orden(Init.expendedor.getMonedas_ingresadas(), g, 20);
+        Init.Mostrar_monedas_en_orden(Init.expendedor.getMonedas_ingresadas(), g, 100);
 
     }
 }
