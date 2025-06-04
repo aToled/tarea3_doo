@@ -18,7 +18,7 @@ public class SeleccionarMoneda extends JPanel{
         setPreferredSize(new Dimension(50, 50));
         setLayout(null);
 
-        valorLabel = new JLabel("$" + String.valueOf(moneda.getValor()));
+        valorLabel = new JLabel("$" + moneda.getValor());
         valorLabel.setBounds(13, -10, 50, 50);
 
         serieLabel = new JLabel(String.valueOf(moneda.getSerie()));
@@ -27,12 +27,7 @@ public class SeleccionarMoneda extends JPanel{
         addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                try{
-                    ventana.monedaSeleccionada(moneda);
-                } catch (PagoIncorrectoException exception){
-                    exception.printStackTrace();
-                }
-                System.out.println(moneda);
+                ventana.monedaSeleccionada(moneda.getValor());
             }
         });
 

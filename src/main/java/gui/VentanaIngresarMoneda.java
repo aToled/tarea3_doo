@@ -35,8 +35,19 @@ public class VentanaIngresarMoneda extends JFrame {
         add(sm4);
     }
 
-    public void monedaSeleccionada(Moneda moneda) throws PagoIncorrectoException {
-        Init.expendedor.Ingresar_Monedas(moneda);
+    public void monedaSeleccionada(int valor) {
+        Moneda moneda = Init.comprador.Ingresar_Moneda(valor);
+
+        if (moneda == null){
+            JOptionPane.showMessageDialog(this, "No tienes monedas de $"+valor,"Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        try {
+            Init.expendedor.Ingresar_Monedas(moneda);
+        } catch (PagoIncorrectoException e) {
+            JOptionPane.showMessageDialog(this, "Error al ingresar la moneda", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         if(Init.panelComprador!=null){
             Init.panelComprador.repaint();

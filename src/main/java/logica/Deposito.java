@@ -68,4 +68,12 @@ public class Deposito<T> {
     public T[] toArray(IntFunction<T[]> generator){
         return arrayList.toArray(generator);
     }
+
+    public T remove(int indice){
+        return arrayList.remove(indice);
+    }
+
+    public T get(int indice){
+        return arrayList.get(indice);
+    }
 }

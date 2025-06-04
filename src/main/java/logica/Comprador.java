@@ -103,6 +103,17 @@ public class Comprador {
         return total;
     }
 
+    public Moneda Ingresar_Moneda(int valor){
+        for(int i=0; i< monedero.size(); i++){
+            Moneda m = monedero.get(i);
+            if(m!=null && m.getValor()==valor){
+                monedero.remove(i);
+                return m;
+            }
+        }
+        return null;
+    }
+
     /**
      * @return El string devuelto por el producto consumido.
      */
