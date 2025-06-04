@@ -8,8 +8,6 @@ import logica.Moneda;
 import java.awt.*;
 
 public class Init {
-    public static final int MAX_PRODUCTOS_POR_DEPOSITO = 5;
-
     public static Expendedor expendedor;
     public static Comprador comprador;
     public static PanelComprador panelComprador;

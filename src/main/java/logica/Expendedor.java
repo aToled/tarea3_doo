@@ -31,9 +31,6 @@ public class Expendedor {
      * @see Deposito
      */
     public Expendedor(int numProductos) {
-        // 5 Es el máximo valor de productos para cada depósito
-        if (numProductos > Init.MAX_PRODUCTOS_POR_DEPOSITO) numProductos = Init.MAX_PRODUCTOS_POR_DEPOSITO;
-
         coca = new Deposito<>();
         sprite = new Deposito<>();
         fanta = new Deposito<>();
