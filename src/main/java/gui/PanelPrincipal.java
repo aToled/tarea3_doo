@@ -1,7 +1,5 @@
 package gui;
 
-import logica.Expendedor;
-
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -25,7 +23,6 @@ public class PanelPrincipal extends JPanel {
         add(pCom, BorderLayout.EAST);
         Init.panelDeCompras=pCom;
         Init.panelExpendedor=pExp;
-
     }
 
     public void paintComponent (Graphics g) {
@@ -33,5 +30,8 @@ public class PanelPrincipal extends JPanel {
 
         pCom.paintComponent(g);
         pExp.paintComponent(g);
+        pro.paintComponents(g);
+
+        setComponentZOrder(pro,0);
     }
 }

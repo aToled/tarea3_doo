@@ -152,13 +152,6 @@ public class PanelExpendedor extends JPanel {
         g2d.setColor(new Color(178, 178, 178));
         g2d.fill(formaRedondeada);
 
-        // Franja cuyo propósito es hacer 'Desaparecer' el producto cuando cae.
-        JPanel franja_invisible = new JPanel();
-        franja_invisible.setBackground(new Color(66,66,66));
-        franja_invisible.setBounds(borde_izquierdo, 760, borde_derecho, 900);
-        add(franja_invisible);
-        setComponentZOrder(franja_invisible, 0);
-
         g2d.dispose(); // Liberar los recursos del objeto Graphics2D
     }
 }

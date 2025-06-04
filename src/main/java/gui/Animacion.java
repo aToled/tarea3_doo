@@ -41,7 +41,7 @@ public class Animacion {
                     p.y += 1;
                     p.setBounds(p.x, p.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
                     panelPrincipal.invalidate();
-                    if (p.y >= 790) {
+                    if (p.y >= 775) {
                         p.setVisible(false);
                         detenerAnimacion();
                     }

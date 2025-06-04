@@ -63,26 +63,10 @@ public class Expendedor {
      * @param cual: El producto que se desea comprar.
      * @throws NoHayProductoException:
      * @throws PagoInsuficienteException:
-     * @throws PagoIncorrectoException:
      * @see Moneda
      * @see Producto
      */
     public void comprarProducto(Productos cual) throws NoHayProductoException, PagoInsuficienteException{
-    ///   Moneda m = monedero.get();
-    ///   int Dinero_total_ingresado = 0;
-
-    ///   if (m == null) {
-    ///       throw new PagoIncorrectoException("Debe ingresar una moneda");
-    ///   }
-
-    ///    monedas_ingresadas.add(m);
-    ///    while(m!=null){
-    ///        Dinero_total_ingresado+=m.getValor();
-    ///        m=monedero.get();
-    ///        monedas_ingresadas.add(m);
-    ///    }
-
-
         // No alcanza saldo
         if (Dinero_total_ingresado < cual.precio) {
             utils.cambiar_monedas_de_deposito(monedas_ingresadas,monVu);
@@ -111,7 +95,7 @@ public class Expendedor {
         utils.cambiar_monedas_de_deposito(monedas_ingresadas,monedas_compras_exitosas);
         int howManyCoins = (Dinero_total_ingresado - cual.precio);
         utils.ingresar_total_monedas_en_orden(monVu,howManyCoins);
-
+        Dinero_total_ingresado = 0;
         producto[0]=temp;
     }
 
@@ -139,6 +123,22 @@ public class Expendedor {
         }
         monedas_ingresadas.add(m);
         Dinero_total_ingresado+=m.getValor();
+    }
+
+    public Deposito<Moneda> vaciarVuelto() {
+        Deposito<Moneda> monedas = new Deposito<>();
+        Moneda m1 = monVu.get();
+        Moneda m2 = monedas_ingresadas.get();
+        while (m1!=null) {
+            monedas.add(m1);
+            m1=monVu.get();
+        }
+        while(m2!=null){
+            monedas.add(m2);
+            m2=monedas_ingresadas.get();
+        }
+        Dinero_total_ingresado=0;
+        return monedas;
     }
 
     /**

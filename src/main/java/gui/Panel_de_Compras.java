@@ -11,7 +11,6 @@ public class Panel_de_Compras extends JPanel {
 
     public Panel_de_Compras(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
-        Expendedor expendedor = Init.expendedor;
 
         setBackground(new Color(66, 66, 66));
         setPreferredSize(new Dimension(175, 0));
@@ -22,11 +21,12 @@ public class Panel_de_Compras extends JPanel {
         JLabel textoMonedas = new JLabel("Ingrese moneda");
         textoMonedas.setForeground(new Color(255, 255, 255));
         textoMonedas.setBounds(50, 330, 125, 15);
-        DispensadorMonedas dispensadorMonedas = new DispensadorMonedas(panelPrincipal, expendedor);
+        DispensadorMonedas dispensadorMonedas = new DispensadorMonedas(panelPrincipal);
 
         add(insertaMonedas);
         add(textoMonedas);
         add(dispensadorMonedas);
+        add(new Boton_Dispensador_Vuelto(panelPrincipal));
 
         //Pantalla
         JPanel pantalla = new JPanel();

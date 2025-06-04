@@ -9,4 +9,8 @@ public class Panel_Recoleccion_Productos extends JPanel {
         setBorder(BorderFactory.createLineBorder(Color.BLACK,20));
         setPreferredSize(new Dimension(0, 100));
     }
+    @Override
+    protected void paintComponent(Graphics g){
+        super.paintComponent(g);
+    }
 }
