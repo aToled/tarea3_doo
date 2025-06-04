@@ -1,6 +1,5 @@
 package gui;
 
-import logica.Producto;
 import logica.Productos;
 
 import javax.swing.*;

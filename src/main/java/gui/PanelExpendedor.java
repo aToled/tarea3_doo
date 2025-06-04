@@ -5,7 +5,6 @@ import logica.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Map;
 
@@ -82,6 +81,42 @@ public class PanelExpendedor extends JPanel {
     }
 
     private void agregarProductos(Productos producto, int fila, int columna){
+        ArrayList<Producto> productos = getProductos(producto);
+
+        if (productos == null) return;
+
+        int X = 35 + columna * ImagenProducto.SIZE + columna * 100;
+        int Y = 50 + fila * ImagenProducto.SIZE + fila * 100;
+
+        // Cuantos productos del Depósito son visibles.
+        int P_vissibles = Math.min(productos.size(), 6);
+
+        // Dibuja los productos de atras a adelante.
+        for(int i=0; i<P_vissibles; i++){
+            Producto p = productos.get(i);
+            p.setBounds(X,Y,ImagenProducto.SIZE,ImagenProducto.SIZE);
+            p.establecerPosicion(fila,columna,i);
+            p.setName("producto_"+producto+"_"+fila+"_"+columna);
+            add(p);
+        }
+    }
+
+    public void reagregarProductos(Productos producto, int fila, int columna){
+        String nombre = "producto_"+producto+"_"+fila+"_"+columna;
+
+        // Elimina todos los productos en esa posición
+        Component[] components = getComponents();
+        for (int i=components.length-1;i>=0;i--) {
+            if (components[i].getName()!=null&&components[i].getName().startsWith(nombre)) {
+                remove(components[i]);
+            }
+        }
+        // Vuelve a agregarlos
+        agregarProductos(producto, fila, columna);
+        repaint();
+    }
+
+    private static ArrayList<Producto> getProductos(Productos producto) {
         ArrayList<Producto> productos = null;
 
         switch (producto) {
@@ -92,14 +127,7 @@ public class PanelExpendedor extends JPanel {
             case SUPER8 -> productos = Init.expendedor.super8.getRef();
             case CHOCMAN -> productos = Init.expendedor.chocman.getRef();
         }
-
-        if (productos == null) return;
-
-        int size = productos.size();
-        for (Producto p : productos) {
-            p.establecerPosicion(fila, columna, Init.MAX_PRODUCTOS_POR_DEPOSITO - size);
-            add(p);
-        }
+        return productos;
     }
 
     // Se crea un borde redondo y se pinta de color gris claro el interior

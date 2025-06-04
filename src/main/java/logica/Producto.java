@@ -16,12 +16,16 @@ public abstract class Producto extends JPanel {
     public int y = 0;
     public static final int SIZE = 125;
     private BufferedImage img;
+    public Productos cualProducto;
+    public int fila;
+    public int columna;
 
     /**
      * Crea el Producto con un numero de serie al azar.
      */
     public Producto(Productos producto) {
-        this.serie= (int) (Math.random()*1000000);;
+        this.serie= (int) (Math.random()*1000000);
+        this.cualProducto = producto;
         setSize(new Dimension(SIZE, SIZE));
         setPreferredSize(new Dimension(SIZE, SIZE));
         setMaximumSize(new Dimension(SIZE, SIZE));
@@ -57,6 +61,9 @@ public abstract class Producto extends JPanel {
      * @param profundidad: tal profundidad.
      */
     public void establecerPosicion(int fila, int col, int profundidad) {
+        this.fila = fila;
+        this.columna = col;
+
         this.x = 30 + col * SIZE + col * 100 + profundidad * 5;
         this.y = 50 + fila * SIZE + fila * 100 - profundidad * 5;
         setBounds(this.x, this.y, SIZE, SIZE);

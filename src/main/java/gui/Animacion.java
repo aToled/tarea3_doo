@@ -23,6 +23,16 @@ public class Animacion {
             return;
         }
 
+        Init.panelExpendedor.reagregarProductos(p.cualProducto, p.fila, p.columna);
+        p.setBounds(p.x, p.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
+        if (p.getParent() == null) {
+            panelPrincipal.add(p);
+            panelPrincipal.setComponentZOrder(p, 0);
+        }
+
+        panelPrincipal.repaint();
+        p.repaint();
+
         if (timerAnimacion == null) {
             timerAnimacion = new Timer(15,  new ActionListener() {
                 @Override
@@ -31,8 +41,8 @@ public class Animacion {
                     p.y += 5;
                     p.setBounds(p.x, p.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
                     panelPrincipal.invalidate();
-                    panelPrincipal.repaint();
-                    if (p.y >= 950) {
+                    if (p.y >= 790) {
+                        p.setVisible(false);
                         detenerAnimacion();
                     }
                 }
