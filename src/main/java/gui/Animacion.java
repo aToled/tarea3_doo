@@ -24,12 +24,11 @@ public class Animacion {
         }
 
         if (timerAnimacion == null) {
-            timerAnimacion = new Timer(0,  new ActionListener() {
+            timerAnimacion = new Timer(15,  new ActionListener() {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
                     // Lógica de movimiento y condición de parada
-                    p.y += 1;
-                    System.out.println("p");
+                    p.y += 5;
                     p.setBounds(p.x, p.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
                     panelPrincipal.invalidate();
                     panelPrincipal.repaint();

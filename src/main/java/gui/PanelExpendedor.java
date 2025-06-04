@@ -50,7 +50,6 @@ public class PanelExpendedor extends JPanel {
      */
     public void botarProducto(Productos producto) {
         //setComponentZOrder(producto,0);
-        System.out.println("Animacion");
         Producto p = null;
 
         switch (producto) {
@@ -98,7 +97,7 @@ public class PanelExpendedor extends JPanel {
 
         int size = productos.size();
         for (Producto p : productos) {
-            p.establecerPosicion(fila, columna, 4 - size);
+            p.establecerPosicion(fila, columna, Init.MAX_PRODUCTOS_POR_DEPOSITO - size);
             add(p);
         }
     }

@@ -1,4 +1,7 @@
 package logica;
+
+import gui.Init;
+
 /**
  * Es una representation virtual del mecanismo expendedor dentro de una máquina expendedora de golosinas
  * que se encarga de dispensar el producto seleccionado por el comprador, asignarle precios a los productos,
@@ -28,6 +31,9 @@ public class Expendedor {
      * @see Deposito
      */
     public Expendedor(int numProductos) {
+        // 5 Es el máximo valor de productos para cada depósito
+        if (numProductos > Init.MAX_PRODUCTOS_POR_DEPOSITO) numProductos = Init.MAX_PRODUCTOS_POR_DEPOSITO;
+
         coca = new Deposito<>();
         sprite = new Deposito<>();
         fanta = new Deposito<>();
@@ -67,23 +73,7 @@ public class Expendedor {
      * @see Moneda
      * @see Producto
      */
-    public void comprarProducto(Productos cual) throws NoHayProductoException, PagoInsuficienteException{
-    ///   Moneda m = monedero.get();
-    ///   int Dinero_total_ingresado = 0;
-
-    ///   if (m == null) {
-    ///       throw new PagoIncorrectoException("Debe ingresar una moneda");
-    ///   }
-
-    ///    monedas_ingresadas.add(m);
-    ///    while(m!=null){
-    ///        Dinero_total_ingresado+=m.getValor();
-    ///        m=monedero.get();
-    ///        monedas_ingresadas.add(m);
-    ///    }
-
-
-        // No alcanza saldo
+    public void comprarProducto(Productos cual) throws NoHayProductoException, PagoInsuficienteException{// No alcanza saldo
         if (Dinero_total_ingresado < cual.precio) {
             utils.cambiar_monedas_de_deposito(monedas_ingresadas,monVu);
             throw new PagoInsuficienteException("Pago insuficiente");
