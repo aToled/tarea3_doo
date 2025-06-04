@@ -98,7 +98,8 @@ public class Expendedor {
         }
 
         utils.cambiar_monedas_de_deposito(monedas_ingresadas,monedas_compras_exitosas);
-        int howManyCoins = (Dinero_total_ingresado - cual.precio);
+        Dinero_total_ingresado -= cual.precio;
+        int howManyCoins = (Dinero_total_ingresado);
         utils.ingresar_total_monedas_en_orden(monVu,howManyCoins);
 
         while (monedasDentro.get() != null) {}

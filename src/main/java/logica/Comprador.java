@@ -47,8 +47,9 @@ public class Comprador {
             Moneda monedaTemporal = exp.getVuelto();
             if (monedaTemporal != null) {
                 vuelto = monedaTemporal.getValor();
-                throw e;
+                // throw e;
             }
+            throw e;
         }
 
         if (p == null) {

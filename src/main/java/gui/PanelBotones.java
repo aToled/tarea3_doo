@@ -1,5 +1,8 @@
 package gui;
 
+import logica.NoHayProductoException;
+import logica.PagoIncorrectoException;
+import logica.PagoInsuficienteException;
 import logica.Productos;
 
 import javax.swing.*;
@@ -18,7 +21,19 @@ public class PanelBotones extends JPanel {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            panelPrincipal.pExp.botarProducto(productoABotar);
+            try {
+                Init.comprador.Comprar(productoABotar, Init.expendedor);
+                panelPrincipal.pExp.botarProducto(productoABotar);
+                panelPrincipal.pCom.setTextoPantalla("Vuelto", String.valueOf(Init.comprador.cuantoVuelto()));
+                panelPrincipal.invalidate();
+                panelPrincipal.repaint();
+            } catch (NoHayProductoException ex) {
+                panelPrincipal.pCom.setTextoPantalla("No hay producto", "");
+            } catch (PagoIncorrectoException ex) {
+                panelPrincipal.pCom.setTextoPantalla("Pago Incorrecto", "");
+            } catch (PagoInsuficienteException ex) {
+                panelPrincipal.pCom.setTextoPantalla("Pago Insuficiente", "");
+            }
         }
     }
 
