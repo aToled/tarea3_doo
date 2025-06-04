@@ -22,6 +22,7 @@ public class PanelExpendedor extends JPanel {
         setOpaque(false);
         setLayout(null);
 
+        Productos[] productos = {Productos.COCA, Productos.FANTA, Productos.SPRITE, Productos.SNICKERS, Productos.SUPER8, Productos.CHOCMAN};
         //añade los numeros que identifican a los productos
         for (int fila = 0; fila < 3; fila++) {
             for (int col = 0; col < 2; col++) {
@@ -30,7 +31,12 @@ public class PanelExpendedor extends JPanel {
                 x += ImagenProducto.SIZE/2 - ImagenNumero.SIZE/2;
                 y += ImagenProducto.SIZE + 7;
                 ImagenNumero num = new ImagenNumero(x, y, fila*2+col+1, new Color(178, 178, 178), Color.BLACK, Color.WHITE);
+                JLabel label = new JLabel("$" + productos[fila*2+col].precio);
+                label.setFont(new Font("Serif", Font.BOLD, 14));
+                label.setFont(label.getFont());
+                label.setBounds(x+50, y+10, 50, 25);
                 add(num);
+                add(label);
             }
         }
 
