@@ -7,7 +7,13 @@ import java.awt.*;
 
 public class Panel_de_Compras extends JPanel {
     PanelPrincipal panelPrincipal;
-    private JLabel texto2;
+    private JLabel texto1Label;
+    private JLabel texto2Label;
+
+    public void setTextoPantalla(String texto1, String texto2) {
+        texto1Label.setText(texto1);
+        texto2Label.setText(texto2);
+    }
 
     public Panel_de_Compras(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
@@ -35,15 +41,15 @@ public class Panel_de_Compras extends JPanel {
         pantalla.setBorder(BorderFactory.createLineBorder(Color.GRAY,5));
         pantalla.setLayout(null);
 
-        JLabel texto1 = new JLabel("Dinero Ingresado");
-        texto1.setForeground(Color.WHITE);
-        texto1.setBounds(25, 10, 180, 20);
+        texto1Label = new JLabel("Dinero Ingresado");
+        texto1Label.setForeground(Color.WHITE);
+        texto1Label.setBounds(25, 10, 180, 20);
 
-        texto2 = new JLabel(String.valueOf(Init.expendedor.getDinero_total_ingresado()));
-        texto2.setForeground(Color.WHITE);
-        texto2.setBounds(60, 40, 130, 20);
-        pantalla.add(texto1);
-        pantalla.add(texto2);
+        texto2Label = new JLabel(String.valueOf(Init.expendedor.getDinero_total_ingresado()));
+        texto2Label.setForeground(Color.WHITE);
+        texto2Label.setBounds(60, 40, 130, 20);
+        pantalla.add(texto1Label);
+        pantalla.add(texto2Label);
         add(pantalla);
 
         // Numeros
@@ -57,7 +63,8 @@ public class Panel_de_Compras extends JPanel {
     }
 
     public void actualizarTexto() {
-        texto2.setText(String.valueOf(Init.expendedor.getDinero_total_ingresado()));
+        setTextoPantalla("Dinero Ingresado", String.valueOf(Init.expendedor.getDinero_total_ingresado()));
+        texto2Label.setText(String.valueOf(Init.expendedor.getDinero_total_ingresado()));
         repaint();
     }
 }

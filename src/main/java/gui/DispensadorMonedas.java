@@ -4,9 +4,11 @@ import logica.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class DispensadorMonedas extends JPanel {
     PanelPrincipal panelPrincipal;
+    JPanel panelMonedas;
 
     /**
      * Se encarga de mostrar las monedas dadas de vuelto al comprador
@@ -19,11 +21,10 @@ public class DispensadorMonedas extends JPanel {
         setLayout(null);
         setBounds(40, 480, 100, 300);
 
-        // Área donde se muestra el depósito de monedas del expendedor MonVu.
-        JPanel panelMonedas = new JPanel();
-        panelMonedas.setBackground(new Color(50,50,50));
-        panelMonedas.setBounds(12,0,75,200);
-        panelMonedas.setBorder(BorderFactory.createLineBorder(Color.GRAY,3));
+        this.panelMonedas = new JPanel();
+        this.panelMonedas.setBackground(new Color(50,50,50));
+        this.panelMonedas.setBounds(12,0,75,200);
+        this.panelMonedas.setBorder(BorderFactory.createLineBorder(Color.GRAY,3));
 
         // Área donde se recoge el vuelto dispensado.
         JButton botonRecogerVuelto = getBotonRecogerVuelto(panelPrincipal);
@@ -62,5 +63,22 @@ public class DispensadorMonedas extends JPanel {
             }
         });
         return botonRecogerVuelto;
+    }
+
+    @Override
+    protected void paintComponent(Graphics g) {
+        super.paintComponent(g);
+
+        this.panelMonedas.removeAll();
+        ArrayList<Moneda> monedas = Init.expendedor.monedasDentro.getRef();
+        int i = 0;
+        for (Moneda m : monedas) {
+            ImagenMoneda imagenMoneda = new ImagenMoneda(m);
+            this.panelMonedas.add(imagenMoneda);
+            if (50*i <= 300) {
+                imagenMoneda.setBounds(12, 50 * i+10, 50, 50);
+            }
+            i++;
+        }
     }
 }

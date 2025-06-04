@@ -10,15 +10,19 @@ import java.awt.event.MouseEvent;
 
 public class SeleccionarMoneda extends JPanel{
     Moneda moneda;
-    JLabel valueLabel = new JLabel();
+    JLabel valorLabel;
+    JLabel serieLabel;
 
     public SeleccionarMoneda(Moneda moneda, VentanaIngresarMoneda ventana) {
         this.moneda = moneda;
         setPreferredSize(new Dimension(50, 50));
         setLayout(null);
 
-        valueLabel.setText(String.valueOf(moneda.getValor()));
-        valueLabel.setBounds(13, 1, 50, 50);
+        valorLabel = new JLabel("$" + String.valueOf(moneda.getValor()));
+        valorLabel.setBounds(13, -10, 50, 50);
+
+        serieLabel = new JLabel(String.valueOf(moneda.getSerie()));
+        serieLabel.setBounds(5, 10, 50, 50);
 
         addMouseListener(new MouseAdapter() {
             @Override
@@ -32,7 +36,8 @@ public class SeleccionarMoneda extends JPanel{
             }
         });
 
-        add(valueLabel);
+        add(valorLabel);
+        add(serieLabel);
     }
 
     @Override

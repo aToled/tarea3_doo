@@ -1,6 +1,9 @@
 package gui;
 
-import logica.*;
+import logica.NoHayProductoException;
+import logica.PagoIncorrectoException;
+import logica.PagoInsuficienteException;
+import logica.Productos;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,13 +21,18 @@ public class PanelBotones extends JPanel {
 
         @Override
         public void mouseClicked(MouseEvent e) {
-            try{
+            try {
                 Init.comprador.Comprar(productoABotar, Init.expendedor);
-                System.out.println("Producto comprado: " + productoABotar);
                 panelPrincipal.pExp.botarProducto(productoABotar);
-            }catch (PagoIncorrectoException | PagoInsuficienteException | NoHayProductoException ex){
-                System.out.println("Error en la compra: " + ex.getMessage());
-                System.out.println("Inserte otra moneda, o elija otro producto");
+                panelPrincipal.pCom.setTextoPantalla("Vuelto", String.valueOf(Init.comprador.cuantoVuelto()));
+                panelPrincipal.invalidate();
+                panelPrincipal.repaint();
+            } catch (NoHayProductoException ex) {
+                panelPrincipal.pCom.setTextoPantalla("No hay producto", "");
+            } catch (PagoIncorrectoException ex) {
+                panelPrincipal.pCom.setTextoPantalla("Pago Incorrecto", "");
+            } catch (PagoInsuficienteException ex) {
+                panelPrincipal.pCom.setTextoPantalla("Pago Insuficiente", "");
             }
         }
     }
@@ -39,21 +47,15 @@ public class PanelBotones extends JPanel {
         //añade los numeros que identifican a los productos
         for (int fila = 0; fila < 3; fila++) {
             for (int col = 0; col < 2; col++) {
-                ImagenNumero num = getImagenNumero(col, fila, productos);
+                int x = 35 + col * ImagenProducto.SIZE + col * 100;
+                int y = 50 + fila * ImagenProducto.SIZE + fila * 100;
+                x += ImagenProducto.SIZE/2 - ImagenNumero.SIZE/2;
+                y += ImagenProducto.SIZE + 7;
+                ImagenNumero num = new ImagenNumero(x, y,fila*2+col+1, new Color(66, 66, 66) ,Color.WHITE, Color.BLACK);
+                ImagenNumeroMouseListener numMouseListener = new ImagenNumeroMouseListener(productos[fila*2+col]);
+                num.addMouseListener(numMouseListener);
                 add(num);
             }
         }
-    }
-
-    private ImagenNumero getImagenNumero(int col, int fila, Productos[] productos) {
-        int x = 35 + col * ImagenProducto.SIZE + col * 100;
-        int y = 50 + fila * ImagenProducto.SIZE + fila * 100;
-        x += ImagenProducto.SIZE/2 - ImagenNumero.SIZE/2;
-        y += ImagenProducto.SIZE + 7;
-
-        ImagenNumero num = new ImagenNumero(x, y, fila *2+ col +1, new Color(66, 66, 66) ,Color.WHITE, Color.BLACK);
-        ImagenNumeroMouseListener numMouseListener = new ImagenNumeroMouseListener(productos[fila *2+ col]);
-        num.addMouseListener(numMouseListener);
-        return num;
     }
 }

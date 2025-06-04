@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
+import java.util.Map;
 
 /**
  * Clase principal que representa la vitrina de productos del expendedor,
@@ -48,7 +49,6 @@ public class PanelExpendedor extends JPanel {
      */
     public void botarProducto(Productos producto) {
         //setComponentZOrder(producto,0);
-        System.out.println("Animacion");
         Producto p = null;
 
         switch (producto) {
