@@ -13,6 +13,8 @@ import java.util.ArrayList;
 public class PanelBotones extends JPanel {
     private PanelPrincipal panelPrincipal;
     private ArrayList<ImagenNumero> Botones = new ArrayList<>();
+    public boolean productoRecogido = true;
+    public boolean vueltoRecogido = true;
 
     public PanelBotones(PanelPrincipal panelPrincipal){
         this.panelPrincipal = panelPrincipal;
@@ -37,16 +39,15 @@ public class PanelBotones extends JPanel {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         try {
+                            if (!productoRecogido || !vueltoRecogido) return;
+                            productoRecogido = false;
+                            vueltoRecogido = false;
+
                             Init.comprador.Comprar(productoABotar, Init.expendedor);
                             panelPrincipal.pExp.botarProducto(productoABotar);
                             panelPrincipal.invalidate();
                             panelPrincipal.repaint();
                             panelPrincipal.pdeCom.actualizarTexto();
-
-                            if(Init.expendedor.Hay_producto_en_Bandeja()){
-                                Init.panelDeCompras.panelBotones.activar_desactivarBotones(false);
-                            }
-
                         } catch (NoHayProductoException ex) {
                             panelPrincipal.pdeCom.setTextoPantalla("No hay producto", "");
                         } catch (PagoIncorrectoException ex) {
@@ -64,13 +65,6 @@ public class PanelBotones extends JPanel {
                 Botones.add(num);
                 add(num);
             }
-        }
-    }
-
-    public void activar_desactivarBotones(boolean estado){
-        for(ImagenNumero i : Botones){
-            i.setEnabled(estado);
-            i.repaint();
         }
     }
 }

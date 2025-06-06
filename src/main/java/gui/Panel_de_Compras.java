@@ -5,8 +5,8 @@ import java.awt.*;
 
 public class Panel_de_Compras extends JPanel {
     PanelPrincipal panelPrincipal;
-    private JLabel texto1Label;
-    private JLabel texto2Label;
+    private final JLabel texto1Label;
+    private final JLabel texto2Label;
     public PanelBotones panelBotones;
     public DispensadorMonedas dispensadorMonedas;
 

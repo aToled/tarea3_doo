@@ -91,8 +91,7 @@ public class Expendedor {
         }
 
         utils.cambiar_monedas_de_deposito(monedas_ingresadas,monedas_compras_exitosas);
-        Dinero_total_ingresado -= cual.precio;
-        int howManyCoins = (Dinero_total_ingresado);
+        int howManyCoins = (Dinero_total_ingresado - cual.precio);
         utils.ingresar_total_monedas_en_orden(monedas_ingresadas,howManyCoins);
 
         producto[0]=temp;

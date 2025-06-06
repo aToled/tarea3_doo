@@ -4,6 +4,9 @@ import logica.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+
 public class VentanaIngresarMoneda extends JFrame {
     public VentanaIngresarMoneda() {
         // Configuración de la ventana
@@ -14,6 +17,13 @@ public class VentanaIngresarMoneda extends JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         setLayout(null);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                InsertaMonedas.ventanaAbierta = false;
+            }
+        });
 
         SeleccionarMoneda sm1 = new SeleccionarMoneda(100, this);
         sm1.setBounds(0,0, 50, 50);
@@ -38,7 +48,7 @@ public class VentanaIngresarMoneda extends JFrame {
 
         if (moneda == null){
             JOptionPane.showMessageDialog(this, "No tienes monedas de $"+valor,"Error", JOptionPane.ERROR_MESSAGE);
-        }else {
+        } else {
             try {
                 Init.expendedor.Ingresar_Monedas(moneda);
                 System.out.println(moneda);
