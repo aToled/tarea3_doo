@@ -23,7 +23,7 @@ public class Boton_Dispensador_Vuelto extends JButton {
                     System.out.println("\n--> Dinero Dispensado <--\n");
                     vuelto_a_recoger = Init.expendedor.vaciarVuelto();
                     panelPrincipal.pdeCom.actualizarTexto();
-                    Init.panelDeCompras.dispensadorMonedas.repaint();
+                    Init.panelDeCompras.getDispensadorMonedas().repaint();
                 }
             }
             @Override

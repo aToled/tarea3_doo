@@ -13,8 +13,8 @@ import java.util.ArrayList;
 public class PanelBotones extends JPanel {
     private PanelPrincipal panelPrincipal;
     private ArrayList<ImagenNumero> Botones = new ArrayList<>();
-    public boolean productoRecogido = true;
-    public boolean vueltoRecogido = true;
+    private boolean productoRecogido = true;
+    private boolean vueltoRecogido = true;
 
     public PanelBotones(PanelPrincipal panelPrincipal){
         this.panelPrincipal = panelPrincipal;
@@ -39,10 +39,11 @@ public class PanelBotones extends JPanel {
                     @Override
                     public void mouseClicked(MouseEvent e) {
                         try {
-                            if (!productoRecogido || !vueltoRecogido) return;
+                            if(!productoRecogido){
+                                return;
+                            }
                             productoRecogido = false;
                             vueltoRecogido = false;
-
                             Init.comprador.Comprar(productoABotar, Init.expendedor);
                             panelPrincipal.pExp.botarProducto(productoABotar);
                             panelPrincipal.invalidate();
@@ -50,10 +51,16 @@ public class PanelBotones extends JPanel {
                             panelPrincipal.pdeCom.actualizarTexto();
                         } catch (NoHayProductoException ex) {
                             panelPrincipal.pdeCom.setTextoPantalla("No hay producto", "");
+                            productoRecogido = true;
+                            vueltoRecogido = true;
                         } catch (PagoIncorrectoException ex) {
                             panelPrincipal.pdeCom.setTextoPantalla("Pago Incorrecto", "");
+                            productoRecogido = true;
+                            vueltoRecogido = true;
                         } catch (PagoInsuficienteException ex) {
                             panelPrincipal.pdeCom.setTextoPantalla("Pago Insuficiente", "");
+                            productoRecogido = true;
+                            vueltoRecogido = true;
                         }
                     }
                     @Override
@@ -66,5 +73,17 @@ public class PanelBotones extends JPanel {
                 add(num);
             }
         }
+    }
+    public boolean isProductoRecogido() {
+        return productoRecogido;
+    }
+    public boolean isVueltoRecogido() {
+        return vueltoRecogido;
+    }
+    public void setProductoRecogido(boolean productoRecogido) {
+        this.productoRecogido = productoRecogido;
+    }
+    public void setVueltoRecogido(boolean vueltoRecogido) {
+        this.vueltoRecogido = vueltoRecogido;
     }
 }

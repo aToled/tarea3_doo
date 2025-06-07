@@ -48,9 +48,9 @@ public class DispensadorMonedas extends JPanel {
             if (vuelto_a_recoger!=null && !vuelto_a_recoger.isEmpty()) {
                 System.out.println("\n--> Vuelto Recogido <--\n");
                 Init.comprador.RecogerVuelto(vuelto_a_recoger);
-                Init.panelDeCompras.panelBotones.vueltoRecogido = true;
+                Init.panelDeCompras.getPanelBotones().setVueltoRecogido(true);
                 Init.panelComprador.repaint();
-                Init.panelDeCompras.dispensadorMonedas.repaint();
+                Init.panelDeCompras.getDispensadorMonedas().repaint();
             }
         });
         return botonRecogerVuelto;

@@ -21,11 +21,15 @@ public class Panel_Recoleccion_Productos extends JPanel {
                     if(p!=null){
                         Init.comprador.Recoger_Producto(p);
                         Init.panelComprador.repaint();
-                        Init.panelDeCompras.panelBotones.productoRecogido = true;
-                        Init.panelDeCompras.dispensadorMonedas.repaint();
+                        Init.panelDeCompras.getPanelBotones().setProductoRecogido(true);
+                        Init.panelDeCompras.getDispensadorMonedas().repaint();
                         repaint();
                     }
                 }
+            }
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
             }
         });
     }

@@ -90,8 +90,9 @@ public class Expendedor {
             throw new NoHayProductoException("No hay producto solicitado");
         }
 
+        Dinero_total_ingresado -= cual.precio;
         utils.cambiar_monedas_de_deposito(monedas_ingresadas,monedas_compras_exitosas);
-        int howManyCoins = (Dinero_total_ingresado - cual.precio);
+        int howManyCoins = (Dinero_total_ingresado);
         utils.ingresar_total_monedas_en_orden(monedas_ingresadas,howManyCoins);
 
         producto[0]=temp;

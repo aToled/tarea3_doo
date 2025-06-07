@@ -7,8 +7,8 @@ public class Panel_de_Compras extends JPanel {
     PanelPrincipal panelPrincipal;
     private final JLabel texto1Label;
     private final JLabel texto2Label;
-    public PanelBotones panelBotones;
-    public DispensadorMonedas dispensadorMonedas;
+    private PanelBotones panelBotones;
+    private DispensadorMonedas dispensadorMonedas;
 
     public void setTextoPantalla(String texto1, String texto2) {
         texto1Label.setText(texto1);
@@ -66,5 +66,12 @@ public class Panel_de_Compras extends JPanel {
         setTextoPantalla("Dinero Ingresado", String.valueOf(Init.expendedor.getDinero_total_ingresado()));
         texto2Label.setText(String.valueOf(Init.expendedor.getDinero_total_ingresado()));
         repaint();
+    }
+    public DispensadorMonedas getDispensadorMonedas() {
+        return dispensadorMonedas;
+    }
+
+    public PanelBotones getPanelBotones() {
+        return panelBotones;
     }
 }
