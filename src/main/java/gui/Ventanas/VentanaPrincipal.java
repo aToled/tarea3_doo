@@ -1,4 +1,7 @@
-package gui;
+package gui.Ventanas;
+
+import gui.Paneles.PanelPrincipal;
+import gui.utils.Init;
 
 import javax.swing.*;
 import java.awt.*;

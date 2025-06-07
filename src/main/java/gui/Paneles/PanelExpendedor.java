@@ -1,13 +1,14 @@
-package gui;
+package gui.Paneles;
 
+import gui.Imagenes.ImagenNumero;
+import gui.Imagenes.ImagenProducto;
+import gui.utils.*;
 import logica.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 import java.util.ArrayList;
-import java.util.Map;
-
 /**
  * Clase principal que representa la vitrina de productos del expendedor,
  * la cual organiza visualmente los productos y controla la animación de salida de uno de ellos.

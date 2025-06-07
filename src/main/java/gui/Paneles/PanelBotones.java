@@ -1,5 +1,8 @@
-package gui;
+package gui.Paneles;
 
+import gui.Imagenes.ImagenNumero;
+import gui.Imagenes.ImagenProducto;
+import gui.utils.Init;
 import logica.NoHayProductoException;
 import logica.PagoIncorrectoException;
 import logica.PagoInsuficienteException;

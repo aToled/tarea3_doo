@@ -1,7 +1,8 @@
-package gui;
+package gui.Ventanas;
 
+import gui.utils.Init;
 import logica.*;
-
+import gui.Paneles.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -21,20 +22,20 @@ public class VentanaIngresarMoneda extends JFrame {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                InsertaMonedas.ventanaAbierta = false;
+                PanelInsertaMonedas.ventanaAbierta = false;
             }
         });
 
-        SeleccionarMoneda sm1 = new SeleccionarMoneda(100, this);
+        PanelSeleccionarMoneda sm1 = new PanelSeleccionarMoneda(100, this);
         sm1.setBounds(0,0, 50, 50);
 
-        SeleccionarMoneda sm2 = new SeleccionarMoneda(500, this);
+        PanelSeleccionarMoneda sm2 = new PanelSeleccionarMoneda(500, this);
         sm2.setBounds(50+10,0, 50, 50);
 
-        SeleccionarMoneda sm3 = new SeleccionarMoneda(1000, this);
+        PanelSeleccionarMoneda sm3 = new PanelSeleccionarMoneda(1000, this);
         sm3.setBounds(0,50+10, 50, 50);
 
-        SeleccionarMoneda sm4 = new SeleccionarMoneda(1500, this);
+        PanelSeleccionarMoneda sm4 = new PanelSeleccionarMoneda(1500, this);
         sm4.setBounds(50+10,50+10, 50, 50);
 
         add(sm1);

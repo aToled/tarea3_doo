@@ -1,4 +1,6 @@
-package gui;
+package gui.Paneles;
+
+import gui.utils.Init;
 
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;

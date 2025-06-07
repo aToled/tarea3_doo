@@ -1,5 +1,7 @@
-package gui;
+package gui.utils;
 
+import gui.Imagenes.ImagenProducto;
+import gui.Paneles.PanelPrincipal;
 import logica.Producto;
 
 import javax.swing.*;

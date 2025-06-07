@@ -1,9 +1,10 @@
-package gui;
+package gui.utils;
 
 import logica.Comprador;
 import logica.Deposito;
 import logica.Expendedor;
 import logica.Moneda;
+import gui.Paneles.*;
 
 import java.awt.*;
 

@@ -1,20 +1,24 @@
-package gui;
+package gui.Paneles;
 
+import gui.Botones.BotonRecogerVuelto;
+import gui.Imagenes.ImagenMoneda;
+import gui.utils.Init;
 import logica.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
-public class DispensadorMonedas extends JPanel {
-    PanelPrincipal panelPrincipal;
-    JPanel panelMonedas;
+public class PanelDispensadorMonedas extends JPanel {
+    private PanelPrincipal panelPrincipal;
+    private final JPanel panelMonedas;
+    private BotonRecogerVuelto botonRecogerVuelto;
 
     /**
      * Se encarga de mostrar las monedas dadas de vuelto al comprador
      * @param panelPrincipal: Referencia a panel principal para poder re-pintar en caso de ser necesario
      */
-    public DispensadorMonedas(PanelPrincipal panelPrincipal) {
+    public PanelDispensadorMonedas(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
 
         setBackground(new Color(66, 66, 66));
@@ -27,33 +31,10 @@ public class DispensadorMonedas extends JPanel {
         this.panelMonedas.setBorder(BorderFactory.createLineBorder(Color.GRAY,3));
 
         // Área donde se recoge el vuelto dispensado.
-        JButton botonRecogerVuelto = getBotonRecogerVuelto(panelPrincipal);
+        this.botonRecogerVuelto = new BotonRecogerVuelto(panelPrincipal);
 
         add(panelMonedas);
         add(botonRecogerVuelto);
-    }
-
-    private JButton getBotonRecogerVuelto(PanelPrincipal panelPrincipal) {
-        JButton botonRecogerVuelto = new JButton();
-        botonRecogerVuelto.setBackground(Color.BLACK);
-        botonRecogerVuelto.setBounds(0,225, 100, 75);
-        botonRecogerVuelto.setToolTipText("Recoger Vuelto");
-        botonRecogerVuelto.setBorderPainted(false);
-        botonRecogerVuelto.setFocusPainted(false);
-        botonRecogerVuelto.setContentAreaFilled(true);
-        ToolTipManager.sharedInstance().registerComponent(botonRecogerVuelto);
-
-        botonRecogerVuelto.addActionListener(e -> {
-            Deposito<Moneda> vuelto_a_recoger = Boton_Dispensador_Vuelto.vuelto_a_recoger;
-            if (vuelto_a_recoger!=null && !vuelto_a_recoger.isEmpty()) {
-                System.out.println("\n--> Vuelto Recogido <--\n");
-                Init.comprador.RecogerVuelto(vuelto_a_recoger);
-                Init.panelDeCompras.getPanelBotones().setVueltoRecogido(true);
-                Init.panelComprador.repaint();
-                Init.panelDeCompras.getDispensadorMonedas().repaint();
-            }
-        });
-        return botonRecogerVuelto;
     }
 
     @Override

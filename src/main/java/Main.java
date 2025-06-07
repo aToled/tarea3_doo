@@ -1,4 +1,4 @@
-import gui.VentanaPrincipal;
+import gui.Ventanas.VentanaPrincipal;
 
 public class Main {
     public static void main(String[] args) {

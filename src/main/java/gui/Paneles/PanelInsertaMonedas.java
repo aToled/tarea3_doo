@@ -1,15 +1,18 @@
-package gui;
+package gui.Paneles;
+
+import gui.Ventanas.VentanaIngresarMoneda;
+import gui.utils.Init;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class InsertaMonedas extends JPanel{
+public class PanelInsertaMonedas extends JPanel{
     private PanelPrincipal panelPrincipal;
     public static boolean ventanaAbierta = false;
 
-    public InsertaMonedas(PanelPrincipal panelPrincipal) {
+    public PanelInsertaMonedas(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
 
         setBackground(Color.BLACK);

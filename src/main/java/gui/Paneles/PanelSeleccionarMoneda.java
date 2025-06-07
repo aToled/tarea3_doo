@@ -1,14 +1,16 @@
-package gui;
+package gui.Paneles;
+
+import gui.Ventanas.VentanaIngresarMoneda;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class SeleccionarMoneda extends JPanel{
+public class PanelSeleccionarMoneda extends JPanel{
     JLabel valorLabel;
 
-    public SeleccionarMoneda(int valor_moneda, VentanaIngresarMoneda ventana) {
+    public PanelSeleccionarMoneda(int valor_moneda, VentanaIngresarMoneda ventana) {
         setPreferredSize(new Dimension(50, 50));
         setLayout(null);
 

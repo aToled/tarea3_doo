@@ -1,5 +1,7 @@
-package gui;
+package gui.Paneles;
 
+import gui.Botones.Boton_Dispensador_Vuelto;
+import gui.utils.Init;
 import javax.swing.*;
 import java.awt.*;
 
@@ -7,8 +9,9 @@ public class Panel_de_Compras extends JPanel {
     PanelPrincipal panelPrincipal;
     private final JLabel texto1Label;
     private final JLabel texto2Label;
-    private PanelBotones panelBotones;
-    private DispensadorMonedas dispensadorMonedas;
+    private final PanelBotones panelBotones;
+    private final PanelDispensadorMonedas dispensadorMonedas;
+    private final Boton_Dispensador_Vuelto botonDispensadorVuelto;
 
     public void setTextoPantalla(String texto1, String texto2) {
         texto1Label.setText(texto1);
@@ -23,16 +26,17 @@ public class Panel_de_Compras extends JPanel {
         setLayout(null);
 
         //Monedas
-        InsertaMonedas insertaMonedas = new InsertaMonedas(panelPrincipal);
+        PanelInsertaMonedas insertaMonedas = new PanelInsertaMonedas(panelPrincipal);
         JLabel textoMonedas = new JLabel("Ingrese moneda");
         textoMonedas.setForeground(new Color(255, 255, 255));
         textoMonedas.setBounds(50, 330, 125, 15);
-        dispensadorMonedas = new DispensadorMonedas(panelPrincipal);
+        dispensadorMonedas = new PanelDispensadorMonedas(panelPrincipal);
+        botonDispensadorVuelto = new Boton_Dispensador_Vuelto(panelPrincipal);
 
         add(insertaMonedas);
         add(textoMonedas);
         add(dispensadorMonedas);
-        add(new Boton_Dispensador_Vuelto(panelPrincipal));
+        add(botonDispensadorVuelto);
 
         //Pantalla
         JPanel pantalla = new JPanel();
@@ -52,7 +56,7 @@ public class Panel_de_Compras extends JPanel {
         pantalla.add(texto2Label);
         add(pantalla);
 
-        // Numeros
+        // Números
         panelBotones = new PanelBotones(panelPrincipal);
         add(panelBotones);
     }
@@ -67,11 +71,15 @@ public class Panel_de_Compras extends JPanel {
         texto2Label.setText(String.valueOf(Init.expendedor.getDinero_total_ingresado()));
         repaint();
     }
-    public DispensadorMonedas getDispensadorMonedas() {
+    public PanelDispensadorMonedas getDispensadorMonedas() {
         return dispensadorMonedas;
     }
 
     public PanelBotones getPanelBotones() {
         return panelBotones;
+    }
+
+    public Boton_Dispensador_Vuelto getBotonDispensadorVuelto() {
+        return botonDispensadorVuelto;
     }
 }

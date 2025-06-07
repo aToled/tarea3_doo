@@ -1,4 +1,6 @@
-package gui;
+package gui.Ventanas;
+
+import gui.Paneles.PanelComprador;
 
 import javax.swing.*;
 
