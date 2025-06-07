@@ -43,6 +43,7 @@ public class PanelBotones extends JPanel {
                     public void mouseClicked(MouseEvent e) {
                         try {
                             if(!productoRecogido){
+                                JOptionPane.showMessageDialog(Init.panelDeCompras.getPanelBotones(), "Recoja el producto antes de intentar comprar otro.", "Warning", JOptionPane.WARNING_MESSAGE);
                                 return;
                             }
                             productoRecogido = false;

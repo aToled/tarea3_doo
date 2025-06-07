@@ -1,16 +1,20 @@
 package gui.Paneles;
 
 
+import gui.Botones.BotonIngresarDinero;
 import gui.utils.Init;
 
 import javax.swing.*;
 import java.awt.*;
 
 public class PanelComprador extends JPanel{
+    private BotonIngresarDinero botonIngresarDinero;
     public PanelComprador(){
         setLayout(null);
         setBackground(Color.GRAY);
         Init.panelComprador=this;
+        botonIngresarDinero = new BotonIngresarDinero();
+        add(botonIngresarDinero);
     }
 
     @Override
@@ -33,6 +37,5 @@ public class PanelComprador extends JPanel{
 
         // Monedas en orden del expendedor //TODO TEMPORAL; BORRAR!!!
         Init.Mostrar_monedas_en_orden(Init.expendedor.getMonedas_ingresadas(), g, 100);
-
     }
 }
