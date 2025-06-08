@@ -37,6 +37,10 @@ public class PanelDispensadorMonedas extends JPanel {
         add(botonRecogerVuelto);
     }
 
+    /**
+     * Se renderiz como un rectángulo que contiene elementos de ImagenMoneda en su interior
+     * @param g Objeto utilizado para renderizar
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

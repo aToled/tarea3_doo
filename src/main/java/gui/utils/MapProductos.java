@@ -4,6 +4,11 @@ import logica.*;
 
 import java.util.*;
 
+/**
+ * HashMap que se utiliza para acceder de manera sencilla a los depósitos de
+ * los productos según su tipo
+ * [Tipo de producto]: Depósito<Producto>
+ */
 public class MapProductos extends HashMap<Productos, Deposito> {
     public MapProductos() {
         put(Productos.COCA, Init.expendedor.getCoca());

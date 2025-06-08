@@ -8,6 +8,9 @@ import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+/**
+ * Ventana donde el usuario selecciona el valor de la moneda que desea ingresar al depósito
+ */
 public class VentanaIngresarMoneda extends JFrame {
     public VentanaIngresarMoneda() {
         // Configuración de la ventana
@@ -44,6 +47,12 @@ public class VentanaIngresarMoneda extends JFrame {
         add(sm4);
     }
 
+    /**
+     * Función que se ejecuta cuando el usuario seleccionó una opción.
+     * Se alerta al usuario si el comprador no cuenta con la moneda seleccionada
+     * y en caso contrario se deposita esta moneda en el expendedor
+     * @param valor
+     */
     public void monedaSeleccionada(int valor) {
         Moneda moneda = Init.comprador.Ingresar_Moneda(valor);
 

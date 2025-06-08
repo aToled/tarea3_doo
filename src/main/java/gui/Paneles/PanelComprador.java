@@ -7,8 +7,16 @@ import gui.utils.Init;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * En este panel se muestra al usuario las monedas que dispone el comprador al igual que un
+ * botón que permite obtener más dinero si es requerido
+ */
 public class PanelComprador extends JPanel{
     private BotonIngresarDinero botonIngresarDinero;
+
+    /**
+     * Se crea el boton para ingresar dinero y se coloca dentro del panel
+     */
     public PanelComprador(){
         setLayout(null);
         setBackground(Color.GRAY);
@@ -17,6 +25,11 @@ public class PanelComprador extends JPanel{
         add(botonIngresarDinero);
     }
 
+    /**
+     * Se renderiza la cantidad total de dinero, la cantidad de monedas de cada valor
+     * y por último el botón para recibir más dinero
+     * @param g Objeto utilizado para renderizar
+     */
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);

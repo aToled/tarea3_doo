@@ -13,12 +13,19 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 
+/**
+ * En este panel se muestran los botones del 1 al 6 para seleccionar el producto que se desea comprar
+ */
 public class PanelBotones extends JPanel {
     private PanelPrincipal panelPrincipal;
     private ArrayList<ImagenNumero> Botones = new ArrayList<>();
     private boolean productoRecogido = true;
     private boolean vueltoRecogido = true;
 
+    /**
+     * Se crean los 6 botones que al ser pulsados intentar realizar la compra de dicho producto
+     * @param panelPrincipal
+     */
     public PanelBotones(PanelPrincipal panelPrincipal){
         this.panelPrincipal = panelPrincipal;
 

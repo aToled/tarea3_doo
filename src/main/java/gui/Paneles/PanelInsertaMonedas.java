@@ -8,13 +8,17 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-public class PanelInsertaMonedas extends JPanel{
-    private PanelPrincipal panelPrincipal;
+/**
+ * Aquí es donde el usuario puede ingresar monedas al depósito
+ */
+public class PanelInsertaMonedas extends JPanel {
     public static boolean ventanaAbierta = false;
 
-    public PanelInsertaMonedas(PanelPrincipal panelPrincipal) {
-        this.panelPrincipal = panelPrincipal;
-
+    /**
+     * Al pulsar sobre el panel se abrirá un menu en el cual el usuario selecciona
+     * la moneda que desea ingresar
+     */
+    public PanelInsertaMonedas() {
         setBackground(Color.BLACK);
         setBounds(20, 280, 25, 125);
         setCursor(new Cursor(Cursor.HAND_CURSOR));

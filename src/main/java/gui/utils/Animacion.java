@@ -8,17 +8,32 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/**
+ * Esta clase se utiliza para realizar la animación del producto que cae al ser comprado
+ */
 public class Animacion {
     private PanelPrincipal panelPrincipal;
     private Producto p;
     private Timer timerAnimacion;
     private boolean condicionDeParadaAlcanzada = false;
 
+    /**
+     * Recibe una instancia del panel principal y de un producto para que cuando el producto
+     * cambie de posición se vuelva a renderizar el panel principal
+     * @param panelPrincipal: Instancia del panel principal
+     * @param p: Producto que se desea animar
+     * @see PanelPrincipal
+     * @see Producto
+     */
     public Animacion(PanelPrincipal panelPrincipal, Producto p) {
         this.panelPrincipal = panelPrincipal;
         this.p = p;
     }
 
+    /**
+     * Si la animación aun no comienza y no ha terminado se ejecuta un thread cada 15 milisegundos
+     * el cual hace que el producto se desplaze hacia abajo
+     */
     public void iniciarOContinuarMovimiento() {
         if (condicionDeParadaAlcanzada) {
             System.out.println("La condición de parada ya fue alcanzada. Reinicia para mover de nuevo.");
@@ -59,6 +74,9 @@ public class Animacion {
         }
     }
 
+    /**
+     * Se detiene la animación en caso de que esta aun no finaliza y no ha comenzado
+     */
     private void detenerAnimacion() {
         if (timerAnimacion != null && timerAnimacion.isRunning()) {
             timerAnimacion.stop();

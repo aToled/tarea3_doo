@@ -6,7 +6,13 @@ import gui.utils.Init;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Ventana principal la cual muestra el expendedor con sus depósitos y productos
+ */
 public class VentanaPrincipal extends JFrame {
+    /**
+     * Se instancia el panel principal el cual muestra y posiciona los componentes
+     */
     public VentanaPrincipal() {
         Init.inicializar();  //Inicializa variables estáticas.
 

@@ -17,6 +17,10 @@ public class PanelExpendedor extends JPanel {
     private PanelPrincipal panelPrincipal;
     private MapProductos mapProductos = new MapProductos();
 
+    /**
+     * Se renderizan los productos con el número que los identifica ademas del precio
+     * @param panelPrincipal
+     */
     public PanelExpendedor(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
 
@@ -50,12 +54,12 @@ public class PanelExpendedor extends JPanel {
 
     }
 
-    /**TODO poner mas info
-     * Agrega una fila de productos diagonalmente a la vitrina y inicia o continua el movi
-     * @param producto: Tipo de producto a agregar.
+    /**
+     * Si existe stock del producto solicitado se iniciará una animación para botar el
+     * primer producto de ese tipo
+     * @param producto: Tipo de producto a botar.
      */
     public void botarProducto(Productos producto) {
-        //setComponentZOrder(producto,0);
         Producto p = null;
 
         switch (producto) {
@@ -74,19 +78,12 @@ public class PanelExpendedor extends JPanel {
         a.iniciarOContinuarMovimiento();
     }
 
-    private Producto crearProducto(Productos producto) {
-        switch (producto) {
-            case COCA -> { return new CocaCola(); }
-            case SPRITE -> { return new Sprite(); }
-            case FANTA -> { return new Fanta(); }
-            case SNICKERS -> { return new Snickers(); }
-            case SUPER8 -> { return new Super8(); }
-            case CHOCMAN -> { return new Chocman(); }
-            case NULO -> { return null; }
-        }
-        return null;
-    }
-
+    /**
+     * Se renderizan los productos indicados por el tipo y posición (fila, columna)
+     * @param producto: Tipo de producto que se desea renderizar
+     * @param fila: Fila en la que se va a renderizar el producto
+     * @param columna: Columna en la que se va a renderizar el producto
+     */
     private void agregarProductos(Productos producto, int fila, int columna){
         ArrayList<Producto> productos = getProductos(producto);
 
@@ -108,6 +105,12 @@ public class PanelExpendedor extends JPanel {
         }
     }
 
+    /**
+     * Se eliminan los productos señalados (si es que hay) y se vuelven a agregar productos nuevamente
+     * @param producto: Tipo de producto a reagregar
+     * @param fila: Fila en la que se encuentra el producto
+     * @param columna: Columna en la que se encuentra el producto
+     */
     public void reagregarProductos(Productos producto, int fila, int columna){
         String nombre = "producto_"+producto+"_"+fila+"_"+columna;
 
@@ -123,6 +126,11 @@ public class PanelExpendedor extends JPanel {
         repaint();
     }
 
+    /**
+     * Retorna los productos disponibles del tipo señalado
+     * @param producto: Tipo de producto al que se quiere obtener
+     * @return Un arrayList de los productos indicados
+     */
     private static ArrayList<Producto> getProductos(Productos producto) {
         ArrayList<Producto> productos = null;
 
@@ -137,7 +145,11 @@ public class PanelExpendedor extends JPanel {
         return productos;
     }
 
-    // Se crea un borde redondo y se pinta de color gris claro el interior
+    /**
+     * Se renderiza con un borde redondo y se pinta de color gris claro el interior.
+     * Dentro se muestran los productos con su número identificador ademas del precio
+     * @param g Objeto utilizado para renderizar
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
