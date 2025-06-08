@@ -5,9 +5,16 @@ import logica.Moneda;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * Esta clase se utiliza para renderizar una moneda en base a su valor monetario
+ */
 public class ImagenMoneda extends JPanel {
     Moneda moneda;
 
+    /**
+     * Guarda una referencia de moneda para poder renderizar su valor en paintComponent
+     * @param moneda
+     */
     public ImagenMoneda(Moneda moneda) {
         this.moneda = moneda;
         setBackground(new Color(50, 50, 50));
@@ -15,6 +22,10 @@ public class ImagenMoneda extends JPanel {
         setLayout(null);
     }
 
+    /**
+     * Se renderiza como un círculo amarillo con un texto en el centro indicando su valor
+     * @param g the <code>Graphics</code> object to protect
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);

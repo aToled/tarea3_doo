@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Esta clase se utiliza para renderizar un producto en la ventana
+ */
 public class ImagenProducto extends JPanel {
     public int x = 0;
     public int y = 0;
@@ -46,6 +49,10 @@ public class ImagenProducto extends JPanel {
         setBounds(this.x, this.y, SIZE, SIZE);
     }
 
+    /**
+     * Se renderiza a través de una imagen las cuales se encuentran en la carpeta resources
+     * @param g Objeto para renderizar
+     */
     @Override
     protected void paintComponent(Graphics g) {
         if (img != null) {

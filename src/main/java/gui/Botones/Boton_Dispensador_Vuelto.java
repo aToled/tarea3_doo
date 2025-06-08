@@ -8,9 +8,20 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
+/**
+ * Este botón se utiliza para indicar al dispensador que suelte las monedas destinadas
+ * como vuelto para el comprador. Estas monedas luego podrán ser agarradas por el
+ * comprador desde BotonRecogerVuelto
+ * @see BotonRecogerVuelto
+ */
 public class Boton_Dispensador_Vuelto extends JButton {
     private static Deposito<Moneda> vuelto_a_recoger;
     private boolean VueltoDispensado = false;
+
+    /**
+     * AL pulsar este botón se traspasará el vuelto hacia 'vuelto_a_recoger'
+     * @param panelPrincipal
+     */
     public Boton_Dispensador_Vuelto(PanelPrincipal panelPrincipal){
         setBounds(50, 430, 30, 30);
         setToolTipText("dispensar vuelto");
@@ -42,6 +53,10 @@ public class Boton_Dispensador_Vuelto extends JButton {
         });
     }
 
+    /**
+     * Se renderiza como un círculo negro
+     * @param g Objeto utilizado para graficar
+     */
     @Override
     protected void paintComponent(Graphics g) {
         Graphics2D g2 = (Graphics2D) g;

@@ -7,7 +7,14 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+/**
+ * A travéz de este botón el comprador puede incrementar su cantidad de dinero
+ */
 public class BotonIngresarDinero extends JButton {
+    /**
+     * Al pulsar el botón se preguntará al usuario la cantidad de dinero que desea recibir
+     * y si es una cantidad válida el comprador recibirá las monedas acorde al monto
+     */
     public BotonIngresarDinero() {
         setBounds(90, 225, 100, 100);
         setBackground(Color.GRAY);
@@ -42,6 +49,10 @@ public class BotonIngresarDinero extends JButton {
         });
     }
 
+    /**
+     * Se renderiza como un círculo verde con texto el texto 'Ingresar Dinero'
+     * @param g Objeto utilizado para renderizar
+     */
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
