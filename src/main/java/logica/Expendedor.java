@@ -25,7 +25,7 @@ public class Expendedor {
     /**
      * El Expendedor almacena los productos que especificados por el enum 'Productos'
      * Cada producto es almacenado en un depósito específico para dicho producto.
-     * @param numProductos: La cantidad que se almacenará en cada depósito para cada tipo de producto
+     * @param numProductos: La cantidad que se almacenará en cada depósito para cada tipo de producto.
      * @see Productos
      * @see Deposito
      */
@@ -156,6 +156,10 @@ public class Expendedor {
         Dinero_total_ingresado+=m.getValor();
     }
 
+    /**
+     * Calcula cuantas monedas se tienen que devolver como vuelto al vaciar el depósito de monedas_ingresadas
+     * @return El nuevo depósito con tales monedas.
+     */
     public Deposito<Moneda> vaciarVuelto() {
         Deposito<Moneda> monedas = new Deposito<>();
         Moneda m2 = monedas_ingresadas.get();
@@ -197,7 +201,7 @@ public class Expendedor {
     }
 
     /**
-     * Metodo el cual devuelve una referencia al producto comprado (solo se utiliza para animar correctamente su caida)
+     * Método el cual devuelve una referencia al producto comprado (solo se utiliza para animar correctamente su caída)
      * @return referencia a aquel producto.
      */
     public Producto getProductoComprado(){

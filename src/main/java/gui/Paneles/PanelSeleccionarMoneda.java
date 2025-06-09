@@ -9,7 +9,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * Se utiliza dentro del menú para seleccionar la moneda que el usuario desea
- * ingresar al depósito
+ * ingresar al depósito.
  * @see JPanel
  */
 public class PanelSeleccionarMoneda extends JPanel{
@@ -17,9 +17,9 @@ public class PanelSeleccionarMoneda extends JPanel{
 
     /**
      * Si el usuario pulsa este JPanel se mandará una señal a la VentanaIngresarMoneda
-     * sobre cual es el valor seleccionado
-     * @param valor_moneda: Valor de la moneda mostrada
-     * @param ventana: Instancia de la ventana de la cual este componente es parte
+     * sobre cuál es el valor seleccionado.
+     * @param valor_moneda: Valor de la moneda mostrada.
+     * @param ventana: Instancia de la ventana de la cual este componente es parte.
      * @see VentanaIngresarMoneda
      */
     public PanelSeleccionarMoneda(int valor_moneda, VentanaIngresarMoneda ventana) {
@@ -40,8 +40,8 @@ public class PanelSeleccionarMoneda extends JPanel{
     }
 
     /**
-     * Se renderiza igual a el component ImagenMoneda
-     * @param g Objeto utilizado para renderizar
+     * Se renderiza igual a el component ImagenMoneda.
+     * @param g Objeto utilizado para renderizar.
      * @see gui.Imagenes.ImagenMoneda
      */
     @Override

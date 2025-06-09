@@ -5,8 +5,8 @@ import gui.Paneles.PanelComprador;
 import javax.swing.*;
 
 /**
- * Ventana que muestra las monedas que posee el comprador ademas de un botón
- * que permite entregar más monedas al comprador por si se solicita
+ * Ventana que muestra las monedas que posee el comprador además de un botón
+ * que permite entregar más monedas al comprador por si se solicita.
  * @see JFrame
  */
 public class VentanaComprador extends JFrame {

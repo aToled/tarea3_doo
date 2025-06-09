@@ -10,17 +10,17 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Este panel permite al usuario retirar las monedas entregadas como vuelto
+ * Este panel permite al usuario retirar las monedas entregadas como vuelto.
  * @see JPanel
  */
 public class PanelDispensadorMonedas extends JPanel {
-    private PanelPrincipal panelPrincipal;
+    private final PanelPrincipal panelPrincipal;
     private final JPanel panelMonedas;
-    private BotonRecogerVuelto botonRecogerVuelto;
+    private final BotonRecogerVuelto botonRecogerVuelto;
 
     /**
-     * Se encarga de mostrar las monedas dadas de vuelto al comprador
-     * @param panelPrincipal: Referencia a panel principal para poder re-pintar en caso de ser necesario
+     * Se encarga de mostrar las monedas dadas de vuelto al comprador.
+     * @param panelPrincipal: Referencia a panel principal para poder re pintar en caso de ser necesario.
      */
     public PanelDispensadorMonedas(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
@@ -42,8 +42,8 @@ public class PanelDispensadorMonedas extends JPanel {
     }
 
     /**
-     * Se renderiz como un rectángulo que contiene elementos de ImagenMoneda en su interior
-     * @param g Objeto utilizado para renderizar
+     * Se renderiza como un rectángulo que contiene elementos de ImagenMoneda en su interior.
+     * @param g Objeto utilizado para renderizar.
      */
     @Override
     protected void paintComponent(Graphics g) {

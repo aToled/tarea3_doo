@@ -7,11 +7,11 @@ import java.awt.*;
 
 /**
  * En este panel se muestran las monedas que fueron utilizadas para comprar productos
- * además de un botón el cual permite rellenar los depósitos vacios
+ * además de un botón el cual permite rellenar los depósitos vacíos.
  * @see JPanel
  */
 public class PanelExpendedorIzquierdo extends JPanel {
-    private  PanelPrincipal panelPrincipal;
+    private final PanelPrincipal panelPrincipal;
     public PanelExpendedorIzquierdo(PanelPrincipal panelPrincipal){
         this.panelPrincipal = panelPrincipal;
 

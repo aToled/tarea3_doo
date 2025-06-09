@@ -7,12 +7,12 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Ventana principal la cual muestra el expendedor con sus depósitos y productos
+ * Ventana principal la cual muestra el expendedor con sus depósitos y productos.
  * @see JFrame
  */
 public class VentanaPrincipal extends JFrame {
     /**
-     * Se instancia el panel principal el cual muestra y posiciona los componentes
+     * Se instancia el panel principal el cual muestra y posiciona los componentes.
      */
     public VentanaPrincipal() {
         Init.inicializar();  //Inicializa variables estáticas.
@@ -33,6 +33,9 @@ public class VentanaPrincipal extends JFrame {
         new VentanaComprador().mostrar();
     }
 
+    /**
+     * Hace la ventana visible.
+     */
     public void mostrar() {
         setVisible(true);
     }

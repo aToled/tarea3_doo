@@ -4,7 +4,7 @@ package logica;
  */
 public class PagoIncorrectoException extends Exception {
     /**
-     * @param message: Mensaje personalizado para la excepción
+     * @param message: Mensaje personalizado para la excepción.
      */
     public PagoIncorrectoException(String message) {
         super(message);

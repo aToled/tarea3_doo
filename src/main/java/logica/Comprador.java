@@ -23,14 +23,10 @@ public class Comprador {
     /**
      * Utilizando las monedas que posee el comprador y el expendedor especificado intenta comprar
      * el producto especificado en su constructor.
-     * En caso de que la compra sea exitosa consume el producto y retira todas las monedas
-     * almacenadas como vuelto en el expendedor.
-     * El string devuelto al consumir el producto y el valor total del vuelto son
-     * almacenados como propiedades dentro de esta clase.
      * En caso de que la compra fracase el comprador mostrará un mensaje en pantalla
      * indicando cuál es el error retornado por el expendedor.
-     * @param cualProducto: El tipo de producto que se desea comprar
-     * @param exp: El expendedor utilizado para la compra y posible retiro del vuelto
+     * @param cualProducto: El tipo de producto que se desea comprar.
+     * @param exp: El expendedor utilizado para la compra y posible retiro del vuelto.
      * @see Moneda
      * @see Expendedor
      * @see NoHayProductoException
@@ -42,7 +38,7 @@ public class Comprador {
     }
 
     /**
-     * Realiza la acción de "recoger" el vuelto por parte del Comprador
+     * Realiza la acción de "recoger" el vuelto por parte del Comprador. (LEGACY)
      * @return El monto del vuelto retirado del expendedor.
      */
     public int cuantoVuelto() {
@@ -50,6 +46,9 @@ public class Comprador {
         return vuelto;
     }
 
+    /**
+     * Realiza la acción de "recoger" el vuelto por parte del Comprador.
+     */
     public void RecogerVuelto(Deposito<Moneda> depM){
         for(int i = 0; i < depM.size(); i++){
             Moneda aux = depM.get(i);
@@ -59,6 +58,10 @@ public class Comprador {
         monedero.sort();
     }
 
+    /**
+     * Recoge el producto del expendedor (meter la mano adentro) y lo guarda en su depósito personal de productos.
+     * @param producto_a_sacar:
+     */
     public void Recoger_Producto(Producto producto_a_sacar){
         productos_comprados.add(producto_a_sacar);
     }
@@ -72,6 +75,10 @@ public class Comprador {
         monedero.sort();
     }
 
+    /**
+     * Calcula cuanto dinero posee el comprador con base en la suma del valor monetario de todas sus monedas.
+     * @return el total.
+     */
     public int CuantoDinero(){
         int total=0;
         Moneda[] monederoArray = monedero.toArray(Moneda[]::new);
@@ -81,6 +88,11 @@ public class Comprador {
         return total;
     }
 
+    /**
+     * Chequea si el comprador posee alguna moneda con el valor dado.
+     * @param valor: valor de la moneda.
+     * @return la Moneda en cuestión en caso de que el comprador posea una.
+     */
     public Moneda Ingresar_Moneda(int valor){
         for(int i=0; i< monedero.size(); i++){
             Moneda m = monedero.get(i);

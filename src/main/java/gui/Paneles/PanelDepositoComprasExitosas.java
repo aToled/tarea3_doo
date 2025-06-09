@@ -43,7 +43,7 @@ public class PanelDepositoComprasExitosas extends JPanel {
 
     /**
      * Se renderiza como un rectángulo que contiene elementos de ImagenMoneda en su interior.
-     * @param g Objeto utilizado para renderizar
+     * @param g Objeto utilizado para renderizar.
      */
     @Override
     protected void paintComponent(Graphics g) {

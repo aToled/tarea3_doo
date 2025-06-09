@@ -7,7 +7,7 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 
 /**
- * Este panel contiene a todos los componentes gráficos del expendedor
+ * Este panel contiene a todos los componentes gráficos del expendedor.
  * @see JPanel
  */
 public class PanelPrincipal extends JPanel {
@@ -16,7 +16,7 @@ public class PanelPrincipal extends JPanel {
     public Panel_Recoleccion_Productos PRP;
 
     /**
-     * Se agregan el panel de comprador, panel expendedor y el panel de recolección producto
+     * Se agregan el panel de comprador, panel expendedor y el panel de recolección producto.
      */
     public PanelPrincipal() {
         setBackground(new Color(66, 66, 66));
@@ -38,8 +38,9 @@ public class PanelPrincipal extends JPanel {
     /**
      * Se renderiza con el panel expendedor en el lado izquierdo, el panel
      * de compras en el lado derecho y el panel para recoger productos en
-     * la parte de abajo
-     * @param g Objeto utilizado para renderizar
+     * la parte de abajo, además asegura que este último este por encima de cualquier otra cosa
+     * (util para que se vea mejor la animación).
+     * @param g Objeto utilizado para renderizar.
      */
     public void paintComponent (Graphics g) {
         super.paintComponent(g);

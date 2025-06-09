@@ -14,19 +14,19 @@ abstract public class Moneda implements Comparable<Moneda> {
     }
 
     /**
-     * @return La referencia a al objeto moneda
+     * @return La referencia a al objeto moneda.
      */
     public int getSerie() {
         return serie;
     }
 
     /**
-     * @return El valor monetario de la moneda
+     * @return El valor monetario de la moneda.
      */
     public abstract int getValor();
 
     /**
-     * @return Un string que incluye el valor de la serie y el valor monetario de la moneda
+     * @return Un string que incluye el valor de la serie y el valor monetario de la moneda.
      */
     @Override
     public String toString() {
@@ -43,8 +43,8 @@ abstract public class Moneda implements Comparable<Moneda> {
      * 1 si getValor() < c.getValor()
      * -1 si getValor() > c.getValor()
      * 0 si getValor() == c.getValor()
-     * @param c Objeto al que será comparado
-     * @return El valor comparativo respecto al valor monetario
+     * @param c Objeto al que será comparado.
+     * @return El valor comparativo respecto al valor monetario.
      */
     @Override
     public int compareTo(Moneda c) {

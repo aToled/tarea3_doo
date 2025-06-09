@@ -13,7 +13,7 @@ public class CocaCola extends Bebida {
 
     /**
      * El comprador almacena este valor cuando consume el producto.
-     * @return String único que retorna este producto al consumirlo
+     * @return String único que retorna este producto al consumirlo.
      */
     public String consumir() {
         return "coca cola";

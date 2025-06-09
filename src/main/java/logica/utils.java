@@ -29,8 +29,8 @@ public class utils {
 
     /**
      * Cambia las monedas del primer depósito al segundo.
-     * @param deposito1: deposito que da monedas
-     * @param deposito2: deposito que recibe monedas
+     * @param deposito1: deposito que da monedas.
+     * @param deposito2: deposito que recibe monedas.
      */
     public static void cambiar_monedas_de_deposito(Deposito<Moneda> deposito1, Deposito<Moneda> deposito2){
         while (!deposito1.isEmpty())

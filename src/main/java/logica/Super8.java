@@ -12,8 +12,8 @@ public class Super8 extends Dulce {
     }
 
     /**
-     * El comprador almacena este valor cuando consume el producto
-     * @return String único que retorna este producto al consumirlo
+     * El comprador almacena este valor cuando consume el producto.
+     * @return String único que retorna este producto al consumirlo.
      */
     public String consumir() { return "super8"; }
 }

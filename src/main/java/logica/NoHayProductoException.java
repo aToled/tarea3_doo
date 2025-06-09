@@ -4,7 +4,7 @@ package logica;
  */
 public class NoHayProductoException extends Exception {
     /**
-     * @param message: Mensaje personalizado para la excepción
+     * @param message: Mensaje personalizado para la excepción.
      */
     public NoHayProductoException(String message) {
         super(message);

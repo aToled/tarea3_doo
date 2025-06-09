@@ -9,7 +9,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * Aquí es donde el usuario puede ingresar monedas al depósito
+ * Aquí es donde el usuario puede ingresar monedas al depósito.
  * @see JPanel
  */
 public class PanelInsertaMonedas extends JPanel {
@@ -17,7 +17,7 @@ public class PanelInsertaMonedas extends JPanel {
 
     /**
      * Al pulsar sobre el panel se abrirá un menu en el cual el usuario selecciona
-     * la moneda que desea ingresar
+     * la moneda que desea ingresar.
      */
     public PanelInsertaMonedas() {
         setBackground(Color.BLACK);

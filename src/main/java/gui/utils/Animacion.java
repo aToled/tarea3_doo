@@ -7,19 +7,19 @@ import logica.Producto;
 import javax.swing.*;
 
 /**
- * Esta clase se utiliza para realizar la animación del producto que cae al ser comprado
+ * Esta clase se utiliza para realizar la animación del producto que cae al ser comprado.
  * @see Timer
  */
 public class Animacion {
-    private PanelPrincipal panelPrincipal;
-    private ImagenProducto p;
+    private final PanelPrincipal panelPrincipal;
+    private final ImagenProducto p;
     private Timer timerAnimacion;
 
     /**
      * Recibe una instancia del panel principal y de un producto para que cuando el producto
-     * cambie de posición se vuelva a renderizar el panel principal
-     * @param panelPrincipal: Instancia del panel principal
-     * @param p: Producto que se desea animar
+     * cambie de posición se vuelva a renderizar el panel principal.
+     * @param panelPrincipal: Instancia del panel principal.
+     * @param p: Producto que se desea animar.
      * @see PanelPrincipal
      * @see Producto
      */
@@ -30,7 +30,7 @@ public class Animacion {
 
     /**
      * Si la animación aún no comienza y no ha terminado se ejecuta un thread cada 15 milisegundos
-     * el cual hace que el producto se desplaze hacia abajo
+     * el cual hace que el producto se desplace hacia abajo.
      */
     public void iniciarOContinuarMovimiento() {
         p.setBounds(p.getX(), p.getY(), ImagenProducto.SIZE, ImagenProducto.SIZE);
@@ -58,7 +58,7 @@ public class Animacion {
     }
 
     /**
-     * Se detiene la animación en caso de que esta aún no finaliza y no ha comenzado
+     * Se detiene la animación en caso de que esta aún no finaliza y no ha comenzado.
      */
     private void detenerAnimacion() {
         if (timerAnimacion != null && timerAnimacion.isRunning()) {

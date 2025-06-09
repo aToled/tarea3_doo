@@ -5,14 +5,14 @@ package logica;
  */
 public class Moneda100 extends Moneda {
     /**
-     * Crea la instancia de moneda
+     * Crea la instancia de moneda.
      */
     public Moneda100() {
         super();
     }
 
     /**
-     * @return El valor monetario de la moneda
+     * @return El valor monetario de la moneda.
      */
     public int getValor() {
         return 100;

@@ -14,11 +14,11 @@ import java.awt.geom.RoundRectangle2D;
  * @see JPanel
  */
 public class PanelExpendedor extends JPanel {
-    private PanelPrincipal panelPrincipal;
+    private final PanelPrincipal panelPrincipal;
 
     /**
-     * Se renderizan los productos con el número que los identifica ademas del precio
-     * @param panelPrincipal:
+     * Se renderizan los productos con el número que los identifica además del precio.
+     * @param panelPrincipal:.
      */
     public PanelExpendedor(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
@@ -52,7 +52,7 @@ public class PanelExpendedor extends JPanel {
     }
 
     /**
-     * Si existe el producto solicitado se iniciará una animación para botarlo.
+     * Si existe el producto solicitado se iniciará una animación para botarlo..
      */
     public void botarProducto() {
         Producto p = Init.expendedor.getProductoComprado();
@@ -77,10 +77,10 @@ public class PanelExpendedor extends JPanel {
     }
 
     /**
-     * Se renderizan los productos indicados por el tipo y posición (fila, columna)
-     * @param producto: Tipo de producto que se desea renderizar
-     * @param fila: Fila en la que se va a renderizar el producto
-     * @param columna: Columna en la que se va a renderizar el producto
+     * Se renderizan los productos indicados por el tipo y posición (fila, columna).
+     * @param producto: Tipo de producto que se desea renderizar.
+     * @param fila: Fila en la que se va a renderizar el producto.
+     * @param columna: Columna en la que se va a renderizar el producto.
      */
     private void agregarProductos(Productos producto, int fila, int columna){
         Deposito<Producto> productos = getProductos(producto);
@@ -105,10 +105,10 @@ public class PanelExpendedor extends JPanel {
     }
 
     /**
-     * Se eliminan los productos señalados (si es que hay) y se vuelven a agregar productos nuevamente
-     * @param producto: Tipo de producto a re-agregar
-     * @param fila: Fila en la que se encuentra el producto
-     * @param columna: Columna en la que se encuentra el producto
+     * Se eliminan los productos señalados (si es que hay) y se vuelven a agregar productos nuevamente.
+     * @param producto: Tipo de producto a re-agregar.
+     * @param fila: Fila en la que se encuentra el producto.
+     * @param columna: Columna en la que se encuentra el producto.
      */
     public void reagregarProductos(Productos producto, int fila, int columna){
         String nombre = "producto_"+producto+"_"+fila+"_"+columna;
@@ -126,8 +126,8 @@ public class PanelExpendedor extends JPanel {
     }
 
     /**
-     * Retorna los productos disponibles del tipo señalado
-     * @param producto: Tipo de producto al que se quiere obtener
+     * Retorna los productos disponibles del tipo señalado.
+     * @param producto: Tipo de producto al que se quiere obtener.
      * @return Un depósito de los productos indicados.
      */
     private static Deposito<Producto> getProductos(Productos producto) {
@@ -162,7 +162,7 @@ public class PanelExpendedor extends JPanel {
     /**
      * Se renderiza con un borde redondo y se pinta de color gris claro el interior
      * Dentro se muestran los productos con su número identificador además del precio.
-     * @param g Objeto utilizado para renderizar
+     * @param g Objeto utilizado para renderizar.
      */
     @Override
     protected void paintComponent(Graphics g) {
