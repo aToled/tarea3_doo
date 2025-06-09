@@ -8,6 +8,7 @@ import java.awt.*;
 /**
  * En esta clase se contienen todos los componentes utilizados para comprar productos.
  * Es el panel encargado de recibir los eventos del usuario para pagar y recibir vuelto
+ * @see JPanel
  */
 public class Panel_de_Compras extends JPanel {
     PanelPrincipal panelPrincipal;

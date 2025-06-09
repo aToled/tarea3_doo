@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * Aquí es donde el usuario puede ingresar monedas al depósito
+ * @see JPanel
  */
 public class PanelInsertaMonedas extends JPanel {
     public static boolean ventanaAbierta = false;

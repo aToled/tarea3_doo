@@ -5,6 +5,11 @@ import gui.Botones.BotonRellenarDepositos;
 import javax.swing.*;
 import java.awt.*;
 
+/**
+ * En este panel se muestran las monedas que fueron utilizadas para comprar productos
+ * además de un botón el cual permite rellenar los depósitos vacios
+ * @see JPanel
+ */
 public class PanelExpendedorIzquierdo extends JPanel {
     private  PanelPrincipal panelPrincipal;
     public PanelExpendedorIzquierdo(PanelPrincipal panelPrincipal){

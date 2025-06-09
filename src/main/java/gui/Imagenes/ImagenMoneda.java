@@ -7,6 +7,7 @@ import java.awt.*;
 
 /**
  * Esta clase se utiliza para renderizar una moneda en base a su valor monetario
+ * @see JPanel
  */
 public class ImagenMoneda extends JPanel {
     private final Moneda moneda;

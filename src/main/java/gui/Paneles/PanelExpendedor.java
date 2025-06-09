@@ -11,6 +11,7 @@ import java.awt.geom.RoundRectangle2D;
 /**
  * Clase principal que representa la vitrina de productos del expendedor,
  * la cual organiza visualmente los productos y controla la animación de salida de uno de ellos.
+ * @see JPanel
  */
 public class PanelExpendedor extends JPanel {
     private PanelPrincipal panelPrincipal;

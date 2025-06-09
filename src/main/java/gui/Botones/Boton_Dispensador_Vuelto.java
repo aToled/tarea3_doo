@@ -13,6 +13,7 @@ import java.awt.event.*;
  * como vuelto para el comprador. Estas monedas luego podrán ser agarradas por el
  * comprador desde BotonRecogerVuelto
  * @see BotonRecogerVuelto
+ * @see JButton
  */
 public class Boton_Dispensador_Vuelto extends JButton {
     private static Deposito<Moneda> vuelto_a_recoger;

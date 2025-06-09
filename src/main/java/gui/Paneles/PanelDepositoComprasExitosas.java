@@ -8,6 +8,11 @@ import logica.Moneda;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+
+/**
+ * Este panel muestra las monedas que se quedan en el expendedor despues de una compra exitos
+ * @see JPanel
+ */
 public class PanelDepositoComprasExitosas extends JPanel {
     private PanelPrincipal panelPrincipal;
     private final JPanel panelMonedas;

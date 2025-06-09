@@ -11,6 +11,7 @@ import java.io.IOException;
 
 /**
  * Esta clase se utiliza para renderizar un producto en la ventana
+ * @see JPanel
  */
 public class ImagenProducto extends JPanel {
     public static final int SIZE = 125;

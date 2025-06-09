@@ -8,6 +8,7 @@ import java.awt.*;
 
 /**
  * Ventana principal la cual muestra el expendedor con sus depósitos y productos
+ * @see JFrame
  */
 public class VentanaPrincipal extends JFrame {
     /**
