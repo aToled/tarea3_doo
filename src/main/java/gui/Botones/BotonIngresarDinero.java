@@ -9,6 +9,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * A travéz de este botón el comprador puede incrementar su cantidad de dinero
+ * @see JButton
  */
 public class BotonIngresarDinero extends JButton {
     /**

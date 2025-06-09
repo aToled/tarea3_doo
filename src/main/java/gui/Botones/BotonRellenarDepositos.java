@@ -7,7 +7,10 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-
+/**
+ * Este botón se utiliza para rellenar los depósitos de productos que están vacios
+ * @see JButton
+ */
 public class BotonRellenarDepositos extends JButton {
     public BotonRellenarDepositos() {
         setBounds(50, 100, 100, 100);

@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 /**
  * Se utiliza dentro del menú para seleccionar la moneda que el usuario desea
  * ingresar al depósito
+ * @see JPanel
  */
 public class PanelSeleccionarMoneda extends JPanel{
     JLabel valorLabel;

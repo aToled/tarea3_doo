@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 /**
  * En este panel se depositan los productos comprados para que el usuario pueda retirarlos.
  * No se pueden comprar más productos hasta que este depósito esté vacio
+ * @see JPanel
  */
 public class Panel_Recoleccion_Productos extends JPanel {
     /**

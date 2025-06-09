@@ -10,6 +10,7 @@ import java.awt.event.ActionListener;
 
 /**
  * Esta clase se utiliza para realizar la animación del producto que cae al ser comprado
+ * @see Timer
  */
 public class Animacion {
     private PanelPrincipal panelPrincipal;

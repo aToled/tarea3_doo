@@ -9,6 +9,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 
+/**
+ * Este panel permite al usuario retirar las monedas entregadas como vuelto
+ * @see JPanel
+ */
 public class PanelDispensadorMonedas extends JPanel {
     private PanelPrincipal panelPrincipal;
     private final JPanel panelMonedas;

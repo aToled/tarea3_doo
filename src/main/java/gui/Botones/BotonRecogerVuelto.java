@@ -12,6 +12,7 @@ import java.awt.event.MouseEvent;
 
 /**
  * A través de este botón el comprador recibe el vuelto de haber realizado una compra
+ * @see JButton
  */
 public class BotonRecogerVuelto extends JButton {
     private PanelPrincipal panelPrincipal;

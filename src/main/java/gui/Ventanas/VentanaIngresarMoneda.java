@@ -10,6 +10,7 @@ import java.awt.event.WindowEvent;
 
 /**
  * Ventana donde el usuario selecciona el valor de la moneda que desea ingresar al depósito
+ * @see JFrame
  */
 public class VentanaIngresarMoneda extends JFrame {
     public VentanaIngresarMoneda() {

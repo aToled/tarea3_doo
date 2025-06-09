@@ -7,6 +7,7 @@ import javax.swing.*;
 /**
  * Ventana que muestra las monedas que posee el comprador ademas de un botón
  * que permite entregar más monedas al comprador por si se solicita
+ * @see JFrame
  */
 public class VentanaComprador extends JFrame {
     public VentanaComprador(){

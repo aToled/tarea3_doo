@@ -8,6 +8,7 @@ import java.awt.*;
 
 /**
  * Este panel contiene a todos los componentes gráficos del expendedor
+ * @see JPanel
  */
 public class PanelPrincipal extends JPanel {
     public Panel_de_Compras pdeCom;

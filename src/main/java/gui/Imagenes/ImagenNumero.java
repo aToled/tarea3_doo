@@ -10,6 +10,8 @@ import java.awt.event.MouseListener;
 /**
  * Esta clase se utiliza para mostrar los números que se utilizar para identificar
  * y comprar los productos
+ * @see JPanel
+ * @see Color
  */
 public class ImagenNumero extends JPanel {
     public static final int SIZE = 45;
