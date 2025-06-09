@@ -39,8 +39,8 @@ public class ImagenProducto extends JPanel {
      * @param profundidad: tal profundidad.
      */
     public void establecerPosicion(int fila, int col, int profundidad) {
-        int x = 30 + col * SIZE + col * 100 + profundidad * 5;
-        int y = 50 + fila * SIZE + fila * 100 - profundidad * 5;
+        int x = 60 + col * SIZE + col * 100 + profundidad * 5;
+        int y = 90 + fila * SIZE + fila * 100 - profundidad * 5;
         setBounds(x, y, SIZE, SIZE);
     }
 

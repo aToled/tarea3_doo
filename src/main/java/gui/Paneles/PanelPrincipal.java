@@ -26,6 +26,7 @@ public class PanelPrincipal extends JPanel {
         pExp = new PanelExpendedor(this);
         PRP = new Panel_Recoleccion_Productos();
 
+        add(new PanelExpendedorIzquierdo(this), BorderLayout.WEST);
         add(pExp, BorderLayout.CENTER);
         add(PRP, BorderLayout.SOUTH);
         add(pdeCom, BorderLayout.EAST);
@@ -41,11 +42,6 @@ public class PanelPrincipal extends JPanel {
      */
     public void paintComponent (Graphics g) {
         super.paintComponent(g);
-
-        pdeCom.paintComponent(g);
-        pExp.paintComponent(g);
-        PRP.paintComponents(g);
-
         setComponentZOrder(PRP,0);
     }
 }

@@ -19,7 +19,7 @@ public class VentanaPrincipal extends JFrame {
         // Configuración de la ventana
         setTitle("Expendedor");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(new Dimension(700, 950));
+        setSize(new Dimension(900, 950));
 
         // Centraliza la ventana
         setLocationRelativeTo(null);

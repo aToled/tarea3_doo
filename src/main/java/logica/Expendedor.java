@@ -51,9 +51,10 @@ public class Expendedor {
         }
     }
 
-    /**TODO actualizar javadoc
-     * Ingresa el producto solicitado en el depósito donde "caen" al comprarlos
-     * y almacena el vuelto con las monedas más grandes primero en el depósito monVu
+    /**
+     * Ingresa el producto solicitado en el depósito donde "caen" al comprarlos,
+     * e ingresa la moneda o monedas que se usó/usaron para la compra del producto
+     * en el Depósito de compras exitosas
      * siempre y cuando no ocurra algunos de los siguientes casos:
      * 1. Si la moneda es null arroja PagoIncorrectoException.
      * 2. Si el saldo no es suficiente para comprar el producto devuelve la misma
@@ -81,9 +82,7 @@ public class Expendedor {
             case SNICKERS -> snickers.get();
             case SUPER8 -> super8.get();
             case CHOCMAN -> chocman.get();
-            default -> {
-                throw new NoHayProductoException("No existe producto solicitado");
-            }
+            default -> throw new NoHayProductoException("No existe producto solicitado");
         };
 
         // No hay producto solicitado
@@ -91,30 +90,61 @@ public class Expendedor {
             throw new NoHayProductoException("No hay producto solicitado");
         }
 
-        Dinero_total_ingresado -= cual.precio;
-        utils.cambiar_monedas_de_deposito(monedas_ingresadas,monedas_compras_exitosas);
-        int howManyCoins = (Dinero_total_ingresado);
-        utils.ingresar_total_monedas_en_orden(monedas_ingresadas,howManyCoins);
+        // Monedas utilizadas para el pago
+        Deposito<Moneda> MonedasSeleccionadas = new Deposito<>();
+        monedas_ingresadas.sort();
+        int total = 0;
 
+        // Los siguientes 2 bloques quitan las monedas ingresadas que se usaron para comprar el producto y las ingresan al de compras exitosas.
+        while(!monedas_ingresadas.isEmpty() && total < cual.precio){
+            Moneda m = monedas_ingresadas.get();
+            total += m.getValor();
+            MonedasSeleccionadas.add(m);
+        }
+        while (!MonedasSeleccionadas.isEmpty()){
+            monedas_compras_exitosas.add(MonedasSeleccionadas.get());
+            monedas_compras_exitosas.sort();
+        }
+
+        // Aquí se crean las monedas del vuelto.
+        int vuelto = total - cual.precio;
+        if(vuelto>0){
+            utils.ingresar_total_monedas_en_orden(monedas_ingresadas, vuelto);
+        }
+
+
+        Dinero_total_ingresado -= cual.precio;
         producto[0]=productoComprado;
     }
 
     /**
-     * Agrega un nuevo elemento al depósito que se encuentre vacío.
+     * Agrega 5 nuevos elementos al depósito que se encuentre vacío.
      */
     public void rellenarProducto(){
         if(coca.isEmpty()){
-            coca.add(new CocaCola());
+            for(int i = 0; i<6; i++) {
+                coca.add(new CocaCola());
+            }
         }else if(sprite.isEmpty()){
-            sprite.add(new Sprite());
+            for(int i = 0; i<6; i++) {
+                sprite.add(new Sprite());
+            }
         }else if(fanta.isEmpty()){
-            fanta.add(new Fanta());
+            for(int i = 0; i<6; i++) {
+                fanta.add(new Fanta());
+            }
         }else if(snickers.isEmpty()){
-            snickers.add(new Snickers());
+            for(int i = 0; i<6; i++) {
+                snickers.add(new Snickers());
+            }
         }else if(super8.isEmpty()){
-            super8.add(new Super8());
+            for(int i = 0; i<6; i++) {
+                super8.add(new Super8());
+            }
         }else if(chocman.isEmpty()){
-            chocman.add(new Chocman());
+            for(int i = 0; i<6; i++) {
+                chocman.add(new Chocman());
+            }
         }
     }
 

@@ -50,17 +50,14 @@ public class Animacion {
         p.repaint();
 
         if (timerAnimacion == null) {
-            timerAnimacion = new Timer(15,  new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent ae) {
-                    // Lógica de movimiento y condición de parada
-                    int Ycaida = p.getY() + 5;
-                    p.setBounds(p.getX(), Ycaida, ImagenProducto.SIZE, ImagenProducto.SIZE);
-                    panelPrincipal.invalidate();
-                    if (p.getY() >= 775) {
-                        p.setVisible(false);
-                        detenerAnimacion();
-                    }
+            timerAnimacion = new Timer(2, _ -> {
+                // Lógica de movimiento y condición de parada
+                int Ycaida = p.getY() + 5;
+                p.setBounds(p.getX(), Ycaida, ImagenProducto.SIZE, ImagenProducto.SIZE);
+                panelPrincipal.invalidate();
+                if (p.getY() >= 775) {
+                    p.setVisible(false);
+                    detenerAnimacion();
                 }
             });
             timerAnimacion.start();

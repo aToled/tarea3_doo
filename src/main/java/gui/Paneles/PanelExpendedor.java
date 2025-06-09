@@ -29,8 +29,8 @@ public class PanelExpendedor extends JPanel {
         //añade los numeros que identifican a los productos
         for (int fila = 0; fila < 3; fila++) {
             for (int col = 0; col < 2; col++) {
-                int x = 35 + col * ImagenProducto.SIZE + col * 100;
-                int y = 50 + fila * ImagenProducto.SIZE + fila * 100;
+                int x = 70 + col * ImagenProducto.SIZE + col * 100;
+                int y = 90 + fila * ImagenProducto.SIZE + fila * 100;
                 x += ImagenProducto.SIZE/2 - ImagenNumero.SIZE/2;
                 y += ImagenProducto.SIZE + 7;
                 ImagenNumero num = new ImagenNumero(x, y, fila*2+col+1, new Color(178, 178, 178), Color.BLACK, Color.WHITE);
