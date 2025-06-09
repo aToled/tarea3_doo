@@ -56,7 +56,7 @@ public class PanelBotones extends JPanel {
                             productoRecogido = false;
                             vueltoRecogido = false;
                             Init.comprador.Comprar(productoABotar, Init.expendedor);
-                            panelPrincipal.pExp.botarProducto(productoABotar);
+                            panelPrincipal.pExp.botarProducto();
                             panelPrincipal.invalidate();
                             panelPrincipal.repaint();
                             panelPrincipal.pdeCom.actualizarTexto();

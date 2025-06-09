@@ -20,6 +20,7 @@ public class Expendedor {
     private final Deposito<Moneda> monedas_compras_exitosas;
     private final Producto[] producto = new Producto[1];
     private int Dinero_total_ingresado=0;
+    private Producto productoComprado;
 
     /**
      * El Expendedor almacena los productos que especificados por el enum 'Productos'
@@ -73,7 +74,7 @@ public class Expendedor {
             throw new PagoInsuficienteException("Pago insuficiente");
         }
 
-        Producto temp = switch (cual) {
+       this.productoComprado = switch (cual) {
             case COCA -> coca.get();
             case SPRITE -> sprite.get();
             case FANTA -> fanta.get();
@@ -86,7 +87,7 @@ public class Expendedor {
         };
 
         // No hay producto solicitado
-        if (temp == null) {
+        if (productoComprado == null) {
             throw new NoHayProductoException("No hay producto solicitado");
         }
 
@@ -95,7 +96,7 @@ public class Expendedor {
         int howManyCoins = (Dinero_total_ingresado);
         utils.ingresar_total_monedas_en_orden(monedas_ingresadas,howManyCoins);
 
-        producto[0]=temp;
+        producto[0]=productoComprado;
     }
 
     /**
@@ -163,6 +164,14 @@ public class Expendedor {
 
     public Deposito<Moneda> getMonedas_compras_exitosas() {
         return monedas_compras_exitosas;
+    }
+
+    /**
+     * Metodo el cual devuelve una referencia al producto comprado (solo se utiliza para animar correctamente su caida)
+     * @return referencia a aquel producto.
+     */
+    public Producto getProductoComprado(){
+        return productoComprado;
     }
 
     public Deposito<Producto> getCoca() {

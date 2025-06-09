@@ -15,7 +15,6 @@ import java.util.ArrayList;
  */
 public class PanelExpendedor extends JPanel {
     private PanelPrincipal panelPrincipal;
-    private MapProductos mapProductos = new MapProductos();
 
     /**
      * Se renderizan los productos con el número que los identifica ademas del precio
@@ -55,25 +54,22 @@ public class PanelExpendedor extends JPanel {
     }
 
     /**
-     * Si existe stock del producto solicitado se iniciará una animación para botar el
-     * primer producto de ese tipo
-     * @param producto: Tipo de producto a botar.
+     * Si existe el producto solicitado se iniciará una animación para botarlo.
      */
-    public void botarProducto(Productos producto) {
-        Producto p = null;
+    public void botarProducto() {
+        Producto p = Init.expendedor.getProductoComprado();
+        if(p==null) return;
 
-        switch (producto) {
-            case COCA -> p = (Producto)mapProductos.get(Productos.COCA).get();
-            case SPRITE -> p = (Producto)mapProductos.get(Productos.SPRITE).get();
-            case FANTA -> p = (Producto)mapProductos.get(Productos.FANTA).get();
-            case SNICKERS -> p = (Producto)mapProductos.get(Productos.SNICKERS).get();
-            case SUPER8 -> p = (Producto)mapProductos.get(Productos.SUPER8).get();
-            case CHOCMAN -> p = (Producto)mapProductos.get(Productos.CHOCMAN).get();
-            case NULO -> {}
-        }
+        this.reagregarProductos(p.cualProducto, p.fila, p.columna);
 
-        if (p == null) return;
-        setComponentZOrder(p,0);
+        p.establecerPosicion(p.fila, p.columna, 0);
+        p.setBounds(p.x, p.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
+
+        add(p);
+        setComponentZOrder(p, 0);
+        revalidate();
+        repaint();
+
         Animacion a = new Animacion(panelPrincipal, p);
         a.iniciarOContinuarMovimiento();
     }

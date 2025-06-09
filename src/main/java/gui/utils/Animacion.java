@@ -40,7 +40,6 @@ public class Animacion {
             return;
         }
 
-        Init.panelExpendedor.reagregarProductos(p.cualProducto, p.fila, p.columna);
         p.setBounds(p.x, p.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
         if (p.getParent() == null) {
             panelPrincipal.add(p);
