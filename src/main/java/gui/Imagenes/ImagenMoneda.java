@@ -6,16 +6,17 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * Esta clase se utiliza para renderizar una moneda en base a su valor monetario
+ * Esta clase se utiliza para renderizar una moneda con su valor monetario en medio o
+ * si el tamaño lo permite su número de serie también.
  * @see JPanel
  */
 public class ImagenMoneda extends JPanel {
     private final Moneda moneda;
-    private int size;
+    private final int size;
 
     /**
-     * Guarda una referencia de moneda para poder renderizar su valor en paintComponent
-     * @param moneda
+     * Guarda una referencia de moneda para poder renderizar su valor en paintComponent.
+     * @param moneda:
      */
     public ImagenMoneda(Moneda moneda, int size) {
         this.moneda = moneda;
@@ -26,8 +27,9 @@ public class ImagenMoneda extends JPanel {
     }
 
     /**
-     * Se renderiza como un círculo amarillo con un texto en el centro indicando su valor
-     * @param g the <code>Graphics</code> object to protect
+     * Se renderiza como un círculo amarillo con un texto en el centro indicando su valor o
+     * lo anterior, pero con su número de serie también.
+     * @param g Objeto utilizado para renderizar.
      */
     @Override
     protected void paintComponent(Graphics g) {
@@ -45,12 +47,10 @@ public class ImagenMoneda extends JPanel {
 
         FontMetrics fm = g2.getFontMetrics();
         int valWidth = fm.stringWidth(valor);
-        int serWidth = fm.stringWidth(serie);
-
-        if(size >= 50){
-            g2.setFont(new Font("Bold", Font.BOLD, 13));
-            g2.drawString(valor, 7, (size / 3) + 6);
-            g2.drawString(serie, 4, (size / 2) + 10);
+        if(size >= 40){
+            g2.setFont(new Font("Bold", Font.BOLD, 11));
+            g2.drawString(valor, 4, (size / 3) + 6);
+            g2.drawString(serie, 3, (size / 2) + 10);
         }else {
             g2.drawString(valor, (size - valWidth) / 2, (size / 2) + 3);
         }

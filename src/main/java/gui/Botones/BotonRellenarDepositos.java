@@ -10,10 +10,13 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * Este botón se utiliza para rellenar los depósitos de productos que están vacios
+ * Este botón se utiliza para rellenar los depósitos de productos que están vacíos.
  * @see JButton
  */
 public class BotonRellenarDepositos extends JButton {
+    /**
+     * Inicializa el botón, además al ser pulsado actualiza el panelExpendedor para reflejar el rellenado.
+     */
     public BotonRellenarDepositos() {
         setBounds(50, 100, 100, 100);
         setBackground(new Color(66, 66, 66));
@@ -38,8 +41,8 @@ public class BotonRellenarDepositos extends JButton {
     }
 
     /**
-     * Se renderiza como un círculo azul con texto el texto 'Rellenar Depósitos'
-     * @param g Objeto utilizado para renderizar
+     * Se renderiza como un círculo azul con texto el texto 'Rellenar Depósitos'.
+     * @param g Objeto utilizado para renderizar.
      */
     @Override
     protected void paintComponent(Graphics g) {

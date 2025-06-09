@@ -11,15 +11,15 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 /**
- * A través de este botón el comprador recibe el vuelto de haber realizado una compra
+ * A través de este botón el comprador recibe el vuelto de haber realizado una compra.
  * @see JButton
  */
 public class BotonRecogerVuelto extends JButton {
-    private PanelPrincipal panelPrincipal;
+    private final PanelPrincipal panelPrincipal;
 
     /**
-     * Si hay vuelto el comprador las recibirá y serán quitadas del dispensador
-     * @param panelPrincipal
+     * Si hay vuelto en monedas el comprador las recibirá y serán quitadas del dispensador.
+     * @param panelPrincipal:
      */
     public BotonRecogerVuelto(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
@@ -59,8 +59,8 @@ public class BotonRecogerVuelto extends JButton {
 
     /**
      * Se renderiza como un cuadrado gris y si hay vuelto por recoger
-     * se indicará con un texto en el centro
-     * @param g Objeto utilizado para renderizar
+     * se indicará con un texto en el centro.
+     * @param g Objeto utilizado para renderizar.
      */
     @Override
     protected void paintComponent(Graphics g) {

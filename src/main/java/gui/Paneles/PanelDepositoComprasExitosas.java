@@ -10,7 +10,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 /**
- * Este panel muestra las monedas que se quedan en el expendedor despues de una compra exitos
+ * Este panel muestra las monedas que se quedan en el expendedor después de una compra exitosa.
  * @see JPanel
  */
 public class PanelDepositoComprasExitosas extends JPanel {
@@ -20,14 +20,14 @@ public class PanelDepositoComprasExitosas extends JPanel {
 
     /**
      * Se encarga de mostrar las monedas de las compras exitosas.
-     * @param panelPrincipal: Referencia a panel principal para poder re-pintar en caso de ser necesario
+     * @param panelPrincipal: Referencia a panel principal para poder re-pintar en caso de ser necesario.
      */
     public PanelDepositoComprasExitosas(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
 
         setBackground(new Color(66, 66, 66));
         setLayout(null);
-        setBounds(40, 480, 200, 300);
+        setBounds(25, 325, 150, 425);
 
         JLabel textoDeposito = new JLabel("Monedas Compras Exitosas");
         textoDeposito.setForeground(Color.WHITE);
@@ -42,7 +42,7 @@ public class PanelDepositoComprasExitosas extends JPanel {
     }
 
     /**
-     * Se renderiz como un rectángulo que contiene elementos de ImagenMoneda en su interior
+     * Se renderiza como un rectángulo que contiene elementos de ImagenMoneda en su interior.
      * @param g Objeto utilizado para renderizar
      */
     @Override
@@ -51,12 +51,12 @@ public class PanelDepositoComprasExitosas extends JPanel {
 
         this.panelMonedas.removeAll();
         ArrayList<Moneda> monedas = Init.expendedor.getMonedas_compras_exitosas().getRef();
-        int maxMonedas = Math.min(20, monedas.size());
+        int maxMonedas = Math.min(27, monedas.size());
         for (int i=0; i<maxMonedas; i++) {
             Moneda m = monedas.get(i);
-            ImagenMoneda imagenMoneda = new ImagenMoneda(m,50);
+            ImagenMoneda imagenMoneda = new ImagenMoneda(m,40);
             panelMonedas.add(imagenMoneda);
-            imagenMoneda.setBounds(6, 25*i, 50, 50);
+            imagenMoneda.setBounds(6, 25*i, 40, 40);
         }
         this.panelMonedas.repaint();
         this.panelMonedas.revalidate();

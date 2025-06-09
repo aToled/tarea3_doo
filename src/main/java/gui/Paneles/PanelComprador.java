@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 /**
  * En este panel se muestra al usuario las monedas que dispone el comprador al igual que un
- * botón que permite obtener más dinero si es requerido
+ * botón que permite obtener más dinero si es requerido.
  * @see JPanel
  */
 public class PanelComprador extends JPanel{

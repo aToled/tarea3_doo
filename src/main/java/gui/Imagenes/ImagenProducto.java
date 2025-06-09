@@ -10,7 +10,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Esta clase se utiliza para renderizar un producto en la ventana
+ * Esta clase se utiliza para renderizar un producto en la ventana.
  * @see JPanel
  */
 public class ImagenProducto extends JPanel {
@@ -19,7 +19,7 @@ public class ImagenProducto extends JPanel {
 
     /**
      * Crea un nuevo panel que representa la imagen de un producto.
-     * @param producto
+     * @param producto:
      */
     public ImagenProducto(Productos producto) {
         setSize(new Dimension(SIZE, SIZE));
@@ -34,7 +34,7 @@ public class ImagenProducto extends JPanel {
     }
 
     /**
-     * Establece la posicion del producto en la vitrina según su fila, columna y profundidad.
+     * Establece la posición del producto en la vitrina según su fila, columna y profundidad.
      * @param fila: tal fila.
      * @param col: tal columna.
      * @param profundidad: tal profundidad.
@@ -46,8 +46,8 @@ public class ImagenProducto extends JPanel {
     }
 
     /**
-     * Se renderiza a través de una imagen las cuales se encuentran en la carpeta resources
-     * @param g Objeto para renderizar
+     * Se renderiza a través de una imagen la cual se encuentra en la carpeta resources.
+     * @param g Objeto para renderizar.
      */
     @Override
     protected void paintComponent(Graphics g) {

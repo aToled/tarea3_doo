@@ -10,12 +10,12 @@ import java.awt.event.MouseEvent;
 
 /**
  * En este panel se depositan los productos comprados para que el usuario pueda retirarlos.
- * No se pueden comprar más productos hasta que este depósito esté vacio
+ * No se pueden comprar más productos hasta que este depósito esté vacío.
  * @see JPanel
  */
 public class Panel_Recoleccion_Productos extends JPanel {
     /**
-     * Si hay producto en bandeja el hacer click en el panel hara que el comprador reciba el producto
+     * Si hay producto en bandeja el hacer clic en el panel hará que el comprador reciba el producto.
      */
     public Panel_Recoleccion_Productos() {
         setBackground(new Color(100, 100, 100));
@@ -45,8 +45,8 @@ public class Panel_Recoleccion_Productos extends JPanel {
 
     /**
      * Se renderiza como un rectángulo el cual en caso de tener un producto lo señalará con un texto
-     * en el medio
-     * @param g Objeto utilizado para renderizar
+     * en el medio.
+     * @param g Objeto utilizado para renderizar.
      */
     @Override
     protected void paintComponent(Graphics g){

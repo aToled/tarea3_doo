@@ -2,14 +2,10 @@ package gui.Imagenes;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 
 /**
- * Esta clase se utiliza para mostrar los números que se utilizar para identificar
- * y comprar los productos
+ * Esta clase se utiliza para mostrar los números que se utilizan para identificar
+ * y comprar los productos.
  * @see JPanel
  * @see Color
  */
@@ -19,13 +15,13 @@ public class ImagenNumero extends JPanel {
     private final Color ColorCirculo;
 
     /**
-     * Se almacenan los datos necesarios para renderizar el número
-     * @param x: coordenada horizontal
-     * @param y: coordenada vertical
-     * @param num: valor numérico a mostrar
-     * @param ColorFondo: Color de fonto
-     * @param ColorCirculo: Color del círculo
-     * @param ColorNumero: Color del número
+     * Almacena los datos necesarios para renderizar el número.
+     * @param x: coordenada horizontal.
+     * @param y: coordenada vertical.
+     * @param num: valor numérico a mostrar.
+     * @param ColorFondo: Color de fondo.
+     * @param ColorCirculo: Color del círculo.
+     * @param ColorNumero: Color del número.
      */
     public ImagenNumero(int x, int y, int num, Color ColorFondo, Color ColorCirculo, Color ColorNumero) {
         this.ColorCirculo = ColorCirculo;
@@ -44,8 +40,8 @@ public class ImagenNumero extends JPanel {
     }
 
     /**
-     * Se renderza como un círculo con un fondo de color y el número en el centro
-     * @param g the <code>Graphics</code> object to protect
+     * Se renderiza como un círculo con un fondo de color y el número en el centro
+     * @param g Objeto utilizado para renderizar.
      */
     @Override
     protected void paintComponent(Graphics g) {

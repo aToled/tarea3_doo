@@ -6,8 +6,8 @@ import javax.swing.*;
 import java.awt.*;
 
 /**
- * En esta clase se contienen todos los componentes utilizados para comprar productos.
- * Es el panel encargado de recibir los eventos del usuario para pagar y recibir vuelto
+ * En esta clase se contienen todos los componentes utilizados para comprar productos,
+ * es el panel encargado de recibir los eventos del usuario para pagar y recibir vuelto.
  * @see JPanel
  */
 public class Panel_de_Compras extends JPanel {
@@ -19,9 +19,9 @@ public class Panel_de_Compras extends JPanel {
     private final Boton_Dispensador_Vuelto botonDispensadorVuelto;
 
     /**
-     * Se utiliza para cambiar el texto que aparece en la pantalla de arriba
-     * @param texto1: texto de la primera línea
-     * @param texto2: texto de la segunda línea
+     * Se utiliza para cambiar el texto que aparece en la pantalla de arriba.
+     * @param texto1: texto de la primera línea.
+     * @param texto2: texto de la segunda línea.
      */
     public void setTextoPantalla(String texto1, String texto2) {
         texto1Label.setText(texto1);
@@ -29,9 +29,9 @@ public class Panel_de_Compras extends JPanel {
     }
 
     /**
-     * Se inicializan todos los componentes del panel como por ejemplo el
-     * dispensador de monedas, inserta monedas, boton para recibir vuelto, etc.
-     * @param panelPrincipal
+     * Inicializa todos los componentes del panel como por ejemplo el
+     * dispensador de monedas, inserta monedas, botón para recibir vuelto, etc.
+     * @param panelPrincipal:
      */
     public Panel_de_Compras(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
@@ -77,8 +77,8 @@ public class Panel_de_Compras extends JPanel {
     }
 
     /**
-     * Cada componente tiene su propio renderizado por lo que no hace falta llamar dichas funciones desde aquí
-     * @param g Objeto utilizado para renderizar
+     * Cada componente tiene su propio renderizado por lo que no hace falta llamar dichas funciones desde aquí.
+     * @param g Objeto utilizado para renderizar.
      */
     @Override
     protected void paintComponent(Graphics g) {
@@ -86,7 +86,7 @@ public class Panel_de_Compras extends JPanel {
     }
 
     /**
-     * Se actualiza el texto de la pantalla para que muestre el dinero total ingresado en el expendedor
+     * Se actualiza el texto de la pantalla para que muestre el dinero total ingresado en el expendedor.
      */
     public void actualizarTexto() {
         setTextoPantalla("Dinero Ingresado", String.valueOf(Init.expendedor.getDinero_total_ingresado()));

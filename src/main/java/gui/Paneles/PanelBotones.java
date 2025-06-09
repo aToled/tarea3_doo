@@ -14,7 +14,7 @@ import java.awt.event.*;
 import java.util.ArrayList;
 
 /**
- * En este panel se muestran los botones del 1 al 6 para seleccionar el producto que se desea comprar
+ * En este panel se muestran los botones del 1 al 6 para seleccionar el producto que se desea comprar.
  * @see JPanel
  */
 public class PanelBotones extends JPanel {
@@ -24,8 +24,8 @@ public class PanelBotones extends JPanel {
     private boolean vueltoRecogido = true;
 
     /**
-     * Se crean los 6 botones que al ser pulsados intentar realizar la compra de dicho producto
-     * @param panelPrincipal
+     * Se crean los 6 botones que al ser pulsados intentar realizar la compra de dicho producto.
+     * @param panelPrincipal:
      */
     public PanelBotones(PanelPrincipal panelPrincipal){
         this.panelPrincipal = panelPrincipal;
@@ -34,7 +34,7 @@ public class PanelBotones extends JPanel {
         setBounds(20, 135, 150, 105);
 
         Productos[] productos = {Productos.COCA, Productos.SPRITE, Productos.FANTA, Productos.SNICKERS, Productos.SUPER8, Productos.CHOCMAN};
-        //añade los numeros que identifican a los productos
+        //añade los números que identifican a los productos.
         for (int fila = 0; fila < 3; fila++) {
             for (int col = 0; col < 2; col++) {
                 int x = 35 + col * ImagenProducto.SIZE + col * 100;
