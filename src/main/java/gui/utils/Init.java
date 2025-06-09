@@ -13,7 +13,7 @@ import java.awt.*;
  * como lo serían el expendedor, comprador. Al igual que componentes gráficos como
  * panelComprador, panelExpendedor y panelDeCompras esto es para que los componentes
  * gráficos puedan acceder a estas instancias de cualquier parte del código y poder
- * interactuar con la parte lógica del programa
+ * interactuar con la parte lógica del programa.
  */
 public class Init {
     public static Expendedor expendedor;
@@ -24,19 +24,19 @@ public class Init {
 
     /**
      * Se inicializan las instancias lógicas del expendedor y comprador
-     * con valores arbitrarios
+     * con valores arbitrarios.
      */
     public static void inicializar(){
-        expendedor = new Expendedor(10);
+        expendedor = new Expendedor(7);
         comprador = new Comprador(4400);
     }
 
     /**
-     * Se muestran cuales son las monédas del deposito mencionado con un espacio
-     * de separación si es que se requiere
-     * @param depMon: Depósito de monedas que se desea mostrar
-     * @param g: Objeto utilizado para renderizar
-     * @param Desfase: Espacio de separación
+     * Se muestran cuáles son las monédas del depósito mencionado con un espacio
+     * de separación si es que se requiere.
+     * @param depMon: Depósito de monedas que se desea mostrar.
+     * @param g: Objeto utilizado para renderizar.
+     * @param Desfase: Espacio de separación.
      */
     public static void Mostrar_monedas_en_orden(Deposito<Moneda> depMon, Graphics g, int Desfase){
         // Monedas en orden del comprador

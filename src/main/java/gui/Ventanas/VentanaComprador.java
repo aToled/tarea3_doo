@@ -13,8 +13,8 @@ public class VentanaComprador extends JFrame {
         // Configuración de la ventana:
         setTitle("Comprador");
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setSize(300,550);
-        setLocation(200,200);
+        setSize(300,400);
+        setLocation(200,45);
         setResizable(false);
 
         PanelComprador p = new PanelComprador();

@@ -99,6 +99,20 @@ public class Comprador {
         return sonido;
     }
 
+    /**
+     * Consume la primera instancia del producto elegido que el Comprador posea en su depósito de productos_comprados.
+     * @param cual: el producto que fue elegido.
+     */
+    public void Consumir(Productos cual){
+        for (int i=0; i< productos_comprados.size(); i++){
+            if(productos_comprados.get(i).getCualProducto()==cual){
+                System.out.println("Consumiste: "+productos_comprados.get(i).consumir());
+                productos_comprados.remove(i);;
+                return;
+            }
+        }
+    }
+
     public Deposito<Producto> getProductos_comprados() {
         return productos_comprados;
     }

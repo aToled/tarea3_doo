@@ -5,8 +5,6 @@ import gui.Paneles.PanelPrincipal;
 import logica.Producto;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 /**
  * Esta clase se utiliza para realizar la animación del producto que cae al ser comprado
@@ -15,7 +13,6 @@ public class Animacion {
     private PanelPrincipal panelPrincipal;
     private ImagenProducto p;
     private Timer timerAnimacion;
-    private boolean condicionDeParadaAlcanzada = false;
 
     /**
      * Recibe una instancia del panel principal y de un producto para que cuando el producto
@@ -35,11 +32,6 @@ public class Animacion {
      * el cual hace que el producto se desplaze hacia abajo
      */
     public void iniciarOContinuarMovimiento() {
-        if (condicionDeParadaAlcanzada) {
-            System.out.println("La condición de parada ya fue alcanzada. Reinicia para mover de nuevo.");
-            return;
-        }
-
         p.setBounds(p.getX(), p.getY(), ImagenProducto.SIZE, ImagenProducto.SIZE);
         if (p.getParent() == null) {
             panelPrincipal.add(p);
@@ -61,12 +53,6 @@ public class Animacion {
                 }
             });
             timerAnimacion.start();
-            System.out.println("Animación iniciada.");
-        } else if (!timerAnimacion.isRunning()) {
-            timerAnimacion.start();
-            System.out.println("Animación continuada.");
-        } else {
-            System.out.println("La animación ya está en curso.");
         }
     }
 
@@ -76,8 +62,6 @@ public class Animacion {
     private void detenerAnimacion() {
         if (timerAnimacion != null && timerAnimacion.isRunning()) {
             timerAnimacion.stop();
-            condicionDeParadaAlcanzada = true; // Marcar que la condición se cumplió
-            System.out.println("Animación detenida.");
         }
     }
 }

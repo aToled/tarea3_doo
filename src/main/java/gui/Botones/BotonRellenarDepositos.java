@@ -2,6 +2,8 @@ package gui.Botones;
 
 
 import gui.utils.Init;
+import logica.Productos;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
@@ -19,6 +21,11 @@ public class BotonRellenarDepositos extends JButton {
             @Override
             public void mouseClicked(MouseEvent e) {
                 Init.expendedor.rellenarProducto();
+                Productos[] productos = Productos.values();
+                for (Productos prod : productos) {
+                    int[] pos = Init.panelExpendedor.obtenerFilaColumna(prod);
+                    Init.panelExpendedor.reagregarProductos(prod, pos[0], pos[1]);
+                }
             }
             @Override
             public void mouseEntered(MouseEvent e) {
@@ -40,7 +47,8 @@ public class BotonRellenarDepositos extends JButton {
         g2.fillOval(0, 0, getWidth(), getWidth());
         g.setColor(Color.WHITE);
         g.setFont(new Font("Arial", Font.BOLD, 12));
-        g.drawString("Rellenar", 20, 40);
-        g.drawString(" Depósitos", 17, 60);
+        g.drawString("Rellenar", 22, 35);
+        g.drawString("Depósitos", 22, 55);
+        g.drawString("Vacíos", 22, 75);
     }
 }

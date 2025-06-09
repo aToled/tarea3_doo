@@ -16,7 +16,7 @@ public class BotonIngresarDinero extends JButton {
      * y si es una cantidad válida el comprador recibirá las monedas acorde al monto
      */
     public BotonIngresarDinero() {
-        setBounds(90, 225, 100, 100);
+        setBounds(90, 200, 100, 100);
         setBackground(Color.GRAY);
         setBorderPainted(false);
         setFocusPainted(false);

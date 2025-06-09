@@ -15,6 +15,7 @@ public class VentanaIngresarMoneda extends JFrame {
     public VentanaIngresarMoneda() {
         // Configuración de la ventana
         setTitle("Ingresar moneda");
+        setAlwaysOnTop(true);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         setSize(new Dimension(50*2+10, 50*3+10));
         // Centraliza la ventana

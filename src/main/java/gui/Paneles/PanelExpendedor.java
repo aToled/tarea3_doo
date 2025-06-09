@@ -146,7 +146,7 @@ public class PanelExpendedor extends JPanel {
      * @param producto: tal producto.
      * @return el arreglo con las coordenadas.
      */
-    private int[] obtenerFilaColumna(Productos producto) {
+    public int[] obtenerFilaColumna(Productos producto) {
         return switch (producto) {
             case COCA      -> new int[]{0, 0};
             case SPRITE    -> new int[]{0, 1};
