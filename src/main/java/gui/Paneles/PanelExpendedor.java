@@ -8,7 +8,6 @@ import logica.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
-import java.util.ArrayList;
 /**
  * Clase principal que representa la vitrina de productos del expendedor,
  * la cual organiza visualmente los productos y controla la animación de salida de uno de ellos.
@@ -18,7 +17,7 @@ public class PanelExpendedor extends JPanel {
 
     /**
      * Se renderizan los productos con el número que los identifica ademas del precio
-     * @param panelPrincipal
+     * @param panelPrincipal:
      */
     public PanelExpendedor(PanelPrincipal panelPrincipal) {
         this.panelPrincipal = panelPrincipal;
@@ -43,14 +42,12 @@ public class PanelExpendedor extends JPanel {
                 add(label);
             }
         }
-
         agregarProductos(Productos.COCA    , 0, 0);
         agregarProductos(Productos.SPRITE  , 0, 1);
         agregarProductos(Productos.FANTA   , 1, 0);
         agregarProductos(Productos.SNICKERS, 1, 1);
         agregarProductos(Productos.SUPER8  , 2, 0);
         agregarProductos(Productos.CHOCMAN , 2, 1);
-
     }
 
     /**
@@ -60,17 +57,21 @@ public class PanelExpendedor extends JPanel {
         Producto p = Init.expendedor.getProductoComprado();
         if(p==null) return;
 
-        this.reagregarProductos(p.cualProducto, p.fila, p.columna);
+        ImagenProducto pIMG = new ImagenProducto(p.cualProducto);
+        int[] pos = obtenerFilaColumna(p.cualProducto);
+        int fila = pos[0];
+        int columna = pos[1];
+        this.reagregarProductos(p.cualProducto, fila, columna);
 
-        p.establecerPosicion(p.fila, p.columna, 0);
-        p.setBounds(p.x, p.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
+        pIMG.establecerPosicion(fila, columna, 0);
+        pIMG.setBounds(pIMG.getX(), pIMG.getY(), ImagenProducto.SIZE, ImagenProducto.SIZE);
 
-        add(p);
-        setComponentZOrder(p, 0);
+        add(pIMG);
+        setComponentZOrder(pIMG, 0);
         revalidate();
         repaint();
 
-        Animacion a = new Animacion(panelPrincipal, p);
+        Animacion a = new Animacion(panelPrincipal, pIMG);
         a.iniciarOContinuarMovimiento();
     }
 
@@ -81,7 +82,7 @@ public class PanelExpendedor extends JPanel {
      * @param columna: Columna en la que se va a renderizar el producto
      */
     private void agregarProductos(Productos producto, int fila, int columna){
-        ArrayList<Producto> productos = getProductos(producto);
+        Deposito<Producto> productos = getProductos(producto);
 
         if (productos == null) return;
 
@@ -94,16 +95,17 @@ public class PanelExpendedor extends JPanel {
         // Dibuja los productos de atras a adelante.
         for(int i=0; i<P_vissibles; i++){
             Producto p = productos.get(i);
-            p.setBounds(X,Y,ImagenProducto.SIZE,ImagenProducto.SIZE);
-            p.establecerPosicion(fila,columna,i);
-            p.setName("producto_"+producto+"_"+fila+"_"+columna);
-            add(p);
+            ImagenProducto pIMG = new ImagenProducto(p.cualProducto);
+            pIMG.setBounds(X,Y,ImagenProducto.SIZE,ImagenProducto.SIZE);
+            pIMG.establecerPosicion(fila,columna,i);
+            pIMG.setName("producto_"+producto+"_"+fila+"_"+columna);
+            add(pIMG);
         }
     }
 
     /**
      * Se eliminan los productos señalados (si es que hay) y se vuelven a agregar productos nuevamente
-     * @param producto: Tipo de producto a reagregar
+     * @param producto: Tipo de producto a re-agregar
      * @param fila: Fila en la que se encuentra el producto
      * @param columna: Columna en la que se encuentra el producto
      */
@@ -125,25 +127,40 @@ public class PanelExpendedor extends JPanel {
     /**
      * Retorna los productos disponibles del tipo señalado
      * @param producto: Tipo de producto al que se quiere obtener
-     * @return Un arrayList de los productos indicados
+     * @return Un depósito de los productos indicados.
      */
-    private static ArrayList<Producto> getProductos(Productos producto) {
-        ArrayList<Producto> productos = null;
-
-        switch (producto) {
-            case COCA -> productos = Init.expendedor.getCoca().getRef();
-            case SPRITE -> productos = Init.expendedor.getSprite().getRef();
-            case FANTA -> productos = Init.expendedor.getFanta().getRef();
-            case SNICKERS -> productos = Init.expendedor.getSnickers().getRef();
-            case SUPER8 -> productos = Init.expendedor.getSuper8().getRef();
-            case CHOCMAN -> productos = Init.expendedor.getChocman().getRef();
-        }
-        return productos;
+    private static Deposito<Producto> getProductos(Productos producto) {
+        return switch (producto) {
+            case COCA -> Init.expendedor.getCoca();
+            case SPRITE -> Init.expendedor.getSprite();
+            case FANTA -> Init.expendedor.getFanta();
+            case SNICKERS -> Init.expendedor.getSnickers();
+            case SUPER8 -> Init.expendedor.getSuper8();
+            case CHOCMAN -> Init.expendedor.getChocman();
+            default -> null;
+        };
     }
 
     /**
-     * Se renderiza con un borde redondo y se pinta de color gris claro el interior.
-     * Dentro se muestran los productos con su número identificador ademas del precio
+     * Dado un producto, devuelve como coordenadas en un arreglo su fila y columna.
+     * @param producto: tal producto.
+     * @return el arreglo con las coordenadas.
+     */
+    private int[] obtenerFilaColumna(Productos producto) {
+        return switch (producto) {
+            case COCA      -> new int[]{0, 0};
+            case SPRITE    -> new int[]{0, 1};
+            case FANTA     -> new int[]{1, 0};
+            case SNICKERS  -> new int[]{1, 1};
+            case SUPER8    -> new int[]{2, 0};
+            case CHOCMAN   -> new int[]{2, 1};
+            default        -> new int[]{0, 0};
+        };
+    }
+
+    /**
+     * Se renderiza con un borde redondo y se pinta de color gris claro el interior
+     * Dentro se muestran los productos con su número identificador además del precio.
      * @param g Objeto utilizado para renderizar
      */
     @Override

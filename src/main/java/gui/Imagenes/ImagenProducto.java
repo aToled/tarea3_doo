@@ -13,8 +13,6 @@ import java.io.IOException;
  * Esta clase se utiliza para renderizar un producto en la ventana
  */
 public class ImagenProducto extends JPanel {
-    public int x = 0;
-    public int y = 0;
     public static final int SIZE = 125;
     private BufferedImage img;
 
@@ -24,14 +22,11 @@ public class ImagenProducto extends JPanel {
      */
     public ImagenProducto(Productos producto) {
         setSize(new Dimension(SIZE, SIZE));
-        setPreferredSize(new Dimension(SIZE, SIZE));
-        setMaximumSize(new Dimension(SIZE, SIZE));
+        setOpaque(false);
 
-        String userDirectory = new File("").getAbsolutePath();
+        String userDirectory = new File("").getAbsolutePath()+ "/resources/" + producto.nombre + ".png";
         try {
-            File file = new File(userDirectory + "/resources/" + producto.nombre + ".png");
-
-            img = ImageIO.read(file);
+            img = ImageIO.read(new File(userDirectory));
         } catch (IOException e) {
             System.out.println("Error al cargar la imagen: " + e.getMessage());
         }
@@ -44,9 +39,9 @@ public class ImagenProducto extends JPanel {
      * @param profundidad: tal profundidad.
      */
     public void establecerPosicion(int fila, int col, int profundidad) {
-        this.x = 30 + col * SIZE + col * 100 + profundidad * 5;
-        this.y = 50 + fila * SIZE + fila * 100 - profundidad * 5;
-        setBounds(this.x, this.y, SIZE, SIZE);
+        int x = 30 + col * SIZE + col * 100 + profundidad * 5;
+        int y = 50 + fila * SIZE + fila * 100 - profundidad * 5;
+        setBounds(x, y, SIZE, SIZE);
     }
 
     /**

@@ -13,7 +13,7 @@ import java.awt.event.ActionListener;
  */
 public class Animacion {
     private PanelPrincipal panelPrincipal;
-    private Producto p;
+    private ImagenProducto p;
     private Timer timerAnimacion;
     private boolean condicionDeParadaAlcanzada = false;
 
@@ -25,13 +25,13 @@ public class Animacion {
      * @see PanelPrincipal
      * @see Producto
      */
-    public Animacion(PanelPrincipal panelPrincipal, Producto p) {
+    public Animacion(PanelPrincipal panelPrincipal, ImagenProducto p) {
         this.panelPrincipal = panelPrincipal;
         this.p = p;
     }
 
     /**
-     * Si la animación aun no comienza y no ha terminado se ejecuta un thread cada 15 milisegundos
+     * Si la animación aún no comienza y no ha terminado se ejecuta un thread cada 15 milisegundos
      * el cual hace que el producto se desplaze hacia abajo
      */
     public void iniciarOContinuarMovimiento() {
@@ -40,7 +40,7 @@ public class Animacion {
             return;
         }
 
-        p.setBounds(p.x, p.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
+        p.setBounds(p.getX(), p.getY(), ImagenProducto.SIZE, ImagenProducto.SIZE);
         if (p.getParent() == null) {
             panelPrincipal.add(p);
             panelPrincipal.setComponentZOrder(p, 0);
@@ -54,10 +54,10 @@ public class Animacion {
                 @Override
                 public void actionPerformed(ActionEvent ae) {
                     // Lógica de movimiento y condición de parada
-                    p.y += 5;
-                    p.setBounds(p.x, p.y, ImagenProducto.SIZE, ImagenProducto.SIZE);
+                    int Ycaida = p.getY() + 5;
+                    p.setBounds(p.getX(), Ycaida, ImagenProducto.SIZE, ImagenProducto.SIZE);
                     panelPrincipal.invalidate();
-                    if (p.y >= 775) {
+                    if (p.getY() >= 775) {
                         p.setVisible(false);
                         detenerAnimacion();
                     }
@@ -74,7 +74,7 @@ public class Animacion {
     }
 
     /**
-     * Se detiene la animación en caso de que esta aun no finaliza y no ha comenzado
+     * Se detiene la animación en caso de que esta aún no finaliza y no ha comenzado
      */
     private void detenerAnimacion() {
         if (timerAnimacion != null && timerAnimacion.isRunning()) {
